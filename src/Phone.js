@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
+// custom import
+import UserInterface from './UserInterface';
+
 const styles = {
     root: {
         position: 'relative',
@@ -29,9 +32,11 @@ class Phone extends Component {
 
         return (
             <div className={ classes.root }>
-                <img className={ classes.image } src={ this.props.image } alt='phone'/>
+                <img className={ classes.image } src={ this.props.image } alt='phone'/> {/*TODO: fix disappearance on resize*/}
 
-                <div className={ classes.screen } />
+                <div className={ classes.screen }>
+                    <UserInterface />
+                </div>
             </div>
         );
     }

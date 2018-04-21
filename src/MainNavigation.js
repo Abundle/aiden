@@ -6,11 +6,10 @@ import Icon from 'material-ui/Icon';
 
 const styles = theme => ({
     root: {
-        width: 500,
-        position: 'fixed',
-        bottom: 50,
+        position: 'absolute',
+        width: '100%',
+        bottom: 0,
         zIndex: 1,
-        //width: '100%',
         border: '1px solid black',
     },
 });
@@ -19,7 +18,7 @@ class MainNavigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'recents',
+            value: 0,
         };
     }
 
@@ -32,15 +31,21 @@ class MainNavigation extends Component {
         const { value } = this.state;
 
         return (
+            /*{ value === 0 && <Home/> }
+            { value === 1 && <Controls /> }
+            { value === 2 && <Reports /> }
+            { value === 3 && <Settings /> }*/
+
             <BottomNavigation
                 value={ value }
                 onChange={ this.handleChange }
                 showLabels
                 className={ classes.root }
             >
-                <BottomNavigationAction value='chats' label='Chats' icon={ <Icon>home</Icon> } />
-                <BottomNavigationAction value='social-media' label='Social Media' icon={ <Icon>info</Icon> } />
-                <BottomNavigationAction value='settings' label='Settings' icon={ <Icon>settings</Icon> } />
+                { this.props.assistantEnabled && <BottomNavigationAction label='Activity' icon={ <Icon>track_changes</Icon> } /> }
+                <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
+                <BottomNavigationAction label='Contacts' icon={ <Icon>people</Icon> } />
+                <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />
             </BottomNavigation>
         );
     }

@@ -44,7 +44,7 @@ class App extends Component {
             <div className={ classes.root }>
                 <CssBaseline />
                 <MuiThemeProvider theme={ theme }>
-                    <Phone image={ onePlusImage }/>
+                    <Phone image={ onePlusImage } /> {/*TODO: pass prop 'assistantEnabled' to MainNavigation*/}
 
                     <Phone image={ onePlusImage }/>
                 </ MuiThemeProvider>
