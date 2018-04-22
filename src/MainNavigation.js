@@ -12,6 +12,13 @@ const styles = theme => ({
         zIndex: 1,
         border: '1px solid black',
     },
+    /*nav: {
+        flex: '1',
+        '&$selected': {
+            paddingTop: 60,
+            color: theme.palette.primary.main,
+        },
+    },*/
 });
 
 class MainNavigation extends Component {
@@ -43,7 +50,7 @@ class MainNavigation extends Component {
                 className={ classes.root }
             >
                 { this.props.assistantEnabled && <BottomNavigationAction label='Activity' icon={ <Icon>track_changes</Icon> } /> }
-                <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
+                <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } /> {/*href='#chats'*/}
                 <BottomNavigationAction label='Contacts' icon={ <Icon>people</Icon> } />
                 <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />
             </BottomNavigation>
