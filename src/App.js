@@ -24,23 +24,6 @@ const theme = createMuiTheme({
         fontFamily: 'Roboto, Arial, Helvetica, sans-serif',
         fontSize: 20,
     },*/
-    overrides: {
-        MuiBottomNavigationAction: {
-            // Name of the styleSheet
-            root: {
-                // Name of the rule
-                flex: '1',
-                '&$selected': {
-                    paddingTop: 8,
-                },
-            },
-            label: {
-                '&$selected': {
-                    fontSize: 12, //theme.typography.pxToRem(12)
-                },
-            },
-        },
-    },
 });
 
 const styles = {
