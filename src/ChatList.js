@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-// import Dialog from 'material-ui/Dialog';
+import Paper from 'material-ui/Paper';
 import Slide from 'material-ui/transitions/Slide';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
@@ -39,38 +39,25 @@ const styles = theme => ({
         width: '100%',
         // Minus status bar, app bar and bottom navigation
         height: 'calc(100% - (20px + 56px))',
-        // height: 'calc(100% - (20px + 64px + 56px))',
-        // maxWidth: 360,
-
         backgroundColor: theme.palette.background.paper,
         overflowY: 'scroll',
-        overflowX: 'hidden'
+        overflow: 'hidden'
     },
-    appBar: {
-        backgroundColor: theme.palette.background.paper,
+    toolBar: {
+        padding: 0,
     },
     chat: {
         position: 'absolute',
         width: '100%',
-        // Minus status bar and bottom navigation
-        height: 'calc(100% - (20px + 56px))',
-        // Status bar height
         top: 0,
         left: 0,
+        // paddingLeft: theme.spacing.unit * 3,
         backgroundColor: theme.palette.background.paper,
     },
-    /*flex: {
+    flex: {
         flex: 1,
+        // textAlign: 'center',
     },
-    dialog: {
-        // display: 'block',
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-        zIndex: 'auto', //theme.zIndex.modal,
-        top: 0,
-        left: 0,
-    },*/
 });
 
 class ChatList extends Component {
@@ -84,7 +71,7 @@ class ChatList extends Component {
     }
 
     handleClickOpen = (event, name) => {
-        this.setState({ open: true, selectedChat: name });
+        this.setState({ open: true, selectedChat: name }); // TODO: scroll to top when clicked
     };
 
     handleClose = () => {
@@ -96,17 +83,25 @@ class ChatList extends Component {
         // const { state }  = this.state;
 
         return (
-            <div className={ classes.root }>
-                <AppBar elevation={ 0 } position='static' color='default' className={ classes.appBar }>
+            <div className={ classes.root }
+                // style={ this.state.open ? { overflowY: 'hidden' } : { overflowY: 'scroll' } }
+            >
+                <AppBar elevation={ 0 } position='static' color='secondary'>
                     <Toolbar>
-                        <Typography variant='headline' color='inherit'>
+                        <Typography variant='headline' color='default'>
                             Chats
                         </Typography>
                     </Toolbar>
                 </AppBar>
 
-                <List> {/*className={ classes.chatList }*/}
-                    { chatList.map((data, index) => (
+                <Slide
+                    direction='right'
+                    in={ !this.state.open }
+                    mountOnEnter
+                    unmountOnExit
+                >
+                <List>
+                    { chatList.map((data) => (
                         <ListItem
                             key={ data.id }
                             value={ data.name }
@@ -125,42 +120,38 @@ class ChatList extends Component {
                         </ListItem>
                     )) }
                 </List>
+                </Slide>
 
                 <Slide
                     direction='left'
                     in={ this.state.open }
                     mountOnEnter
-                    unmountOnExit>
-                    <div
+                    unmountOnExit
+                >
+                    <Paper
                         className={ classes.chat }
                         onClose={ this.handleClose }
                     >
-                        <AppBar elevation={ 0 } position='static' color='default' className={ classes.appBar }>
-                                <Toolbar>
-                                    <IconButton color='inherit' onClick={ this.handleClose } aria-label='Close'>
-                                        <Icon>close</Icon>
-                                    </IconButton>
-                                    <Typography variant='title' color='inherit' className={ classes.flex }>
-                                        { this.state.selectedChat }
-                                    </Typography>
-                                </Toolbar>
-                            </AppBar>
-                        Lorem ipsum
-                    </div>
+                        <AppBar elevation={ 0 } position='static' color='secondary'>
+                            <Toolbar className={ classes.toolBar }>
+                                <IconButton color='inherit' onClick={ this.handleClose } aria-label='Close'>
+                                    <Icon>chevron_left</Icon>
+                                </IconButton>
+                                <Typography variant='title' color='inherit' className={ classes.flex }>
+                                    { this.state.selectedChat }
+                                </Typography>
+                            </Toolbar>
+                        </AppBar>
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                    </Paper>
                 </Slide>
-
-                {/*{ this.state.open &&
-                    <div
-                        //open={this.state.open}
-                        className={ classes.chat }
-                        onClose={ this.handleClose }
-                    >
-                        <IconButton color='inherit' onClick={ this.handleClose } aria-label='Close'>
-                            <Icon>close</Icon>
-                        </IconButton>
-                        Lorem ipsum
-                    </div>
-                }*/}
             </div>
         );
     }
