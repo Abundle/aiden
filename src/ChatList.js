@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Paper from 'material-ui/Paper';
 import Slide from 'material-ui/transitions/Slide';
+import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
@@ -40,24 +41,54 @@ const styles = theme => ({
         // Minus status bar, app bar and bottom navigation
         height: 'calc(100% - (20px + 56px))',
         backgroundColor: theme.palette.background.paper,
-        overflowY: 'scroll',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        /*overflowY: 'scroll',
+        overflowX: 'hidden'*/
     },
+    // Chat style properties
     toolBar: {
         padding: 0,
     },
-    chat: {
+    chatList: {
+        height: 'calc(100% - 20px)',
+        overflowY: 'scroll',
+    },
+    chatContainer: {
         position: 'absolute',
         width: '100%',
+        height: '100%',
         top: 0,
         left: 0,
         // paddingLeft: theme.spacing.unit * 3,
         backgroundColor: theme.palette.background.paper,
     },
-    flex: {
+    chatContent: {
+        overflowY: 'scroll',
+        height: '100%',
+        paddingBottom: 200,
+    },
+    textInput: {
+        position: 'fixed',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        bottom: 0,
+        padding: 10,
+        // backgroundColor: 'blue',
+    },
+    textField: {
+        padding: 10,
+        // position
+    },
+    button: {
+        minWidth: 56,
+        minHeight: 56,
+        marginLeft: theme.spacing.unit,
+    },
+    /*flex: {
         flex: 1,
         // textAlign: 'center',
-    },
+    },*/
 });
 
 class ChatList extends Component {
@@ -71,7 +102,7 @@ class ChatList extends Component {
     }
 
     handleClickOpen = (event, name) => {
-        this.setState({ open: true, selectedChat: name }); // TODO: scroll to top when clicked
+        this.setState({ open: true, selectedChat: name });
     };
 
     handleClose = () => {
@@ -83,10 +114,8 @@ class ChatList extends Component {
         // const { state }  = this.state;
 
         return (
-            <div className={ classes.root }
-                // style={ this.state.open ? { overflowY: 'hidden' } : { overflowY: 'scroll' } }
-            >
-                <AppBar elevation={ 0 } position='static' color='secondary'>
+            <div className={ classes.root }>
+                <AppBar elevation={ 0 } position='static' color='secondary'> {/*TODO: move appBar within slide?*/}
                     <Toolbar>
                         <Typography variant='headline' color='default'>
                             Chats
@@ -100,7 +129,7 @@ class ChatList extends Component {
                     mountOnEnter
                     unmountOnExit
                 >
-                <List>
+                <List className={ classes.chatList }>
                     { chatList.map((data) => (
                         <ListItem
                             key={ data.id }
@@ -129,7 +158,7 @@ class ChatList extends Component {
                     unmountOnExit
                 >
                     <Paper
-                        className={ classes.chat }
+                        className={ classes.chatContainer }
                         onClose={ this.handleClose }
                     >
                         <AppBar elevation={ 0 } position='static' color='secondary'>
@@ -137,19 +166,50 @@ class ChatList extends Component {
                                 <IconButton color='inherit' onClick={ this.handleClose } aria-label='Close'>
                                     <Icon>chevron_left</Icon>
                                 </IconButton>
-                                <Typography variant='title' color='inherit' className={ classes.flex }>
+                                <Typography variant='title' color='inherit'> {/*className={ classes.flex }*/}
                                     { this.state.selectedChat }
                                 </Typography>
                             </Toolbar>
                         </AppBar>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+
+                        <div className={ classes.chatContent } >
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+                        </div>
+
+                        <div className={ classes.textInput }>
+                            <Paper className={ classes.textField } elevation={ 3 }>
+                                <Typography component='p'>
+                                    Paper can be used to build surface or other elements for your application. Lorem ipsum
+                                    Lorem ipsum
+                                </Typography>
+                            </Paper>
+
+                            <Button variant='fab' color='primary' aria-label='add' className={ classes.button }>
+                                <Icon>send</Icon>
+                            </Button>
+
+                            {/*<Button variant='raised' color='primary' aria-label='add' className={ classes.button }>
+                                <Icon>send</Icon>
+                            </Button>*/}
+                        </div>
                     </Paper>
                 </Slide>
             </div>
