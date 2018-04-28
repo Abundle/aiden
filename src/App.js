@@ -7,23 +7,53 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 // custom import
 import Phone from './Phone';
 import onePlusImage from './assets/oneplus3_outline.svg'
+import samsungImage from './assets/samsung_galaxy_s4_putline.svg'
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#f15b27',
+            main: '#ff0000',
         },
         secondary: {
             main: '#f15b27',
         },
         error: {
-            main: '#e83a3a',
+            main: '#cc0000',
         },
     },
     /*typography: {
         fontFamily: 'Roboto, Arial, Helvetica, sans-serif',
         fontSize: 20,
     },*/
+    overrides: {
+        MuiBottomNavigationAction: {
+            // Name of the styleSheet
+            root: {
+                // Name of the rule
+                flex: '1',
+                '&$selected': {
+                    paddingTop: 8,
+                },
+            },
+            label: {
+                '&$selected': {
+                    fontSize: 12, //theme.typography.pxToRem(12)
+                },
+            },
+        },
+        MuiList: {
+            padding: {
+                paddingTop: 0,
+                paddingBottom: 100,
+            },
+        },
+        MuiListItemSecondaryAction: {
+            root: {
+                top: '35%',
+                right: 10,
+            },
+        }
+    },
 });
 
 const styles = {
@@ -44,9 +74,9 @@ class App extends Component {
             <div className={ classes.root }>
                 <CssBaseline />
                 <MuiThemeProvider theme={ theme }>
-                    <Phone image={ onePlusImage } /> {/*TODO: pass prop 'assistantEnabled' to MainNavigation*/}
+                    <Phone image={ onePlusImage } assistant />
 
-                    <Phone image={ onePlusImage }/>
+                    <Phone image={ samsungImage }/>
                 </ MuiThemeProvider>
             </div>
         );

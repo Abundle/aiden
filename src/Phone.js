@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
 // custom import
-import UserInterface from './UserInterface';
+import DigitalAssistantApp from './DigitalAssistantApp';
+import MessageApp from './MessageApp';
 
 const styles = {
     root: {
@@ -28,21 +29,31 @@ const styles = {
 
 class Phone extends Component {
     render() {
-        const { classes } = this.props;
+        const { classes, assistant } = this.props; /*TODO: fix disappearance on resize*/
+        const ui = assistant ? (
+            <DigitalAssistantApp />
+        ) : (
+            <MessageApp/>
+        );
 
         return (
             <div className={ classes.root }>
-                <img className={ classes.image } src={ this.props.image } alt='phone'/> {/*TODO: fix disappearance on resize*/}
+                <img className={ classes.image } src={ this.props.image } alt='phone'/>
 
                 <div className={ classes.screen }>
-                    <UserInterface />
+                    { ui }
                 </div>
             </div>
         );
     }
 }
 
+Phone.defaultProps = {
+    assistant: false,
+};
+
 Phone.propTypes = {
+    assistant: PropTypes.bool,
     classes: PropTypes.object.isRequired,
 };
 
