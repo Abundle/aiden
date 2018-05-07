@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -30,60 +30,53 @@ const styles = theme => ({
     },
 });
 
-const AddMessage = (props) => {
-    const { classes } = props;
-    let input;
+class AddMessage extends Component {
+    handleChange = (event, input) => { // TODO: check if textfield is empty
+        console.log(event);
+        this.props.dispatch(input.value, 'Me');
+        input.value = '';
+    };
 
-    return (
-        <div className={ classes.root }>
-            <Paper className={ classes.input } elevation={ 3 }>
-                <Input
-                    placeholder='Type a message'
-                    inputProps={{
-                        'aria-label': 'Description',
-                    }}
-                    onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                            props.dispatch(input.value, 'Me');
-                            input.value = '';
-                            e.preventDefault();
-                        }
-                    }}
-                    inputRef={(node) => {
-                        input = node
-                    }}
-                    multiline
-                    disableUnderline
-                    fullWidth
-                />
-            </Paper>
+    render() {
+        const {classes} = this.props;
+        let input;
 
-            <Button
-                variant='fab'
-                color='primary'
-                aria-label='add'
-                className={ classes.button }
-                onChange={ this.handleChange }
-            >
-                <Icon>send</Icon>
-            </Button>
-        </div>
-    )
+        return (
+            <div className={ classes.root }>
+                <Paper className={ classes.input } elevation={ 3 }>
+                    <Input
+                        placeholder='Type a message'
+                        inputProps={{
+                            'aria-label': 'Description',
+                        }}
+                        onKeyPress={ (event) => {
+                            if (event.key === 'Enter') {
+                                this.handleChange(event, input);
+                                event.preventDefault();
+                            }
+                        }}
+                        inputRef={(node) => {
+                            input = node
+                        }}
+                        multiline
+                        disableUnderline
+                        fullWidth
+                    />
+                </Paper>
 
-    /*<input
-    style={ styles.input }
-    onKeyPress={(e) => {
-        if (e.key === 'Enter') {
-            props.dispatch(input.value, 'Me');
-            input.value = ''
-        }
-    }}
-    type='text'
-    ref={(node) => {
-        input = node
-    }}
-    />*/
-};
+                <Button
+                    variant='fab'
+                    color='primary'
+                    aria-label='add'
+                    className={ classes.button }
+                    onClick={ (event) => this.handleChange(event, input) }
+                >
+                    <Icon>send</Icon>
+                </Button>
+            </div>
+        )
+    };
+}
 
 AddMessage.propTypes = {
     dispatch: PropTypes.func.isRequired,

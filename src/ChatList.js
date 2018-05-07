@@ -165,7 +165,6 @@ class ChatList extends Component {
             </div>
         );
     }
-
 }
 
 ChatList.propTypes = {
