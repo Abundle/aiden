@@ -14,25 +14,22 @@ const styles = theme => ({
         alignItems: 'center',
         bottom: 0,
         padding: 10,
-        // backgroundColor: 'blue',
     },
     input: {
-        width: '15vw',
+        width: '14.5vw',
         minWidth: 215,
         padding: 10,
-        borderRadius: 10,
-        // position
+        // borderRadius: 10,
     },
     button: {
-        minWidth: 56,
-        minHeight: 56,
+        minWidth: 55,
+        minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
 });
 
 class AddMessage extends Component {
     handleChange = (event, input) => { // TODO: check if textfield is empty
-        console.log(event);
         this.props.dispatch(input.value, 'Me');
         input.value = '';
     };
@@ -49,12 +46,18 @@ class AddMessage extends Component {
                         inputProps={{
                             'aria-label': 'Description',
                         }}
-                        onKeyPress={ (event) => {
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                this.props.dispatch(input.value, 'Me');
+                                input.value = '';
+                            }
+                        }}
+                        /*onKeyPress={ (event) => {
                             if (event.key === 'Enter') {
                                 this.handleChange(event, input);
                                 event.preventDefault();
                             }
-                        }}
+                        }}*/
                         inputRef={(node) => {
                             input = node
                         }}

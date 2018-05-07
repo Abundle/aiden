@@ -43,8 +43,6 @@ const styles = theme => ({
         height: 'calc(100% - (20px + 56px))',
         backgroundColor: theme.palette.background.paper,
         overflow: 'hidden',
-        /*overflowY: 'scroll',
-        overflowX: 'hidden'*/
     },
     // Chat style properties
     toolBar: {
@@ -60,18 +58,8 @@ const styles = theme => ({
         height: '100%',
         top: 0,
         left: 0,
-        // paddingLeft: theme.spacing.unit * 3,
         backgroundColor: theme.palette.background.paper,
     },
-    chatContent: {
-        overflowY: 'scroll',
-        height: '100%',
-        paddingBottom: 200,
-    },
-    /*flex: {
-        flex: 1,
-        // textAlign: 'center',
-    },*/
 });
 
 class ChatList extends Component {
@@ -155,9 +143,7 @@ class ChatList extends Component {
                             </Toolbar>
                         </AppBar>
 
-                        <div className={ classes.chatContent } >
-                            <Conversation />
-                        </div>
+                        <Conversation />
 
                         <AddMessage />
                     </Paper>
