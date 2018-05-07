@@ -52,7 +52,7 @@ class DigitalAssistant extends Component {
                     showLabels
                     className={ classes.nav }
                 >
-                    <BottomNavigationAction label='Calls' icon={ <Icon>call</Icon> } />
+                    <BottomNavigationAction label='Mail' icon={ <Icon>mail_outline</Icon> } />
                     {/*<BottomNavigationAction label='Contacts' icon={ <Icon>people</Icon> } />*/}
                     <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
                     <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />

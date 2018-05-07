@@ -7,7 +7,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 // custom import
 import Phone from './Phone';
 import onePlusImage from './assets/oneplus3_outline.svg'
-import samsungImage from './assets/samsung_galaxy_s4_putline.svg'
+// import samsungImage from './assets/samsung_galaxy_s4_putline.svg'
 
 const theme = createMuiTheme({
     palette: {
@@ -77,7 +77,7 @@ class App extends Component {
                 <MuiThemeProvider theme={ theme }>
                     <Phone image={ onePlusImage } assistant />
 
-                    <Phone image={ samsungImage }/>
+                    {/*<Phone image={ samsungImage }/>*/}
                 </ MuiThemeProvider>
             </div>
         );

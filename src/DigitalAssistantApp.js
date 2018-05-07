@@ -96,7 +96,7 @@ class DigitalAssistantApp extends Component {
                     className={ classes.nav }
                 >
                     <BottomNavigationAction label='Activity' icon={ <Icon>track_changes</Icon> } />
-                    <BottomNavigationAction label='Mails' icon={ <Icon>mail</Icon> } />
+                    <BottomNavigationAction label='Mail' icon={ <Icon>mail_outline</Icon> } />
                     <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
                     <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />
                 </BottomNavigation>
