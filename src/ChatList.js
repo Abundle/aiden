@@ -6,7 +6,6 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Paper from 'material-ui/Paper';
 import Slide from 'material-ui/transitions/Slide';
-import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
@@ -68,24 +67,6 @@ const styles = theme => ({
         overflowY: 'scroll',
         height: '100%',
         paddingBottom: 200,
-    },
-    textInput: {
-        position: 'fixed',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        bottom: 0,
-        padding: 10,
-        // backgroundColor: 'blue',
-    },
-    textField: {
-        padding: 10,
-        // position
-    },
-    button: {
-        minWidth: 56,
-        minHeight: 56,
-        marginLeft: theme.spacing.unit,
     },
     /*flex: {
         flex: 1,
@@ -178,25 +159,7 @@ class ChatList extends Component {
                             <Conversation />
                         </div>
 
-                        <div className={ classes.textInput }>
-                            <Paper className={ classes.textField } elevation={ 3 }>
-                                <AddMessage />
-                            </Paper>
-
-                            <Button
-                                variant='fab'
-                                color='primary'
-                                aria-label='add'
-                                className={ classes.button }
-                                onChange={ this.handleChange }
-                            >
-                                <Icon>send</Icon>
-                            </Button>
-
-                            {/*<Button variant='raised' color='primary' aria-label='add' className={ classes.button }>
-                                <Icon>send</Icon>
-                            </Button>*/}
-                        </div>
+                        <AddMessage />
                     </Paper>
                 </Slide>
             </div>
