@@ -197,8 +197,7 @@ class ChatList extends Component {
                         <div className={ classes.textInput }>
                             <Paper className={ classes.textField } elevation={ 3 }>
                                 <Typography component='p'>
-                                    Paper can be used to build surface or other elements for your application. Lorem ipsum
-                                    Lorem ipsum
+                                    Paper can be used to build surface or other elements for your application.
                                 </Typography>
                             </Paper>
 

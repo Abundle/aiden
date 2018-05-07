@@ -17,6 +17,7 @@ const styles = {
     nav: {
         position: 'absolute',
         width: '100%',
+        minWidth: 266,
         bottom: 0,
         zIndex: 1,
         border: '1px solid black',

@@ -41,6 +41,7 @@ const styles = {
     nav: {
         position: 'absolute',
         width: '100%',
+        minWidth: 300,
         bottom: 0,
         zIndex: 1,
         border: '1px solid black',
@@ -95,7 +96,7 @@ class DigitalAssistantApp extends Component {
                     className={ classes.nav }
                 >
                     <BottomNavigationAction label='Activity' icon={ <Icon>track_changes</Icon> } />
-                    <BottomNavigationAction label='Calls' icon={ <Icon>call</Icon> } />
+                    <BottomNavigationAction label='Mails' icon={ <Icon>mail</Icon> } />
                     <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
                     <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />
                 </BottomNavigation>

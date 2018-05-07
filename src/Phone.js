@@ -12,17 +12,22 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: '50px 150px',
+        margin: '50px 100px',
         height: '45vw', // original image: 640x1280px
+        minHeight: 682,
         width: '22vw',
+        minWidth: 340,
     },
     image: {
-        height: '100%'
+        height: '100%',
+        // width: '100%',
     },
     screen: {
         position: 'absolute',
         height: '34.75vw', //665
+        minHeight: 534.45,
         width: '19.55vw', //374
+        minWidth: 300.45,
         backgroundColor: 'gray',
     },
 };
