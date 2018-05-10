@@ -16,7 +16,7 @@ const styles = theme => ({
         padding: 10,
     },
     input: {
-        width: '14.5vw',
+        width: '14.8vw',
         minWidth: 215,
         padding: 10,
         // borderRadius: 10,
@@ -28,14 +28,14 @@ const styles = theme => ({
     },
 });
 
-class AddMessage extends Component {
+class SendMessage extends Component {
     handleChange = (event, input) => { // TODO: check if textfield is empty
         this.props.dispatch(input.value, 'Me');
         input.value = '';
     };
 
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
         let input;
 
         return (
@@ -46,16 +46,16 @@ class AddMessage extends Component {
                         inputProps={{
                             'aria-label': 'Description',
                         }}
-                        onKeyPress={(e) => {
+                        onKeyPress={(event) => {
+                            if (event.key === 'Enter') {
+                                event.preventDefault();
+                                this.handleChange(event, input);
+                            }
+                        }}
+                        /*onKeyPress={(e) => {
                             if (e.key === 'Enter') {
                                 this.props.dispatch(input.value, 'Me');
                                 input.value = '';
-                            }
-                        }}
-                        /*onKeyPress={ (event) => {
-                            if (event.key === 'Enter') {
-                                this.handleChange(event, input);
-                                event.preventDefault();
                             }
                         }}*/
                         inputRef={(node) => {
@@ -81,9 +81,9 @@ class AddMessage extends Component {
     };
 }
 
-AddMessage.propTypes = {
+SendMessage.propTypes = {
     dispatch: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AddMessage);
+export default withStyles(styles)(SendMessage);

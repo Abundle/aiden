@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 import Icon from 'material-ui/Icon';
 
-// custom import
+// Local import
 import ChatList from './ChatList';
 
 const styles = {

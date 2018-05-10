@@ -10,6 +10,9 @@ import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
+// register ourselves as present in the chat
+// store.dispatch(addUser('Me'));
+
 ReactDOM.render(
     <Provider store={ store }>
         <App />

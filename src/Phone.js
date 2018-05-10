@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
-// custom import
+// Local import
 import DigitalAssistantApp from './DigitalAssistantApp';
 import MessageApp from './MessageApp';
 

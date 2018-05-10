@@ -10,7 +10,7 @@ const styles = theme => ({
     root: {
         width: '10vw',
         minWidth: 50,
-        margin: '15px 10px 5px 75px',
+        margin: '15px 10px 5px 100px', // TODO: fix spacing another way
         padding: 10,
         textAlign: 'right',
         color: theme.palette.secondary.main,

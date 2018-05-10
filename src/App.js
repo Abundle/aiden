@@ -45,7 +45,7 @@ const theme = createMuiTheme({
         MuiList: {
             padding: {
                 paddingTop: 0,
-                paddingBottom: 100,
+                paddingBottom: 150,
             },
         },
         MuiListItemSecondaryAction: {

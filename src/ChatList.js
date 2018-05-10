@@ -4,20 +4,16 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Paper from 'material-ui/Paper';
-import Slide from 'material-ui/transitions/Slide';
-import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
-import Icon from 'material-ui/Icon';
 
-// Custom import
+// Local import
 import avatar1 from './assets/avatar1.jpg';
 import avatar2 from './assets/avatar2.jpg';
 import avatar3 from './assets/avatar3.jpg';
 import avatar4 from './assets/avatar4.jpg';
-import { Conversation } from './containers/Conversation';
-import { AddMessage } from './containers/AddMessage';
+import Chat from './chat/Chat';
+// import Portal from './chat/Portal';
 
 let date = new Date();
 let time = date.getHours() + ':' + date.getMinutes();
@@ -28,7 +24,7 @@ const chatList = [ /*TODO: add timestamp*/
     { id: 3, name: 'Max Jack', avatar: avatar3, message: 'Lorem ipsum hoho' },
     { id: 4, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
     { id: 5, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
-    { id: 6, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
+    { id: 6, name: 'Dave Jack', avatar: avatar4, message: 'Lorem ipsum huhu' },
     { id: 7, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
     { id: 8, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
     { id: 9, name: 'Max Jack', avatar: avatar3, message: 'Lorem ipsum hoho' },
@@ -39,18 +35,21 @@ const styles = theme => ({
     root: {
         position: 'relative',
         width: '100%',
+        // TODO: make bottom navigation dissappear when chat is clicked
         // Minus status bar, app bar and bottom navigation
-        height: 'calc(100% - (20px + 56px))',
-        backgroundColor: theme.palette.background.paper,
+        height: 'calc(100% - (20px + 56px))', //'calc(100% - 20px)',
+        backgroundColor: theme.palette.secondary.main,
         overflow: 'hidden',
     },
+    chatList: {
+        // TODO: make variable come from bottom navigation itself
+        height: 'calc(100% - 64px)',
+        overflowY: 'scroll',
+    },
+
     // Chat style properties
     toolBar: {
         padding: 0,
-    },
-    chatList: {
-        height: 'calc(100% - 20px)',
-        overflowY: 'scroll',
     },
     chatContainer: {
         position: 'absolute',
@@ -68,11 +67,11 @@ class ChatList extends Component {
         this.state = {
             value: 2,
             open: false,
-            selectedChat: 'a'
+            selectedChat: 'Dave Kellie',
         };
     }
 
-    handleClickOpen = (event, name) => {
+    handleOpen = (event, name) => {
         this.setState({ open: true, selectedChat: name });
     };
 
@@ -82,7 +81,7 @@ class ChatList extends Component {
 
     render() {
         const { classes } = this.props;
-        // const { state }  = this.state;
+        const { open, selectedChat }  = this.state;
 
         return (
             <div className={ classes.root }>
@@ -94,18 +93,18 @@ class ChatList extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <Slide
+                {/*<Slide
                     direction='right'
-                    in={ !this.state.open }
+                    in={ !open }
                     mountOnEnter
                     unmountOnExit
-                >
+                >*/}
                 <List className={ classes.chatList }>
                     { chatList.map((data) => (
                         <ListItem
                             key={ data.id }
                             value={ data.name }
-                            onClick={ event => this.handleClickOpen(event, data.name) }
+                            onClick={ (event) => this.handleOpen(event, data.name) }
                             button
                             divider
                         >
@@ -120,34 +119,20 @@ class ChatList extends Component {
                         </ListItem>
                     )) }
                 </List>
-                </Slide>
+                {/*</Slide>*/}
 
-                <Slide
-                    direction='left'
-                    in={ this.state.open }
-                    mountOnEnter
-                    unmountOnExit
-                >
-                    <Paper
-                        className={ classes.chatContainer }
-                        onClose={ this.handleClose }
-                    >
-                        <AppBar elevation={ 0 } position='static' color='secondary'>
-                            <Toolbar className={ classes.toolBar }>
-                                <IconButton color='inherit' onClick={ this.handleClose } aria-label='Close'>
-                                    <Icon>chevron_left</Icon>
-                                </IconButton>
-                                <Typography variant='title' color='inherit'> {/*className={ classes.flex }*/}
-                                    { this.state.selectedChat }
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
+                {/*From https://www.nearform.com/blog/exploring-react-portals/*/}
+                <Chat
+                    open={ open }
+                    selectedChat={ selectedChat }
+                    onClose={ this.handleClose }
+                />
 
-                        <Conversation />
-
-                        <AddMessage />
-                    </Paper>
-                </Slide>
+                {/*<Portal
+                    open={ open }
+                    selectedChat={ 'My Portal Modal' }
+                    onClose={ this.handleClose }
+                />*/}
             </div>
         );
     }
