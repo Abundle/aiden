@@ -23,7 +23,7 @@ const styles = theme => ({
         width: '100%',
         height: '100%',
         top: 0,
-        left: 100,
+        left: 0,
         backgroundColor: theme.palette.background.paper,
     },
     toolBar: {
@@ -59,8 +59,6 @@ function Chat(props) {
     const { classes } = props;
     let input;
 
-    // console.log(props.user.messages, props.messages);
-
     const chat = !props.user.messages ? (
         null
     ) : (
@@ -80,8 +78,7 @@ function Chat(props) {
     return (
         <Slide
             direction='left'
-            in={ true }
-            // in={ props.openChat}
+            in={ props.open }
             mountOnEnter
             unmountOnExit
         >

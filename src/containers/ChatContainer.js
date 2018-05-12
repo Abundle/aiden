@@ -13,16 +13,18 @@ import { sendMessage } from '../actions';
     }
 };*/
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
     user: state.activeUser,
     // messages: getVisibleMessages(state.messages, state.visibilityFilter)
     messages: state.messages,
+    open: ownProps.open,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch: (message, author) => {
         dispatch(sendMessage(message, author))
-    }
+    },
+    onClose: ownProps.onClose,
 });
 
 export const ChatContainer = connect(

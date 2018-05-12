@@ -23,6 +23,11 @@ const styles = theme => ({
 });
 
 class UserList extends Component {
+    handleClick(user) {
+        this.props.dispatch(user);
+        this.props.onOpen();
+    }
+
     render() {
         const { classes, users } = this.props;
 
@@ -32,9 +37,12 @@ class UserList extends Component {
                     <ListItem
                         key={ user.id }
                         value={ user.name }
-                        onClick={ () => this.props.dispatch(user) }
+                        onClick={ () => this.handleClick(user) }
+                        // onClick={ () => this.props.onOpen() }
+                        // onClick={ this.props.onOpen }
+                        // onClick={ () => this.props.dispatch(user) }
                         // onClick={ () => this.props.selectChat(user) }
-                        // onClick={ (event) => this.handleOpen(event, user.name, user.id) }
+                        // onClick={ this.props.dispatch(user) }
                         button
                         divider
                     >

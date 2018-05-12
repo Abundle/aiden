@@ -8,10 +8,6 @@ const usersReducer = (state = [
                 message: 'hao',
                 // time: '16:15',
             },
-            {
-                id: 1,
-                message: 'adfl',
-            },
         ],
     },
     {

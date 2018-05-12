@@ -43,22 +43,24 @@ class ChatList extends Component {
         super(props);
         this.state = {
             value: 2,
-            /*open: false,
-            selectedChat: 'Dave Kellie',*/
+            open: false,
+            //selectedChat: 'Dave Kellie',
         };
     }
 
-    /*handleOpen = (event, name) => {
-        this.setState({ open: true, selectedChat: name });
-    };*/
+    handleOpen = () => {
+        // console.log(this.state.open);
+        this.setState({ open: true });
+    };
 
     handleClose = () => {
+        // console.log(this.state.open);
         this.setState({ open: false });
     };
 
     render() {
         const { classes } = this.props;
-        // const { open, selectedChat }  = this.state;
+        const { open }  = this.state;
 
         return (
             <div className={ classes.root }>
@@ -70,9 +72,14 @@ class ChatList extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <UserListContainer />
+                <UserListContainer
+                    onOpen={ this.handleOpen }
+                />
 
-                <ChatContainer />
+                <ChatContainer
+                    open={ open }
+                    onClose={ this.handleClose }
+                />
                 {/*Handling state from https://www.nearform.com/blog/exploring-react-portals/*/}
                 {/*<Chat
                     open={ open }
