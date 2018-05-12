@@ -15,6 +15,11 @@ export const selectChat = (user) => ({
     payload: user,
 });
 
+/*export const VisibilityFilters = {
+    SHOW_ACTIVE: 'SHOW_ACTIVE',
+    SHOW_ALL: 'SHOW_ALL',
+};*/
+
 /*export const addUser = name => ({
     type: types.ADD_USER,
     id: nextUserId++,

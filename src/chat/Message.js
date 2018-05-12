@@ -35,6 +35,13 @@ const Message = (props) => {
             <i>{ time }</i>
         </Paper>
     );
+
+    /*<Paper className={ props.author === 'Me' ? classes.me : classes.root }>
+        <b>{ props.author }:</b><br />
+        { props.message }<br />
+
+        <i>{ time }</i>
+    </Paper>*/
 };
 
 Message.propTypes = {

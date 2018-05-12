@@ -8,42 +8,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
 
-/*const initialState = {
-    activeChat: 'Dave Kellie',
-    users: [
-        {
-            id: 1,
-            name: 'Dave Kellie',
-            message: 'hello',
-        },
-        {
-            id: 2,
-            name: 'Kellie Max',
-            message: 'hello'
-        },
-        {
-            id: 3,
-            name: 'Max Jack'
-        },
-    ],
-    messages: [
-        {
-            id: 0,
-            author: 'Lorem Ipsum' ,
-            message: 'hello'
-        },
-        {
-            id: 1,
-            author: 'Ipsum Lorem',
-            message: 'hi'
-        },
-    ]
-};*/
-
-const store = createStore(
-    rootReducer
-    //initialState,
-);
+const store = createStore(rootReducer);
 
 /*store.subscribe(() => {
     console.log(store.getState());

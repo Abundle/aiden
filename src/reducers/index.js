@@ -2,14 +2,13 @@ import { combineReducers } from 'redux';
 import usersReducer from './usersReducer';
 import messagesReducer from './messagesReducer';
 import activeUserReducer from './activeUserReducer';
-import visibilityFilterReducer from './visibilityFilterReducer';
+// import visibilityFilterReducer from './visibilityFilterReducer';
 
 const rootReducer = combineReducers({
-    //reducers,
     users: usersReducer,
     messages: messagesReducer,
     activeUser: activeUserReducer,
-    visibilityFilter: visibilityFilterReducer,
+    // visibilityFilter: visibilityFilterReducer,
 });
 
 export default rootReducer;

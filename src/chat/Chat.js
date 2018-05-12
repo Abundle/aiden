@@ -59,6 +59,24 @@ function Chat(props) {
     const { classes } = props;
     let input;
 
+    // console.log(props.user.messages, props.messages);
+
+    const chat = !props.user.messages ? (
+        null
+    ) : (
+        <div style={ styles.chatContent } >
+            <ul>
+                { props.user.messages.map(message => (
+                    <Message
+                        key={ message.id }
+                        author={ props.user.name }
+                        { ...message }
+                    />
+                )) }
+            </ul>
+        </div>
+    );
+
     return (
         <Slide
             direction='left'
@@ -81,7 +99,9 @@ function Chat(props) {
                     </Toolbar>
                 </AppBar>
 
-                <div style={ styles.chatContent } >
+                { chat }
+
+                {/*<div style={ styles.chatContent } >
                     <ul>
                         { props.messages.map(message => (
                             <Message
@@ -90,7 +110,7 @@ function Chat(props) {
                             />
                         )) }
                     </ul>
-                </div>
+                </div>*/}
 
                 <div className={ classes.sendMessage }>
                     <Paper className={ classes.input } elevation={ 3 }>
@@ -136,13 +156,13 @@ Chat.propTypes = {
     classes: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     // name: PropTypes.string.isRequired,
-    messages: PropTypes.arrayOf(
+    /*messages: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             author: PropTypes.string.isRequired,
             message: PropTypes.string.isRequired,
         }).isRequired
-    ).isRequired,
+    ).isRequired,*/
     // openChat: PropTypes.bool.isRequired,
 };
 

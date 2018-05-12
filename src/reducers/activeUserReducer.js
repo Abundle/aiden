@@ -1,10 +1,10 @@
 // import * as types from '../actions/ActionTypes';
 
-const activeUserReducer = (state = {}, action) => {
+const activeUserReducer = (state = [], action) => {
     switch (action.type) {
         //case types.SEND_MESSAGE:
         case 'CHAT_SELECTED':
-            console.log(action);
+            // console.log(action.payload);
             return action.payload;
             /*return [
                 // ...state,
