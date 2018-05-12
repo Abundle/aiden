@@ -16,7 +16,7 @@ const styles = theme => ({
         padding: 10,
     },
     input: {
-        width: '14.8vw',
+        width: '15vw',
         minWidth: 215,
         padding: 10,
         // borderRadius: 10,
@@ -30,7 +30,8 @@ const styles = theme => ({
 
 class SendMessage extends Component {
     handleChange = (event, input) => { // TODO: check if textfield is empty
-        this.props.dispatch(input.value, 'Me');
+        ///this.props.dispatch(input.value, 'Me');
+        console.log(input);
         input.value = '';
     };
 

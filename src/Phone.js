@@ -58,7 +58,7 @@ Phone.defaultProps = {
 };
 
 Phone.propTypes = {
-    assistant: PropTypes.bool,
+    assistant: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
 };
 

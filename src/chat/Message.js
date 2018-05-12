@@ -10,6 +10,12 @@ const styles = theme => ({
     root: {
         width: '10vw',
         minWidth: 50,
+        margin: '15px',
+        padding: 10,
+    },
+    me: {
+        width: '10vw',
+        minWidth: 50,
         margin: '15px 10px 5px 100px', // TODO: fix spacing another way
         padding: 10,
         textAlign: 'right',
@@ -22,7 +28,7 @@ const Message = (props) => {
     const { classes } = props;
 
     return (
-        <Paper className={ classes.root }>
+        <Paper className={ props.author === 'Me' ? classes.me : classes.root }>
             <b>{ props.author }:</b><br />
             { props.message }<br />
 
