@@ -1,3 +1,4 @@
+/*
 const messagesReducer = (state = [
     {
         id: 0,
@@ -16,4 +17,4 @@ const messagesReducer = (state = [
     }
 };
 
-export default messagesReducer;
+export default messagesReducer;*/

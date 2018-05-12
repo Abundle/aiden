@@ -6,11 +6,10 @@ const mapStateToProps = (state) => ({
     users: state.users,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
     dispatch: (user) => {
         dispatch(selectChat(user))
     },
-    onOpen: ownProps.onOpen,
 });
 
 export const UserListContainer = connect(

@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -55,50 +55,51 @@ const styles = theme => ({
     },
 });
 
-function Chat(props) {
-    const { classes } = props;
-    let input;
+class Chat extends Component {
+    handleChange(event, input) {
+        // console.log(this.props.dispatch);
+        this.props.dispatch(input.value, 'Me');
+        input.value = '';
+    }
 
-    const chat = !props.user.messages ? (
-        null
-    ) : (
-        <div style={ styles.chatContent } >
-            <ul>
-                { props.user.messages.map(message => (
-                    <Message
-                        key={ message.id }
-                        author={ props.user.name }
-                        { ...message }
-                    />
-                )) }
-            </ul>
-        </div>
-    );
+    render() {
+        const { classes, user } = this.props;
+        let input;
 
-    return (
-        <Slide
-            direction='left'
-            in={ props.open }
-            mountOnEnter
-            unmountOnExit
-        >
-            <Paper
-                className={ classes.root }
+        return (
+            <Slide
+                direction='left'
+                in={ this.props.open }
+                mountOnEnter
+                unmountOnExit
             >
-                <AppBar elevation={ 0 } position='static' color='secondary'>
-                    <Toolbar className={ classes.toolBar }>
-                        <IconButton color='inherit' onClick={ props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
-                            <Icon>chevron_left</Icon>
-                        </IconButton>
-                        <Typography variant='title' color='inherit'>
-                            { props.user.name }
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+                <Paper
+                    className={ classes.root }
+                >
+                    <AppBar elevation={ 0 } position='static' color='secondary'>
+                        <Toolbar className={ classes.toolBar }>
+                            <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
+                                <Icon>chevron_left</Icon>
+                            </IconButton>
+                            <Typography variant='title' color='inherit'>
+                                { user.name }
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
 
-                { chat }
-
-                {/*<div style={ styles.chatContent } >
+                    <div style={ styles.chatContent } >
+                        {/*{ chat }*/}
+                        <ul>
+                            { (user.messages || []).map(message => (
+                                <Message
+                                    key={ message.id }
+                                    author={ user.name }
+                                    { ...message }
+                                />
+                            )) }
+                        </ul>
+                    </div>
+                    {/*<div style={ styles.chatContent } >
                     <ul>
                         { props.messages.map(message => (
                             <Message
@@ -109,58 +110,63 @@ function Chat(props) {
                     </ul>
                 </div>*/}
 
-                <div className={ classes.sendMessage }>
-                    <Paper className={ classes.input } elevation={ 3 }>
-                        <Input
-                            placeholder='Type a message'
-                            inputProps={{
-                                'aria-label': 'Description',
-                            }}
-                            onKeyPress={(e) => {
-                                if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                    this.props.dispatch(input.value, 'Me');
-                                    input.value = '';
-                                }
-                            }}
-                            inputRef={(node) => {
-                                input = node
-                            }}
-                            multiline
-                            disableUnderline
-                            fullWidth
-                        />
-                    </Paper>
+                    <div className={ classes.sendMessage }>
+                        <Paper className={ classes.input } elevation={ 3 }>
+                            <Input
+                                placeholder='Type a message'
+                                inputProps={{
+                                    'aria-label': 'Description',
+                                }}
+                                onKeyPress={(event) => {
+                                    if (event.key === 'Enter') {
+                                        event.preventDefault();
+                                        this.handleChange(event, input);
+                                    }
+                                }}
+                                inputRef={(node) => {
+                                    input = node
+                                }}
+                                multiline
+                                disableUnderline
+                                fullWidth
+                            />
+                        </Paper>
 
-                    <Button
-                        variant='fab'
-                        color='primary'
-                        aria-label='add'
-                        className={ classes.button }
-                        // onClick={ (event) => this.handleChange(event, input) }
-                    >
-                        <Icon>send</Icon>
-                    </Button>
-                </div>
+                        <Button
+                            variant='fab'
+                            color='primary'
+                            aria-label='add'
+                            className={ classes.button }
+                            onClick={ (event) => this.handleChange(event, input) }
+                        >
+                            <Icon>send</Icon>
+                        </Button>
+                    </div>
 
-                {/*<SendMessageContainer />*/}
-            </Paper>
-        </Slide>
-    )
+                    {/*<SendMessageContainer />*/}
+                </Paper>
+            </Slide>
+        )
+    }
 }
 
 Chat.propTypes = {
     classes: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    // name: PropTypes.string.isRequired,
-    /*messages: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            author: PropTypes.string.isRequired,
-            message: PropTypes.string.isRequired,
-        }).isRequired
-    ).isRequired,*/
-    // openChat: PropTypes.bool.isRequired,
+    user: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
+    /*user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        messages: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                message: PropTypes.string.isRequired,
+            }).isRequired,
+        ).isRequired,
+    }),*/
 };
 
 export default withStyles(styles)(Chat);

@@ -20,12 +20,16 @@ const usersReducer = (state = [
             },
             {
                 id: 1,
-                message: 'hi',
+                message: 'lorem',
             },
         ],
     },
 ], action) => {
     switch (action.type) {
+        case 'SEND_MESSAGE':
+            console.log(action.user);
+            return state;
+            // TODO: read http://nalwaya.com/javascript/2016/05/02/react-js-best-practices.html
         default:
             return state;
     }

@@ -8,14 +8,16 @@ let time = date.getHours() + ':' + date.getMinutes();
 
 const styles = theme => ({
     root: {
-        width: '10vw',
+        width: '20vw',
         minWidth: 50,
-        margin: '15px',
+        maxWidth: 150,
+        margin: '15px 0',
         padding: 10,
     },
     me: {
-        width: '10vw',
+        width: '20vw',
         minWidth: 50,
+        maxWidth: 150,
         margin: '15px 10px 5px 100px', // TODO: fix spacing another way
         padding: 10,
         textAlign: 'right',
@@ -35,13 +37,6 @@ const Message = (props) => {
             <i>{ time }</i>
         </Paper>
     );
-
-    /*<Paper className={ props.author === 'Me' ? classes.me : classes.root }>
-        <b>{ props.author }:</b><br />
-        { props.message }<br />
-
-        <i>{ time }</i>
-    </Paper>*/
 };
 
 Message.propTypes = {

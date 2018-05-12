@@ -72,4 +72,3 @@ UserList.propTypes = {
 };
 
 export default withStyles(styles)(UserList);
-// export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(App));

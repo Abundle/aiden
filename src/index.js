@@ -10,9 +10,9 @@ import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
-/*store.subscribe(() => {
+store.subscribe(() => {
     console.log(store.getState());
-});*/
+});
 
 // register ourselves as present in the chat
 // store.dispatch(addUser('Me'));

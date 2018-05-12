@@ -7,24 +7,9 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 // import Avatar from 'material-ui/Avatar';
 
-// import Chat from './chat/Chat';
 // import Portal from './chat/Portal';
 import { UserListContainer } from './containers/UserListContainer';
 import { ChatContainer } from './containers/ChatContainer';
-
-// TODO: move to store
-/*const chatList = [
-    { id: 1, name: 'Dave Kellie', avatar: avatar1, message: 'Lorem ipsum haha' },
-    { id: 2, name: 'Kellie Max', avatar: avatar2, message: 'Lorem ipsum hihi' },
-    { id: 3, name: 'Max Jack', avatar: avatar3, message: 'Lorem ipsum hoho' },
-    { id: 4, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
-    { id: 5, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
-    { id: 6, name: 'Dave Jack', avatar: avatar4, message: 'Lorem ipsum huhu' },
-    { id: 7, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
-    { id: 8, name: 'Jack Dave', avatar: avatar4, message: 'Lorem ipsum huhu' },
-    { id: 9, name: 'Max Jack', avatar: avatar3, message: 'Lorem ipsum hoho' },
-    { id: 10, name: 'Max Jack', avatar: avatar3, message: 'Lorem ipsum hoho' },
-];*/
 
 const styles = theme => ({
     root: {
@@ -44,7 +29,6 @@ class ChatList extends Component {
         this.state = {
             value: 2,
             open: false,
-            //selectedChat: 'Dave Kellie',
         };
     }
 

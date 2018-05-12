@@ -31,7 +31,6 @@ const styles = theme => ({
 class SendMessage extends Component {
     handleChange = (event, input) => { // TODO: check if textfield is empty
         ///this.props.dispatch(input.value, 'Me');
-        console.log(input);
         input.value = '';
     };
 
@@ -87,4 +86,4 @@ SendMessage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SendMessage);
+// export default withStyles(styles)(SendMessage);
