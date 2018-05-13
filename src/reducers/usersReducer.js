@@ -13,19 +13,7 @@ const usersReducer = (state = {
     },
     allIds: ['user1', 'user2'],
     activeUser: [],
-}
-/*[
-    {
-        0: {
-            name: 'Dave Kellie',
-            message: [0, 1]
-        },
-        1: {
-            name: 'Kellie Max',
-            message: [2]
-        }
-    }
-]*/, action) => {
+}, action) => {
     switch (action.type) {
         case 'CHAT_SELECTED':
             console.log(action.payload);

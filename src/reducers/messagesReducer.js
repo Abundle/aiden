@@ -17,11 +17,10 @@ const messagesReducer = (state = {
         },
     },
     allIds: ['message1', 'message2', 'message3']
-}
-, action) => {
+}, action) => {
     switch (action.type) {
         case 'SEND_MESSAGE':
-            // console.log(action.activeUser);
+            console.log(action.activeUser);
             return {
                 ...state,
                 byId: {
@@ -34,18 +33,6 @@ const messagesReducer = (state = {
                 },
                 allIds: [...state.allIds, action.id]
             };
-            /*return {
-                ...state,
-                byId: {
-                    ...state.byId,
-                    [action.id]: {
-                        id: action.id,
-                        author: action.author,
-                        message: action.message,
-                    }
-                },
-                allIds: [...state.allIds, action.id]
-            };*/
         default:
             return state;
     }

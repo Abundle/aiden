@@ -30,7 +30,6 @@ const styles = theme => ({
 
 class SendMessage extends Component {
     handleChange(event, input) { // TODO: check if textfield is empty
-        // console.log(this.props.dispatch);
         this.props.dispatch(input.value, 'Me', this.props.users.activeUser);
         input.value = '';
     }
@@ -39,7 +38,7 @@ class SendMessage extends Component {
         const { classes } = this.props;
         let input;
 
-        // console.log(this.props.activeUser);
+        // console.log(this.props.users.activeUser);
 
         return (
             <div className={ classes.root }>
@@ -84,7 +83,7 @@ SendMessage.propTypes = {
     classes: PropTypes.object.isRequired,
     activeUser: PropTypes.oneOfType([
         PropTypes.array,
-        PropTypes.object,
+        // PropTypes.object,
     ]),
 };
 

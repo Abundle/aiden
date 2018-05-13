@@ -2,12 +2,16 @@ import { connect } from 'react-redux';
 import SendMessage from '../chat/SendMessage';
 import { sendMessage } from '../actions';
 
-const mapStateToProps = (state) => ({
-    users: {
-        activeUser: state.users.activeUser,
-    },
-    // activeUser: state.activeUser,
-});
+const mapStateToProps = (state) => {
+    // console.log(state);
+    return {
+        users: state.users,
+        /*users: {
+            activeUser: state.users.activeUser,
+        },*/
+    }
+
+};
 
 const mapDispatchToProps = dispatch => ({
     dispatch: (message, author, activeUser) => {
