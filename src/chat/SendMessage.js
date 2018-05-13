@@ -31,13 +31,15 @@ const styles = theme => ({
 class SendMessage extends Component {
     handleChange(event, input) { // TODO: check if textfield is empty
         // console.log(this.props.dispatch);
-        this.props.dispatch(input.value, 'Me');
+        this.props.dispatch(input.value, 'Me', this.props.users.activeUser);
         input.value = '';
     }
 
     render() {
         const { classes } = this.props;
         let input;
+
+        // console.log(this.props.activeUser);
 
         return (
             <div className={ classes.root }>
@@ -49,6 +51,7 @@ class SendMessage extends Component {
                         }}
                         onKeyPress={(event) => {
                             if (event.key === 'Enter') {
+                                // console.log(this.props.activeUser);
                                 event.preventDefault();
                                 this.handleChange(event, input);
                             }
@@ -79,6 +82,10 @@ class SendMessage extends Component {
 SendMessage.propTypes = {
     dispatch: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
+    activeUser: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
 };
 
 export default withStyles(styles)(SendMessage);

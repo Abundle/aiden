@@ -11,7 +11,8 @@ const usersReducer = (state = {
             messages: ['message2'],
         },
     },
-    allIds: ['user1', 'user2']
+    allIds: ['user1', 'user2'],
+    activeUser: [],
 }
 /*[
     {
@@ -26,10 +27,13 @@ const usersReducer = (state = {
     }
 ]*/, action) => {
     switch (action.type) {
-        /*case 'SEND_MESSAGE':
-            console.log(action.author, action.message);
-            return state;*/
-            // TODO: read http://nalwaya.com/javascript/2016/05/02/react-js-best-practices.html & https://techblog.appnexus.com/five-tips-for-working-with-redux-in-large-applications-89452af4fdcb
+        case 'CHAT_SELECTED':
+            console.log(action.payload);
+            return {
+                ...state,
+                activeUser: action.payload,
+            };
+            // return action.payload;
         default:
             return state;
     }

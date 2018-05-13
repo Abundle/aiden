@@ -33,6 +33,7 @@ class UserList extends Component {
 
         // TODO: https://stackoverflow.com/questions/45100477/how-render-object-in-react?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
         // console.log(this.props.users.byId);
+        // console.log(users.byId);
 
         return (
             <List className={ classes.root }>

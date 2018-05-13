@@ -59,11 +59,12 @@ class Chat extends Component {
     }*/
 
     render() {
-        const { classes, user, messages } = this.props;
+        const { classes, users, messages } = this.props;
         // let input;
 
         // TODO: read https://medium.freecodecamp.org/optimising-the-state-shape-of-your-react-app-with-redux-3a280e6ef436
-        // console.log(user.messages);
+        // TODO: read http://nalwaya.com/javascript/2016/05/02/react-js-best-practices.html & https://techblog.appnexus.com/five-tips-for-working-with-redux-in-large-applications-89452af4fdcb
+        // console.log(users.activeUser);
 
         return (
             <Slide
@@ -81,15 +82,15 @@ class Chat extends Component {
                                 <Icon>chevron_left</Icon>
                             </IconButton>
                             <Typography variant='title' color='inherit'>
-                                { user.name }
+                                { users.activeUser.name }
                             </Typography>
                         </Toolbar>
                     </AppBar>
 
                     <div style={ styles.chatContent } >
                         <ul>
-                            { (user.messages || []).map(id => {
-                                console.log(messages.byId[id]);
+                            { (users.activeUser.messages || []).map(id => {
+                                // console.log(messages.byId[id]);
                                 return (
                                     <Message
                                         key={ id }
@@ -100,63 +101,7 @@ class Chat extends Component {
                                     </Message>
                                 )
                             }) }
-                            {/*{ Object.keys(messages.byId).map((message, id) => {
-                                // console.log(messages.byId[message]);
-                                    return (
-                                        <div key={ id }>
-                                            id is: { messages.byId[message].id } ;
-                                            name is: {messages.byId[message].author}
-                                        </div>
-                                    )
-                                }
-                            ) }*/}
                         </ul>
-                        {/*{ user.messages
-                            .filter(message => message.id)
-                            .map(message => <p>{ message.id } </p>)
-                        }*/}
-                        {/*<ul>
-                            { (user.messages || [])
-                                .filter(message => message.id)
-                                .map(message =>
-                                    <Message
-                                        key={ message.id }
-                                        author={ user.name }
-                                    >
-                                        hello
-                                    </Message>
-                                )
-                            }
-                        </ul>*/}
-                        {/*<ul>
-                            { (user.messages || []).map(id => (
-                                <Message
-                                    key={ id }
-                                    author={ user.name }
-                                >
-                                    hello
-                                </Message>
-                            )) }
-                        </ul>*/}
-                        {/*<ul>
-                            { (user.messages || []).map(id => {
-                                return this.props.messages.map(message => (
-                                    <Message
-                                        key={ id }
-                                        { ...message }
-                                    />
-                                ));
-                            }) }
-                        </ul>*/}
-                        {/*<ul>
-                            { (user.messages || []).map(id => (
-                                <Message
-                                    key={ id }
-                                    author={ user.name }
-                                    { ...this.props.messages }
-                                />
-                            )) }
-                        </ul>*/}
                         {/*{ chat }*/}
                     </div>
                     {/*<div style={ styles.chatContent } >
@@ -212,15 +157,19 @@ class Chat extends Component {
 
 Chat.propTypes = {
     classes: PropTypes.object.isRequired,
-    // dispatch: PropTypes.func.isRequired,
-    user: PropTypes.oneOfType([
-        PropTypes.array,
+    users: PropTypes.oneOfType([
+        // PropTypes.array,
         PropTypes.object,
     ]),
     messages: PropTypes.oneOfType([
         // PropTypes.array,
         PropTypes.object,
     ]),
+    // dispatch: PropTypes.func.isRequired,
+    /*activeUser: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),*/
     /*messages: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,

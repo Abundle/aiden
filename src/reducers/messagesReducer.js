@@ -1,5 +1,5 @@
 const messagesReducer = (state = {
-    byId : {
+    byId: {
         'message1': {
             id: 'message1',
             author: 'Dave Kellie',
@@ -18,28 +18,34 @@ const messagesReducer = (state = {
     },
     allIds: ['message1', 'message2', 'message3']
 }
-
-/*[
-    {
-        id: 0,
-        message: 'ladjkf',
-    },
-    {
-        id: 1,
-        message: 'aldkjf'
-    }
-]*/
 , action) => {
     switch (action.type) {
         case 'SEND_MESSAGE':
-            return [
+            // console.log(action.activeUser);
+            return {
                 ...state,
-                {
-                    id: action.id,
-                    author: action.author,
-                    message: action.message,
-                }
-            ];
+                byId: {
+                    ...state.byId,
+                    [action.id]: {
+                        id: action.id,
+                        author: action.author,
+                        message: action.message,
+                    }
+                },
+                allIds: [...state.allIds, action.id]
+            };
+            /*return {
+                ...state,
+                byId: {
+                    ...state.byId,
+                    [action.id]: {
+                        id: action.id,
+                        author: action.author,
+                        message: action.message,
+                    }
+                },
+                allIds: [...state.allIds, action.id]
+            };*/
         default:
             return state;
     }
