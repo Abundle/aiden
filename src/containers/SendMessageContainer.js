@@ -1,12 +1,6 @@
-/*
 import { connect } from 'react-redux';
 import SendMessage from '../chat/SendMessage';
 import { sendMessage } from '../actions';
-
-const mapStateToProps = state => ({
-    // messages: state.messages,
-    user: state.activeChat,
-});
 
 const mapDispatchToProps = dispatch => ({
     dispatch: (message, author) => {
@@ -14,7 +8,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export const SendMessageContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SendMessage);*/
+export const SendMessageContainer = connect(() => ({}), mapDispatchToProps)(SendMessage);

@@ -31,6 +31,8 @@ class UserList extends Component {
     render() {
         const { classes, users } = this.props;
 
+        // console.log(users);
+
         return (
             <List className={ classes.root }>
                 { users.map((user) => (
@@ -38,11 +40,6 @@ class UserList extends Component {
                         key={ user.id }
                         value={ user.name }
                         onClick={ () => this.handleClick(user) }
-                        // onClick={ () => this.props.onOpen() }
-                        // onClick={ this.props.onOpen }
-                        // onClick={ () => this.props.dispatch(user) }
-                        // onClick={ () => this.props.selectChat(user) }
-                        // onClick={ this.props.dispatch(user) }
                         button
                         divider
                     >

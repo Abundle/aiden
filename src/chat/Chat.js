@@ -9,12 +9,8 @@ import Typography from 'material-ui/Typography';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 
-import Input from 'material-ui/Input';
-import Button from 'material-ui/Button';
-
 // Local import
-// import { ConversationContainer } from '../containers/ConversationContainer';
-// import { SendMessageContainer } from '../containers/SendMessageContainer';
+import { SendMessageContainer } from '../containers/SendMessageContainer';
 import Message from './Message';
 
 const styles = theme => ({
@@ -56,15 +52,18 @@ const styles = theme => ({
 });
 
 class Chat extends Component {
-    handleChange(event, input) {
+    /*handleChange(event, input) {
         // console.log(this.props.dispatch);
         this.props.dispatch(input.value, 'Me');
         input.value = '';
-    }
+    }*/
 
     render() {
         const { classes, user } = this.props;
-        let input;
+        // let input;
+
+        // TODO: read https://medium.freecodecamp.org/optimising-the-state-shape-of-your-react-app-with-redux-3a280e6ef436
+        // console.log(user.messages);
 
         return (
             <Slide
@@ -88,20 +87,57 @@ class Chat extends Component {
                     </AppBar>
 
                     <div style={ styles.chatContent } >
-                        {/*{ chat }*/}
+                        {/*{ user.messages
+                            .filter(message => message.id)
+                            .map(message => <p>{ message.id } </p>)
+                        }*/}
+                        {/*<ul>
+                            { (user.messages || [])
+                                .filter(message => message.id)
+                                .map(message =>
+                                    <Message
+                                        key={ message.id }
+                                        author={ user.name }
+                                    >
+                                        hello
+                                    </Message>
+                                )
+                            }
+                        </ul>*/}
                         <ul>
-                            { (user.messages || []).map(message => (
+                            { (user.messages || []).map(id => (
                                 <Message
-                                    key={ message.id }
+                                    key={ id }
                                     author={ user.name }
-                                    { ...message }
-                                />
+                                >
+                                    hello
+                                </Message>
                             )) }
                         </ul>
+                        {/*<ul>
+                            { (user.messages || []).map(id => {
+                                return this.props.messages.map(message => (
+                                    <Message
+                                        key={ id }
+                                        { ...message }
+                                    />
+                                ));
+                            }) }
+                        </ul>*/}
+                        {/*<ul>
+                            { (user.messages || []).map(id => (
+                                <Message
+                                    key={ id }
+                                    author={ user.name }
+                                    { ...this.props.messages }
+                                />
+                            )) }
+                        </ul>*/}
+                        {/*{ chat }*/}
                     </div>
                     {/*<div style={ styles.chatContent } >
                     <ul>
-                        { props.messages.map(message => (
+                        { this.props.messages.map(message => (
                             <Message
                                 key={ message.id }
                                 { ...message }
@@ -110,7 +146,7 @@ class Chat extends Component {
                     </ul>
                 </div>*/}
 
-                    <div className={ classes.sendMessage }>
+                    {/*<div className={ classes.sendMessage }>
                         <Paper className={ classes.input } elevation={ 3 }>
                             <Input
                                 placeholder='Type a message'
@@ -141,9 +177,9 @@ class Chat extends Component {
                         >
                             <Icon>send</Icon>
                         </Button>
-                    </div>
+                    </div>*/}
 
-                    {/*<SendMessageContainer />*/}
+                    <SendMessageContainer />
                 </Paper>
             </Slide>
         )
@@ -152,21 +188,17 @@ class Chat extends Component {
 
 Chat.propTypes = {
     classes: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    // dispatch: PropTypes.func.isRequired,
     user: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.object,
     ]),
-    /*user: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        messages: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                message: PropTypes.string.isRequired,
-            }).isRequired,
-        ).isRequired,
-    }),*/
+    messages: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            message: PropTypes.string.isRequired,
+        }).isRequired
+    ).isRequired
 };
 
 export default withStyles(styles)(Chat);

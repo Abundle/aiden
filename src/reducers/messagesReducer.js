@@ -1,20 +1,33 @@
-/*
 const messagesReducer = (state = [
     {
         id: 0,
-        author: 'Dave Kellie' ,
-        message: 'hello'
+        message: 'hello',
     },
     {
         id: 1,
-        author: 'Kellie Max',
-        message: 'hi'
+        message: 'wadklsf',
     },
-], action) => {
+    {
+        id: 2,
+        message: 'hi',
+    },
+]
+    /*{1: { message: 'Nice blog' },
+    2: { message: 'Keep posting' },}*/
+    , action) => {
     switch (action.type) {
+        case 'SEND_MESSAGE':
+            return [
+                ...state,
+                {
+                    id: action.id,
+                    author: action.author,
+                    message: action.message,
+                }
+            ];
         default:
             return state;
     }
 };
 
-export default messagesReducer;*/
+export default messagesReducer;

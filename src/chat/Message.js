@@ -32,15 +32,23 @@ const Message = (props) => {
     return (
         <Paper className={ props.author === 'Me' ? classes.me : classes.root }>
             <b>{ props.author }:</b><br />
-            { props.message }<br />
+            { props.children }<br />
 
             <i>{ time }</i>
         </Paper>
     );
+
+    /*<Paper className={ props.author === 'Me' ? classes.me : classes.root }>
+        <b>{ props.author }:</b><br />
+        { props.message }<br />
+
+        <i>{ time }</i>
+    </Paper>*/
 };
 
 Message.propTypes = {
-    message: PropTypes.string.isRequired,
+    children: PropTypes.string.isRequired,
+    // message: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired
 };
 
