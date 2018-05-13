@@ -1,16 +1,19 @@
-const usersReducer = (state = [
-    {
-        id: 0,
-        name: 'Dave Kellie',
-        messages: [0, 1],
+const usersReducer = (state = {
+    byId : {
+        'user1': {
+            id: 'user1',
+            name: 'Dave Kellie',
+            messages: ['message1', 'message3'],
+        },
+        'user2': {
+            id: 'user2',
+            name: 'Kellie Max',
+            messages: ['message2'],
+        },
     },
-    {
-        id: 1,
-        name: 'Kellie Max',
-        messages: [2],
-    },
-]
-                      /*[
+    allIds: ['user1', 'user2']
+}
+/*[
     {
         0: {
             name: 'Dave Kellie',

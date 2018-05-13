@@ -31,11 +31,44 @@ class UserList extends Component {
     render() {
         const { classes, users } = this.props;
 
-        // console.log(users);
+        // TODO: https://stackoverflow.com/questions/45100477/how-render-object-in-react?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+        // console.log(this.props.users.byId);
 
         return (
             <List className={ classes.root }>
-                { users.map((user) => (
+                { Object.keys(users.byId).map((user, id) => {
+                        // console.log(users.byId[user]);
+                        return (
+                            <ListItem
+                                key={ id }
+                                value={ users.byId[user].name }
+                                onClick={ () => this.handleClick(users.byId[user]) }
+                                button
+                                divider
+                            >
+                                <Avatar alt={ users.byId[user].name } src={ avatar1 }/>
+                                <ListItemText primary={ users.byId[user].name } secondary={ users.byId[user].messages }/>
+
+                                <ListItemSecondaryAction>
+                                    <Typography variant='caption' color='primary'>
+                                        { time }
+                                    </Typography>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        )
+                    }
+                ) }
+                {/*{ Object.keys(users.byId).map((user, id) => {
+                        console.log(users.byId[user]);
+                        return (
+                            <div key={ id }>
+                                id is: {users.byId[user].id}
+                                name is: {users.byId[user].name}
+                            </div>
+                        )
+                    }
+                ) }*/}
+                {/*{ users.byId.map((user) => (
                     <ListItem
                         key={ user.id }
                         value={ user.name }
@@ -52,19 +85,19 @@ class UserList extends Component {
                             </Typography>
                         </ListItemSecondaryAction>
                     </ListItem>
-                )) }
+                )) }*/}
             </List>
         );
     }
 }
 
 UserList.propTypes = {
-    users: PropTypes.arrayOf(
+    /*users: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
         }).isRequired
-    ).isRequired,
+    ).isRequired,*/
     dispatch: PropTypes.func.isRequired,
 };
 

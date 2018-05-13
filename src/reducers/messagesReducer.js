@@ -1,20 +1,35 @@
-const messagesReducer = (state = [
+const messagesReducer = (state = {
+    byId : {
+        'message1': {
+            id: 'message1',
+            author: 'Dave Kellie',
+            message: 'hwllaod',
+        },
+        'message2': {
+            id: 'message2',
+            author: 'Kellie Max',
+            message: 'hahdl',
+        },
+        'message3': {
+            id: 'message3',
+            author: 'Dave Kellie',
+            message: 'hiadll',
+        },
+    },
+    allIds: ['message1', 'message2', 'message3']
+}
+
+/*[
     {
         id: 0,
-        message: 'hello',
+        message: 'ladjkf',
     },
     {
         id: 1,
-        message: 'wadklsf',
-    },
-    {
-        id: 2,
-        message: 'hi',
-    },
-]
-    /*{1: { message: 'Nice blog' },
-    2: { message: 'Keep posting' },}*/
-    , action) => {
+        message: 'aldkjf'
+    }
+]*/
+, action) => {
     switch (action.type) {
         case 'SEND_MESSAGE':
             return [

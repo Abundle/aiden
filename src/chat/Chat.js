@@ -59,7 +59,7 @@ class Chat extends Component {
     }*/
 
     render() {
-        const { classes, user } = this.props;
+        const { classes, user, messages } = this.props;
         // let input;
 
         // TODO: read https://medium.freecodecamp.org/optimising-the-state-shape-of-your-react-app-with-redux-3a280e6ef436
@@ -87,6 +87,30 @@ class Chat extends Component {
                     </AppBar>
 
                     <div style={ styles.chatContent } >
+                        <ul>
+                            { (user.messages || []).map(id => {
+                                console.log(messages.byId[id]);
+                                return (
+                                    <Message
+                                        key={ id }
+                                        author={ messages.byId[id].author }
+                                        // author={ user.name }
+                                    >
+                                        { messages.byId[id].message }
+                                    </Message>
+                                )
+                            }) }
+                            {/*{ Object.keys(messages.byId).map((message, id) => {
+                                // console.log(messages.byId[message]);
+                                    return (
+                                        <div key={ id }>
+                                            id is: { messages.byId[message].id } ;
+                                            name is: {messages.byId[message].author}
+                                        </div>
+                                    )
+                                }
+                            ) }*/}
+                        </ul>
                         {/*{ user.messages
                             .filter(message => message.id)
                             .map(message => <p>{ message.id } </p>)
@@ -104,7 +128,7 @@ class Chat extends Component {
                                 )
                             }
                         </ul>*/}
-                        <ul>
+                        {/*<ul>
                             { (user.messages || []).map(id => (
                                 <Message
                                     key={ id }
@@ -113,7 +137,7 @@ class Chat extends Component {
                                     hello
                                 </Message>
                             )) }
-                        </ul>
+                        </ul>*/}
                         {/*<ul>
                             { (user.messages || []).map(id => {
                                 return this.props.messages.map(message => (
@@ -193,12 +217,16 @@ Chat.propTypes = {
         PropTypes.array,
         PropTypes.object,
     ]),
-    messages: PropTypes.arrayOf(
+    messages: PropTypes.oneOfType([
+        // PropTypes.array,
+        PropTypes.object,
+    ]),
+    /*messages: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             message: PropTypes.string.isRequired,
         }).isRequired
-    ).isRequired
+    ).isRequired*/
 };
 
 export default withStyles(styles)(Chat);
