@@ -62,6 +62,7 @@ const reducers = (state = {
                             messages: [...state.users.byId[action.activeUser.id].messages, action.id]
                         }
                     },
+                    // allIds: [...state.users.allIds, 'user3'],
                     activeUser: {
                         ...state.users.activeUser,
                         messages: [...state.users.activeUser.messages, action.id]

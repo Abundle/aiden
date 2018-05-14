@@ -2,24 +2,36 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
 
 const styles = theme => ({
     root: {
         position: 'fixed',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         bottom: 0,
         padding: 10,
     },
-    input: {
+    form: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    inputBox: {
         width: '15vw',
         minWidth: 215,
         padding: 10,
         // borderRadius: 10,
+    },
+    input: {
+        width: '100%',
+        border: 'none',
+        fontSize: 16,
+        '&:focus': {
+            outline: 'none',
+        },
+        '&::placeholder': {
+            opacity: 0.5, // TODO: load from theme
+        }
     },
     button: {
         minWidth: 55,
@@ -29,7 +41,10 @@ const styles = theme => ({
 });
 
 class SendMessage extends Component {
-    handleChange(event, input) { // TODO: check if textfield is empty
+    handleSubmit(event, input) { // TODO: check if text area is empty
+        /*if (!input.value.trim()) {
+            return
+        }*/
         this.props.dispatch(input.value, 'Me', this.props.users.activeUser);
         input.value = '';
     }
@@ -38,11 +53,58 @@ class SendMessage extends Component {
         const { classes } = this.props;
         let input;
 
-        // console.log(this.props.users.activeUser);
-
         return (
             <div className={ classes.root }>
-                <Paper className={ classes.input } elevation={ 3 }>
+                <form
+                    className={ classes.form }
+                    onSubmit={ event => {
+                        event.preventDefault();
+                        this.handleSubmit(event, input);
+                    }}
+                >
+                    <Paper className={ classes.inputBox } elevation={ 3 }>
+                        {/*<textarea
+                            className={ classes.input }
+                            ref={node => input = node}
+                            onKeyDown={ (event) => {
+                                if (event.key === 'Enter') {
+                                    event.preventDefault();
+                                    this.handleSubmit(event, input);
+                                }
+                            }}
+                            placeholder='Type a message'
+                        />*/}
+                        <input
+                            className={ classes.input }
+                            ref={ (node) => {
+                                input = node;
+                            }}
+                            placeholder='Type a message'
+                        />
+                    </Paper>
+                    <Button
+                        variant='fab'
+                        type='submit'
+                        color='primary'
+                        aria-label='add'
+                        className={ classes.button }
+                    >
+                        <Icon>send</Icon>
+                    </Button>
+                </form>
+                {/*<form
+                    onSubmit={e => {
+                        e.preventDefault();
+                        this.props.dispatch(input.value, 'Me', this.props.users.activeUser);
+                        input.value = ''
+                    }}
+                >
+                    <input ref={node => input = node} />
+                    <button type='submit'>
+                        Add Todo
+                    </button>
+                </form>*/}
+                {/*<Paper className={ classes.input } elevation={ 3 }>
                     <Input
                         placeholder='Type a message'
                         inputProps={{
@@ -50,13 +112,13 @@ class SendMessage extends Component {
                         }}
                         onKeyPress={(event) => {
                             if (event.key === 'Enter') {
-                                // console.log(this.props.activeUser);
                                 event.preventDefault();
                                 this.handleChange(event, input);
                             }
                         }}
                         inputRef={(node) => {
-                            input = node
+                            // console.log(node.value);
+                            input = node;
                         }}
                         multiline
                         disableUnderline
@@ -72,7 +134,7 @@ class SendMessage extends Component {
                     onClick={ (event) => this.handleChange(event, input) }
                 >
                     <Icon>send</Icon>
-                </Button>
+                </Button>*/}
             </div>
         )
     };

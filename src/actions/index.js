@@ -1,7 +1,7 @@
 // import * as types from './ActionTypes';
 
 let nextMessageId = 4;
-// let nextUserId = 0;
+// let nextUserId = 1;
 
 export const sendMessage = (message, author, activeUser) => ({
     type: 'SEND_MESSAGE',
@@ -14,6 +14,7 @@ export const sendMessage = (message, author, activeUser) => ({
 
 export const selectChat = (user) => ({
     type: 'CHAT_SELECTED',
+    // id: 'user' + nextUserId++,
     payload: user,
 });
 

@@ -5,6 +5,10 @@ body {
     overflow-x: hidden;
 }
 
+input {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
