@@ -29,75 +29,43 @@ class UserList extends Component {
     }
 
     render() {
-        const { classes, users } = this.props;
+        const { classes, users, messages } = this.props;
 
         // TODO: https://stackoverflow.com/questions/45100477/how-render-object-in-react?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-        // console.log(users.byId);
 
         return (
             <List className={ classes.root }>
                 { Object.keys(users.byId).map((user, id) => {
-                        // console.log(users.byId[user]);
-                        return (
-                            <ListItem
-                                key={ id }
-                                value={ users.byId[user].name }
-                                onClick={ () => this.handleClick(users.byId[user]) }
-                                button
-                                divider
-                            >
-                                <Avatar alt={ users.byId[user].name } src={ avatar1 }/>
-                                <ListItemText primary={ users.byId[user].name } secondary={ users.byId[user].messages }/>
+                    let messageArray =  users.byId[user].messages;
+                    let lastMessage = messageArray[messageArray.length - 1];
 
-                                <ListItemSecondaryAction>
-                                    <Typography variant='caption' color='primary'>
-                                        { time }
-                                    </Typography>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        )
-                    }
+                    return (
+                        <ListItem
+                            key={ id }
+                            value={ users.byId[user].name }
+                            onClick={ () => this.handleClick(users.byId[user]) }
+                            button
+                            divider
+                        >
+                            <Avatar alt={ users.byId[user].name } src={ avatar1 }/>
+                            <ListItemText primary={ users.byId[user].name } secondary={ messages.byId[lastMessage].message }/>
+
+                            <ListItemSecondaryAction>
+                                <Typography variant='caption' color='primary'>
+                                    { time }
+                                </Typography>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ) }
                 ) }
-                {/*{ Object.keys(users.byId).map((user, id) => {
-                        console.log(users.byId[user]);
-                        return (
-                            <div key={ id }>
-                                id is: {users.byId[user].id}
-                                name is: {users.byId[user].name}
-                            </div>
-                        )
-                    }
-                ) }*/}
-                {/*{ users.byId.map((user) => (
-                    <ListItem
-                        key={ user.id }
-                        value={ user.name }
-                        onClick={ () => this.handleClick(user) }
-                        button
-                        divider
-                    >
-                        <Avatar alt={ user.name } src={ avatar1 }/>
-                        <ListItemText primary={ user.name } secondary={ user.message }/>
-
-                        <ListItemSecondaryAction>
-                            <Typography variant='caption' color='primary'>
-                                { time }
-                            </Typography>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                )) }*/}
             </List>
         );
     }
 }
 
 UserList.propTypes = {
-    /*users: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-        }).isRequired
-    ).isRequired,*/
+    users: PropTypes.object.isRequired,
+    messages: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
 };
 

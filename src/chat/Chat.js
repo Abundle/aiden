@@ -52,19 +52,26 @@ const styles = theme => ({
 });
 
 class Chat extends Component {
-    /*handleChange(event, input) {
-        // console.log(this.props.dispatch);
-        this.props.dispatch(input.value, 'Me');
-        input.value = '';
-    }*/
+    /*constructor(props) {
+        super(props);
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    };
+
+    componentWillUnmount() {
+        window.re
+        moveEventListener('scroll', this.handleScroll);
+    };
+
+    handleScroll = (event) =>  {
+        console.log('the scroll things', event)
+    };*/
 
     render() {
         const { classes, users, messages } = this.props;
-        // let input;
-
-        // TODO: read https://medium.freecodecamp.org/optimising-the-state-shape-of-your-react-app-with-redux-3a280e6ef436
-        // TODO: read http://nalwaya.com/javascript/2016/05/02/react-js-best-practices.html & https://techblog.appnexus.com/five-tips-for-working-with-redux-in-large-applications-89452af4fdcb
-        // console.log(users.activeUser);
 
         return (
             <Slide
@@ -87,7 +94,8 @@ class Chat extends Component {
                         </Toolbar>
                     </AppBar>
 
-                    <div style={ styles.chatContent } >
+                    {/*TODO: automatically scroll down/push to newest message*/}
+                    <div className={ classes.chatContent } >
                         <ul>
                             { (users.activeUser.messages || []).map(id => {
                                 // console.log(messages.byId[id]);
@@ -95,59 +103,13 @@ class Chat extends Component {
                                     <Message
                                         key={ id }
                                         author={ messages.byId[id].author }
-                                        // author={ user.name }
                                     >
                                         { messages.byId[id].message }
                                     </Message>
                                 )
                             }) }
                         </ul>
-                        {/*{ chat }*/}
                     </div>
-                    {/*<div style={ styles.chatContent } >
-                    <ul>
-                        { this.props.messages.map(message => (
-                            <Message
-                                key={ message.id }
-                                { ...message }
-                            />
-                        )) }
-                    </ul>
-                </div>*/}
-
-                    {/*<div className={ classes.sendMessage }>
-                        <Paper className={ classes.input } elevation={ 3 }>
-                            <Input
-                                placeholder='Type a message'
-                                inputProps={{
-                                    'aria-label': 'Description',
-                                }}
-                                onKeyPress={(event) => {
-                                    if (event.key === 'Enter') {
-                                        event.preventDefault();
-                                        this.handleChange(event, input);
-                                    }
-                                }}
-                                inputRef={(node) => {
-                                    input = node
-                                }}
-                                multiline
-                                disableUnderline
-                                fullWidth
-                            />
-                        </Paper>
-
-                        <Button
-                            variant='fab'
-                            color='primary'
-                            aria-label='add'
-                            className={ classes.button }
-                            onClick={ (event) => this.handleChange(event, input) }
-                        >
-                            <Icon>send</Icon>
-                        </Button>
-                    </div>*/}
-
                     <SendMessageContainer />
                 </Paper>
             </Slide>
@@ -165,17 +127,6 @@ Chat.propTypes = {
         // PropTypes.array,
         PropTypes.object,
     ]),
-    // dispatch: PropTypes.func.isRequired,
-    /*activeUser: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object,
-    ]),*/
-    /*messages: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            message: PropTypes.string.isRequired,
-        }).isRequired
-    ).isRequired*/
 };
 
 export default withStyles(styles)(Chat);

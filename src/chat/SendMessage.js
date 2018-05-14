@@ -63,17 +63,6 @@ class SendMessage extends Component {
                     }}
                 >
                     <Paper className={ classes.inputBox } elevation={ 3 }>
-                        {/*<textarea
-                            className={ classes.input }
-                            ref={node => input = node}
-                            onKeyDown={ (event) => {
-                                if (event.key === 'Enter') {
-                                    event.preventDefault();
-                                    this.handleSubmit(event, input);
-                                }
-                            }}
-                            placeholder='Type a message'
-                        />*/}
                         <input
                             className={ classes.input }
                             ref={ (node) => {
@@ -92,49 +81,6 @@ class SendMessage extends Component {
                         <Icon>send</Icon>
                     </Button>
                 </form>
-                {/*<form
-                    onSubmit={e => {
-                        e.preventDefault();
-                        this.props.dispatch(input.value, 'Me', this.props.users.activeUser);
-                        input.value = ''
-                    }}
-                >
-                    <input ref={node => input = node} />
-                    <button type='submit'>
-                        Add Todo
-                    </button>
-                </form>*/}
-                {/*<Paper className={ classes.input } elevation={ 3 }>
-                    <Input
-                        placeholder='Type a message'
-                        inputProps={{
-                            'aria-label': 'Description',
-                        }}
-                        onKeyPress={(event) => {
-                            if (event.key === 'Enter') {
-                                event.preventDefault();
-                                this.handleChange(event, input);
-                            }
-                        }}
-                        inputRef={(node) => {
-                            // console.log(node.value);
-                            input = node;
-                        }}
-                        multiline
-                        disableUnderline
-                        fullWidth
-                    />
-                </Paper>
-
-                <Button
-                    variant='fab'
-                    color='primary'
-                    aria-label='add'
-                    className={ classes.button }
-                    onClick={ (event) => this.handleChange(event, input) }
-                >
-                    <Icon>send</Icon>
-                </Button>*/}
             </div>
         )
     };

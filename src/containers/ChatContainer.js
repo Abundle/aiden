@@ -5,8 +5,7 @@ const mapStateToProps = (state) => ({
     users: {
         activeUser: state.users.activeUser,
     },
-    // user: state.activeUser,
-    messages: state.messages
+    messages: state.messages,
 });
 
 export const ChatContainer = connect(

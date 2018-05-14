@@ -5,13 +5,8 @@ import { sendMessage } from '../actions';
 const mapStateToProps = (state) => {
     // console.log(state);
     return {
-        users: state.users,
-        // messages: state.messages,
-        /*users: {
-            activeUser: state.users.activeUser,
-        },*/
+        users: state.users, // TODO: check which state subtree is needed
     }
-    // TODO: https://stackoverflow.com/questions/48676074/react-select-with-redux-form-value-undefined-after-first-submit
 };
 
 const mapDispatchToProps = dispatch => ({

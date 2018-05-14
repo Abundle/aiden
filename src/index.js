@@ -14,6 +14,8 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
+// TODO: store state in database?
+
 // register ourselves as present in the chat
 // store.dispatch(addUser('Me'));
 
