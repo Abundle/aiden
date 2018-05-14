@@ -1,5 +1,5 @@
 const usersReducer = (state = {
-    byId : {
+    byId: {
         'user1': {
             id: 'user1',
             name: 'Dave Kellie',

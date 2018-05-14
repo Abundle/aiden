@@ -20,7 +20,7 @@ const messagesReducer = (state = {
 }, action) => {
     switch (action.type) {
         case 'SEND_MESSAGE':
-            console.log(action.activeUser);
+            // console.log(action.activeUser);
             return {
                 ...state,
                 byId: {
