@@ -5,7 +5,7 @@ import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavi
 import Icon from 'material-ui/Icon';
 
 // Local import
-import ChatList from './ChatList';
+import ChatList from './chat/ChatList';
 
 const styles = {
     root: {

@@ -1,18 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import registerServiceWorker from './registerServiceWorker';
 
+// Custom import
+// import { addUser } from './actions';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
 
-const store = createStore(rootReducer);
+import createSagaMiddleware from 'redux-saga'
+import handleNewMessage from './saga';
+import setupSocket from './client';
 
-store.subscribe(() => {
+const username = 'John Doe';
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+    rootReducer,
+    applyMiddleware(sagaMiddleware),
+);
+const socket = setupSocket(store.dispatch, username);
+
+sagaMiddleware.run(handleNewMessage, { socket, username });
+
+/*store.subscribe(() => {
     console.log(store.getState());
-});
+});*/
 
 // TODO: store state in database?
 

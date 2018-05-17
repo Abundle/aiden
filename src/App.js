@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import red from 'material-ui/colors/red';
 
 // custom import
 import Phone from './Phone';
@@ -11,22 +12,31 @@ import onePlusImage from './assets/oneplus3_outline.svg'
 
 const theme = createMuiTheme({
     palette: {
-        primary: {
-            main: '#ff0000',
-            // background: '#fff'
-        },
+        primary: red,
         secondary: {
+            main: '#ff0000',
+            light: '#fff',
+        },
+        /*primary: {
+            main: '#ff0000',
+        },*/
+        /*secondary: {
             main: '#fff',
         },
         error: {
             main: '#cc0000',
-        },
+        },*/
     },
     /*typography: {
         fontFamily: 'Roboto, Arial, Helvetica, sans-serif',
         fontSize: 20,
     },*/
     overrides: {
+        MuiAppBar: {
+            colorSecondary: {
+                backgroundColor: '#fff',
+            }
+        },
         MuiBottomNavigationAction: {
             // Name of the styleSheet
             root: {

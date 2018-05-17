@@ -37,6 +37,9 @@ const reducers = (state = {
     }
 }, action) => {
     switch (action.type) {
+        case 'ACTIVATE_ASSISTANT':
+            console.log(action.payload);
+            return action.payload;
         case 'SEND_MESSAGE':
             // console.log(action.id);
             return {
@@ -69,6 +72,22 @@ const reducers = (state = {
                     }
                 }
             };
+        case 'MESSAGE_RECEIVED':
+            return {
+                ...state,
+                messages: {
+                    ...state.messages,
+                    byId: {
+                        ...state.messages.byId,
+                        [action.id]: {
+                            id: action.id,
+                            author: action.author,
+                            message: action.message,
+                        },
+                        allIds: [...state.messages.allIds, action.id]
+                    }
+                }
+            };
         case 'CHAT_SELECTED':
             // console.log(action.payload);
             return {
@@ -78,6 +97,25 @@ const reducers = (state = {
                     activeUser: action.payload,
                 }
             };
+        case 'ADD_USER':
+            return {
+                ...state,
+                users: {
+                    ...state.users,
+                    byId: {
+                        ...state.users.byId,
+                        [action.id]: {
+                            id: action.id,
+                            name: action.name,
+                            messages: [],
+                        }
+                    },
+                    allIds: [...state.users.allIds, action.id],
+                }
+            };
+        case 'USERS_LIST':
+            console.log(action.users);
+            return action.users;
         default:
             return state;
     }

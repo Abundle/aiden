@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 
 // Local import
-import avatar1 from './assets/avatar1.jpg';
+import avatar1 from '../assets/avatar1.jpg';
 /*import avatar2 from './assets/avatar2.jpg';
 import avatar3 from './assets/avatar3.jpg';
 import avatar4 from './assets/avatar4.jpg';*/
@@ -38,6 +38,7 @@ class UserList extends Component {
                 { Object.keys(users.byId).map((user, id) => {
                     let messageArray =  users.byId[user].messages;
                     let lastMessage = messageArray[messageArray.length - 1];
+                    // let test = messages.byId[lastMessage].message === undefined ? 'hi' : 'ho';
 
                     return (
                         <ListItem

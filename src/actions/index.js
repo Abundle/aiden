@@ -1,7 +1,7 @@
 // import * as types from './ActionTypes';
 
 let nextMessageId = 4;
-// let nextUserId = 1;
+let nextUserId = 3;
 
 export const sendMessage = (message, author, activeUser) => ({
     type: 'SEND_MESSAGE',
@@ -14,29 +14,31 @@ export const sendMessage = (message, author, activeUser) => ({
 
 export const selectChat = (user) => ({
     type: 'CHAT_SELECTED',
-    // id: 'user' + nextUserId++,
     payload: user,
 });
 
-/*export const VisibilityFilters = {
-    SHOW_ACTIVE: 'SHOW_ACTIVE',
-    SHOW_ALL: 'SHOW_ALL',
-};*/
-
-/*export const addUser = name => ({
-    type: types.ADD_USER,
-    id: nextUserId++,
+export const addUser = (name) => ({
+    type: 'ADD_USER',
+    id: 'user' + nextUserId++,
     name,
 });
 
-export const messageReceived = (message, author) => ({
-    type: types.MESSAGE_RECEIVED,
+export const activateAssistant = (boolean) => {
+    console.log(boolean);
+    return {
+        type: 'ACTIVATE_ASSISTANT',
+        payload: boolean,
+    }
+};
+
+/*export const messageReceived = (message, author) => ({
+    type: 'MESSAGE_RECEIVED',
     id: nextMessageId++,
     message,
     author,
 });
 
 export const populateUsersList = (users) => ({
-    type: types.USERS_LIST,
+    type: 'USERS_LIST',
     users,
 });*/

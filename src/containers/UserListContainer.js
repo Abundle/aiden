@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import UserList from '../UserList';
+import UserList from '../chat/UserList';
 import { selectChat } from '../actions';
 
 const mapStateToProps = (state) => ({

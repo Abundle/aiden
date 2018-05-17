@@ -8,14 +8,17 @@ import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavi
 import Icon from 'material-ui/Icon';
 
 // Local import
-import ChatList from './ChatList';
+import Activity from './activity/Activity';
+import Calendar from './calendar/Calendar';
+import ChatList from './chat/ChatList';
+import Settings from './settings/Settings';
 
 const styles = {
     root: {
         position: 'relative',
         height: '100%',
         width: '100%',
-        backgroundColor: 'lightblue',
+        // backgroundColor: 'lightblue',
     },
     statusBar: {
         height: 20,
@@ -52,7 +55,7 @@ class DigitalAssistantApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 2,
+            value: 0,
         };
     }
 
@@ -84,10 +87,10 @@ class DigitalAssistantApp extends Component {
                     </Toolbar>
                 </AppBar>*/}
 
-                { value === 0 && <div>hi</div> }
-                { value === 1 && <div>hi again</div> }
+                { value === 0 && <Activity /> }
+                { value === 1 && <Calendar /> }
                 { value === 2 && <ChatList /> }
-                { value === 3 && <div>hi hi hi again</div> }
+                { value === 3 && <Settings /> }
 
                 <BottomNavigation
                     value={ value }
@@ -96,7 +99,7 @@ class DigitalAssistantApp extends Component {
                     className={ classes.nav }
                 >
                     <BottomNavigationAction label='Activity' icon={ <Icon>track_changes</Icon> } />
-                    <BottomNavigationAction label='Mail' icon={ <Icon>mail_outline</Icon> } />
+                    <BottomNavigationAction label='Calendar' icon={ <Icon>calendar_today</Icon> } />
                     <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
                     <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />
                 </BottomNavigation>

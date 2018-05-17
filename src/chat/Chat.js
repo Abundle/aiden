@@ -52,23 +52,11 @@ const styles = theme => ({
 });
 
 class Chat extends Component {
-    /*constructor(props) {
-        super(props);
-        this.handleScroll = this.handleScroll.bind(this);
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
+    componentDidMount = (node) => {
+        if (node) {
+            node.addEventListener('scroll', () => console.log('scroll!'));
+        }
     };
-
-    componentWillUnmount() {
-        window.re
-        moveEventListener('scroll', this.handleScroll);
-    };
-
-    handleScroll = (event) =>  {
-        console.log('the scroll things', event)
-    };*/
 
     render() {
         const { classes, users, messages } = this.props;
@@ -95,7 +83,10 @@ class Chat extends Component {
                     </AppBar>
 
                     {/*TODO: automatically scroll down/push to newest message*/}
-                    <div className={ classes.chatContent } >
+                    <div
+                        className={ classes.chatContent }
+                        ref={ this.componentDidMount }
+                    >
                         <ul>
                             { (users.activeUser.messages || []).map(id => {
                                 // console.log(messages.byId[id]);
