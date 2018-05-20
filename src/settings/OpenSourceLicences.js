@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -28,61 +28,59 @@ const styles = theme => ({
     },
 });
 
-class OpenSourceLicences extends Component {
-    render() {
-        const { classes } = this.props;
+function OpenSourceLicences(props) {
+    const { classes } = props;
 
-        return (
-            <Slide
-                direction='up'
-                in={ this.props.open }
-                mountOnEnter
-                unmountOnExit
+    return (
+        <Slide
+            direction='up'
+            in={ props.open }
+            mountOnEnter
+            unmountOnExit
+        >
+            <Paper
+                className={ classes.root }
             >
-                <Paper
-                    className={ classes.root }
-                >
-                    <AppBar elevation={ 0 } position='static' color='secondary'>
-                        <Toolbar className={ classes.toolBar }>
-                            <IconButton onClick={ this.props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
-                                <Icon>chevron_left</Icon>
-                            </IconButton>
-                            <Typography variant='title'>
-                                Open-source licences
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
+                <AppBar elevation={ 0 } position='static' color='secondary'>
+                    <Toolbar className={ classes.toolBar }>
+                        <IconButton onClick={ props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
+                            <Icon>chevron_left</Icon>
+                        </IconButton>
+                        <Typography variant='title'>
+                            Open-source licences
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
 
-                    <List>
-                        <ListItem>
-                            <ListItemText primary='Create React App'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='Material UI'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='Redux'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='React Redux'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='Redux Saga'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='WS'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='Material UI Pickers'/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary='Moment'/>
-                        </ListItem>
-                    </List>
-                </Paper>
-            </Slide>
-        )
-    }
+                <List>
+                    <ListItem>
+                        <ListItemText primary='Create React App'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='Material UI'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='Redux'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='React Redux'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='Redux Saga'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='WS'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='Material UI Pickers'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='Moment'/>
+                    </ListItem>
+                </List>
+            </Paper>
+        </Slide>
+    )
 }
 
 OpenSourceLicences.propTypes = {

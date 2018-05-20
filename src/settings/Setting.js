@@ -10,8 +10,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { DatePicker, TimePicker } from 'material-ui-pickers';
@@ -33,6 +34,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 // Local import
 import OpenSourceLicences  from './OpenSourceLicences';
+import AppPermissions  from './AppPermissions';
 import whatsapp from '../assets/whatsapp.svg';
 import facebook from '../assets/facebook.svg';
 import googleCalendar from '../assets/google_calendar.png';
@@ -218,7 +220,6 @@ class SimpleListMenu extends React.Component {
         return (
             <div>
                 <ListItem
-                    divider
                     button
                     aria-haspopup='true'
                     aria-controls='lock-menu'
@@ -226,7 +227,7 @@ class SimpleListMenu extends React.Component {
                     onClick={ this.handleClickListItem }
                 >
                     <ListItemIcon>
-                        <Icon>message</Icon>
+                        <Icon>chat_bubble_outline</Icon>
                     </ListItemIcon>
                     <ListItemText
                         primary='Messaging preferences'
@@ -259,6 +260,8 @@ class Settings extends Component {
         super(props);
         this.state = {
             openDialogGender: false,
+            openDialogMail: false,
+            openDialogPermissions: false,
             openDialogLicences: false,
             birthdate: new Date('March 6, 1996'),
             // date: new Date(),
@@ -280,10 +283,24 @@ class Settings extends Component {
         this.setState({ openDialogLicences: !this.state.openDialogLicences });
     };
 
+    handlePermissionsDialog = () => {
+        this.setState({ openDialogPermissions: !this.state.openDialogPermissions });
+    };
+
+    handleClickOpen = () => {
+        this.setState({ openDialogMail: true });
+    };
+    handleClose = () => {
+        this.setState({ openDialogMail: false });
+    };
+
+    handleAccount = () => {
+        alert('hi');
+    };
+
     handleDateChange = date => {
         this.setState({ birthdate: date });
     };
-
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
     };
@@ -302,252 +319,281 @@ class Settings extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <List className={ classes.list } subheader={<ListSubheader />}>
-                    <ListSubheader classes={{
-                        sticky: classes.subHeader,
-                    }}>
-                        Profile
-                    </ListSubheader>
-                    <ListItem>
-                        <Avatar>
-                            <Icon>person_outline</Icon>
-                        </Avatar>
-                        <ListItemText primary='You' secondary='Aidan Bundel'/>
-                    </ListItem>
-                    <ListItem>
-                        {/*<ListItemIcon>
-                            <Icon>cake</Icon>
-                        </ListItemIcon>*/}
+                <List className={ classes.list } subheader={<div />}>
+                    <div>
+                        <ListSubheader classes={{
+                            sticky: classes.subHeader,
+                        }}>
+                            Profile
+                        </ListSubheader>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Icon>person_outline</Icon>
+                            </ListItemIcon>
+                            {/*<Avatar>
+                                <Icon>person</Icon>
+                            </Avatar>*/}
+                            <ListItemText primary='You' secondary='Aidan Bundel'/>
+                        </ListItem>
+                        <ListItem>
+                            {/*<ListItemIcon>
+                                <Icon>cake</Icon>
+                            </ListItemIcon>*/}
 
-                        <ListItemText inset primary={
-                            <DatePicker
-                                fullWidth
-                                keyboard
-                                label='Birthday'
-                                format='DD/MM/YYYY'
-                                placeholder='06/03/1996'
-                                // handle clearing outside => pass plain array if you are not controlling value outside
-                                mask={ value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : []) }
-                                value={ birthdate }
-                                onChange={ this.handleDateChange }
-                                disableOpenOnEnter
-                                animateYearScrolling={ false }
-                            />
-                        }/>
-                    </ListItem>
-                    <ListItem
-                        button
-                        aria-haspopup='true'
-                        aria-controls='gender-menu'
-                        aria-label='Gender'
-                        onClick={ this.handleGenderDialog }
-                    >
-                        <ListItemText inset primary='Gender' secondary={ gender }/>
-                    </ListItem>
-                    <ConfirmationDialog
-                        classes={{
-                            paper: classes.dialog,
-                        }}
-                        open={ this.state.openDialogGender }
-                        onClose={ this.handleGenderDialogClose }
-                        value={ gender }
-                    />
-
-                    <ListItem
-                        button
-                        divider
-                    >
-                        <ListItemText inset primary='Email address' secondary='aidan@outlook.com'/>
-                    </ListItem>
-
-                    <ListSubheader classes={{
-                        sticky: classes.subHeader,
-                    }}>
-                        Assistant Aiden
-                    </ListSubheader>
-                    <ListItem>
-                        <ListItemIcon>
-                            <Icon>assistant</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary='On/off' />
-                        <ListItemSecondaryAction>
-                            <Switch checked />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <Icon>schedule</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary='Schedule' secondary='Enable Aiden at specific times'/>
-                        <ListItemSecondaryAction>
-                            <Switch
-                                checked={ assistantScheduled }
-                                onChange={ this.handleChange('assistantScheduled') }
-                                value='assistantScheduled'
-                            />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-
-                    { assistantScheduled &&
-                        <div>
-                            <ListItem>
-                                <ListItemText inset primary='Start' />
-
-                                <Picker time='October 15, 2018 09:00:00' placeholder='09:00 AM'/>
-                                {/*<TimePicker
-                                    clearable
-                                    ampm={ false }
-                                    value={ date }
-                                    // placeholder='09:00 AM'
+                            <ListItemText inset primary={
+                                <DatePicker
+                                    fullWidth
+                                    keyboard
+                                    label='Birthday'
+                                    format='DD/MM/YYYY'
+                                    placeholder='06/03/1996'
+                                    // handle clearing outside => pass plain array if you are not controlling value outside
+                                    mask={ value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : []) }
+                                    value={ birthdate }
                                     onChange={ this.handleDateChange }
-                                />*/}
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText inset primary='End' />
-
-                                <Picker time='October 15, 2018 17:00:00' placeholder='17:00 PM'/>
-                            </ListItem>
-                        </div>
-                    }
-
-                    <ListItem
-                        button
+                                    disableOpenOnEnter
+                                    animateYearScrolling={ false }
+                                />
+                            }/>
+                        </ListItem>
+                        <ListItem
+                            button
+                            aria-haspopup='true'
+                            aria-controls='gender-menu'
+                            aria-label='Gender'
+                            onClick={ this.handleGenderDialog }
                         >
-                        <ListItemIcon>
-                            <Icon>group</Icon>
-                        </ListItemIcon>
-                        <ListItemText
-                            primary='Contact groups'
-                            secondary='Contact groups help you keep business and private separate'
+                            <ListItemText inset primary='Gender' secondary={ gender }/>
+                        </ListItem>
+                        <ConfirmationDialog
+                            classes={{
+                                paper: classes.dialog,
+                            }}
+                            open={ this.state.openDialogGender }
+                            onClose={ this.handleGenderDialogClose }
+                            value={ gender }
                         />
-                    </ListItem>
-                    <SimpleListMenu />
-                    {/*<ListItem
-                        divider
-                        button
-                    >
-                        <ListItemIcon>
-                            <Icon>message</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary='Messaging preferences' secondary='Assistant always enabled'/>
-                    </ListItem>*/}
 
-                    <ListSubheader classes={{
-                        sticky: classes.subHeader,
-                    }}>
-                        Connected accounts
-                    </ListSubheader>
-                    <ListItem>
-                        <ListItemIcon>
-                            <img className={ classes.appIcon } src={ whatsapp } alt='WhatsApp'/>
-                        </ListItemIcon>
-                        <ListItemText primary='WhatsApp' />
-                        <ListItemSecondaryAction>
-                            <IconButton aria-label='Settings'>
-                                <Icon>settings</Icon>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <img className={ classes.appIcon } src={ facebook } alt='Facebook'/>
-                        </ListItemIcon>
-                        <ListItemText primary='Facebook' />
-                        <ListItemSecondaryAction>
-                            <IconButton aria-label='Settings'>
-                                <Icon>settings</Icon>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <img className={ classes.appIcon } src={ googleCalendar } alt='Google Calendar'/>
-                        </ListItemIcon>
-                        <ListItemText primary='Google Calendar' />
-                        <ListItemSecondaryAction>
-                            <IconButton aria-label='Settings'>
-                                <Icon>settings</Icon>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <img className={ classes.appIcon } src={ outlook } alt='Outlook'/>
-                        </ListItemIcon>
-                        <ListItemText primary='Outlook' />
-                        <ListItemSecondaryAction>
-                            <IconButton aria-label='Settings'>
-                                <Icon>settings</Icon>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <img className={ classes.appIcon } src={ instagram } alt='Instagram'/>
-                        </ListItemIcon>
-                        <ListItemText primary='Instagram' />
-                        <ListItemSecondaryAction>
-                            <IconButton aria-label='Settings'>
-                                <Icon>settings</Icon>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <img className={ classes.appIcon } src={ twitter } alt='Twitter'/>
-                        </ListItemIcon>
-                        <ListItemText primary='Twitter' />
-                        <ListItemSecondaryAction>
-                            <IconButton aria-label='Settings'>
-                                <Icon>settings</Icon>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
+                        <ListItem
+                            button
+                            divider
+                            onClick={ this.handleClickOpen }
+                        >
+                            <ListItemText inset primary='Email address' secondary='aidan@outlook.com'/>
+                        </ListItem>
 
-                    <ListItem button divider>
-                        <ListItemIcon>
-                            <Icon>add</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary='Add an account' />
-                    </ListItem>
+                        <Dialog
+                            open={this.state.openDialogMail}
+                            onClose={this.handleClose}
+                            aria-labelledby='form-dialog-title'
+                        >
+                            <DialogTitle id='form-dialog-title'>Email address</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>
+                                    In case we need to contact you about your account.
+                                </DialogContentText>
+                                <TextField
+                                    autoFocus
+                                    margin='dense'
+                                    id='name'
+                                    defaultValue='aidan@outlook.com'
+                                    label='Email Address'
+                                    type='email'
+                                    fullWidth
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={ this.handleClose } color='primary'>
+                                    Cancel
+                                </Button>
+                                <Button onClick={ this.handleClose } color='primary'>
+                                    Save
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
 
-                    {/*<ListSubheader classes={{
-                        sticky: classes.subHeader,
-                    }}>General</ListSubheader>
-                    <ListItem>
-                        <ListItemIcon>
-                            <Icon>wifi</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary='Profile name' />
-                        <ListItemSecondaryAction>
-                            <Switch checked />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <Icon>bluetooth</Icon>
-                        </ListItemIcon>
-                        <ListItemText primary='Birthday' />
-                        <ListItemSecondaryAction>
-                            <Switch/>
-                        </ListItemSecondaryAction>
-                    </ListItem>*/}
+                    <div>
+                        <ListSubheader classes={{
+                            sticky: classes.subHeader,
+                        }}>
+                            Assistant Aiden
+                        </ListSubheader>
+                        <ListItem>
+                            <ListItemIcon>
+                                <Icon>assistant</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary='On/off' />
+                            <ListItemSecondaryAction>
+                                <Switch checked />
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <Icon>schedule</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary='Schedule' secondary='Enable Aiden at specific times'/>
+                            <ListItemSecondaryAction>
+                                <Switch
+                                    checked={ assistantScheduled }
+                                    onChange={ this.handleChange('assistantScheduled') }
+                                    value='assistantScheduled'
+                                />
+                            </ListItemSecondaryAction>
+                        </ListItem>
 
-                    <ListSubheader classes={{
-                        sticky: classes.subHeader,
-                    }}>
-                        About
-                    </ListSubheader>
-                    <ListItem>
-                        <ListItemText primary='App version' secondary='v0.1.0'/>
-                    </ListItem>
-                    <ListItem
-                        button
-                        onClick={ this.handleLicenceDialog }
-                    >
-                        <ListItemText primary='Open-source licences' secondary='Licence details for open-source software'/>
-                    </ListItem>
+                        { assistantScheduled &&
+                            <div>
+                                <ListItem>
+                                    <ListItemText inset primary='Start' />
+
+                                    <Picker time='October 15, 2018 09:00:00' placeholder='09:00 AM'/>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText inset primary='End' />
+
+                                    <Picker time='October 15, 2018 17:00:00' placeholder='17:00 PM'/>
+                                </ListItem>
+                            </div>
+                        }
+
+                        <ListItem
+                            button
+                            >
+                            <ListItemIcon>
+                                <Icon>people_outline</Icon>
+                            </ListItemIcon>
+                            <ListItemText
+                                primary='Contact groups'
+                                secondary='Keep business and private separate'
+                            />
+                        </ListItem>
+
+                        <SimpleListMenu />
+
+                        <ListItem
+                            button
+                            divider
+                            onClick={ this.handlePermissionsDialog }
+                        >
+                            <ListItemIcon>
+                                <Icon>lock</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary='App permissions'/>
+                        </ListItem>
+                        {/*<ListItem
+                            divider
+                            button
+                        >
+                            <ListItemIcon>
+                                <Icon>message</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary='Messaging preferences' secondary='Assistant always enabled'/>
+                        </ListItem>*/}
+                    </div>
+
+                    <div>
+                        <ListSubheader classes={{
+                            sticky: classes.subHeader,
+                        }}>
+                            Connected accounts
+                        </ListSubheader>
+                        <ListItem>
+                            <ListItemIcon>
+                                <img className={ classes.appIcon } src={ whatsapp } alt='WhatsApp'/>
+                            </ListItemIcon>
+                            <ListItemText primary='WhatsApp' />
+                            <ListItemSecondaryAction onClick={ this.handleAccount }>
+                                <IconButton aria-label='Settings'>
+                                    <Icon>settings</Icon>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <img className={ classes.appIcon } src={ facebook } alt='Facebook'/>
+                            </ListItemIcon>
+                            <ListItemText primary='Facebook' />
+                            <ListItemSecondaryAction>
+                                <IconButton aria-label='Settings'>
+                                    <Icon>settings</Icon>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <img className={ classes.appIcon } src={ googleCalendar } alt='Google Calendar'/>
+                            </ListItemIcon>
+                            <ListItemText primary='Google Calendar' />
+                            <ListItemSecondaryAction>
+                                <IconButton aria-label='Settings'>
+                                    <Icon>settings</Icon>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <img className={ classes.appIcon } src={ outlook } alt='Outlook'/>
+                            </ListItemIcon>
+                            <ListItemText primary='Outlook' />
+                            <ListItemSecondaryAction>
+                                <IconButton aria-label='Settings'>
+                                    <Icon>settings</Icon>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <img className={ classes.appIcon } src={ instagram } alt='Instagram'/>
+                            </ListItemIcon>
+                            <ListItemText primary='Instagram' />
+                            <ListItemSecondaryAction>
+                                <IconButton aria-label='Settings'>
+                                    <Icon>settings</Icon>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <img className={ classes.appIcon } src={ twitter } alt='Twitter'/>
+                            </ListItemIcon>
+                            <ListItemText primary='Twitter' />
+                            <ListItemSecondaryAction>
+                                <IconButton aria-label='Settings'>
+                                    <Icon>settings</Icon>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <ListItem button divider>
+                            <ListItemIcon>
+                                <Icon>add</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary='Add an account' />
+                        </ListItem>
+                    </div>
+
+                    <div>
+                        <ListSubheader component='div' classes={{
+                            sticky: classes.subHeader,
+                        }}>
+                            About
+                        </ListSubheader>
+                        <ListItem>
+                            <ListItemText primary='App version' secondary='v0.1.0'/>
+                        </ListItem>
+                        <ListItem
+                            button
+                            onClick={ this.handleLicenceDialog }
+                        >
+                            <ListItemText primary='Open-source licences' secondary='Licence details for open-source software'/>
+                        </ListItem>
+                    </div>
                 </List>
+
+                <AppPermissions
+                    open={ this.state.openDialogPermissions }
+                    onClose={ this.handlePermissionsDialog }
+                />
 
                 <OpenSourceLicences
                     open={ this.state.openDialogLicences }

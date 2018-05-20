@@ -64,10 +64,8 @@ const theme = createMuiTheme({
                 right: 10,
             },
         },
-        /*MuiInput: {
-            formControl: {
-                maxWidth: 250,
-            },
+        /*MuiListSubheader: {
+            component: 'div',
         },*/
     },
 });

@@ -71,7 +71,7 @@ class Chat extends Component {
                 <Paper
                     className={ classes.root }
                 >
-                    <AppBar elevation={ 0 } position='static' color='secondary'>
+                    <AppBar elevation={ 0 } position='static' color='primary'>
                         <Toolbar className={ classes.toolBar }>
                             <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
                                 <Icon>chevron_left</Icon>
