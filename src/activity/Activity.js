@@ -1,24 +1,23 @@
 import React  from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
-import IconButton from 'material-ui/IconButton';
-import Avatar from 'material-ui/Avatar';
-import Typography from 'material-ui/Typography';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
+import Moment from 'react-moment';
 
 // Local import
 import avatar1 from '../assets/avatar1.jpg';
 import avatar2 from '../assets/avatar2.jpg';
 import avatar3 from '../assets/avatar3.jpg';
-
-let date = new Date();
-// let day = date.getDay();
-let monthIndex = date.getMonth();
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-let month = months[monthIndex];
+import facebook from '../assets/facebook.svg';
+import googleCalendar from '../assets/google_calendar.svg';
 
 const styles = theme => ({
     root: {
@@ -47,29 +46,45 @@ const styles = theme => ({
     card: {
         minWidth: 250,
     },
-    /*title: {
-        marginBottom: 16,
-        fontSize: 14,
-    },*/
+    summaryCardHeader: {
+        // color: 'white',
+        // backgroundColor: theme.palette.secondary.main,
+        backgroundColor: '#B71C1C',
+    },
+    summaryCardTitle: {
+        color: theme.palette.secondary.light,
+    },
     cardHeader: {
         paddingBottom: 0,
     },
     cardMessage: {
         marginBottom: 12,
     },
+    systemIcon: {
+        verticalAlign: '-25%',
+    },
+    googleCalendar: {
+        color: '#0045CE',
+    },
+    facebook: {
+        color: '#3C5A98',
+    },
     appIcon: {
+        width: 24,
+        marginRight: 5,
         verticalAlign: '-25%',
     },
 });
 
 function Activity(props) {
     const { classes } = props;
+    const date = new Date();
 
     // TODO: add variant='outlined
 
     return (
         <div className={ classes.root }>
-            <AppBar elevation={ 0 } position='static' color='secondary'> {/*TODO: move appBar within slide?*/}
+            <AppBar elevation={ 0 } position='static' color='secondary'>
                 <Toolbar classes={{ root: classes.titleToolbar }}>
                     <Typography variant='headline' color='default' className={ classes.titleToolbar }>
                         Activity
@@ -81,8 +96,30 @@ function Activity(props) {
             </AppBar>
 
             <div className={ classes.list }>
+                <Card className={ classes.card } square>
+                    <CardHeader
+                        classes={{
+                            root: classes.summaryCardHeader,
+                            title: classes.summaryCardTitle,
+                        }}
+                        action={
+                            <IconButton>
+                                <Icon>more_vert</Icon>
+                            </IconButton>
+                        }
+                        title='Today'
+                        subheader='September 14, 2018'
+                    />
+                    <CardContent>
+                        <Typography color='textSecondary' component='div' gutterBottom>
+                            [summary]
+                        </Typography>
+                    </CardContent>
+                </Card>
+
+
                 <Typography variant='caption' align='center' className={ classes.timeStamp }>
-                    Today • { month } 18
+                    Today • <Moment format='MMM Do'>{ date }</Moment>
                 </Typography>
 
                 <Card className={ classes.card } square>
@@ -98,16 +135,19 @@ function Activity(props) {
                                 <Icon>more_vert</Icon>
                             </IconButton>
                         }
-                        title='Richard Roe'
+                        title='To: Richard Roe'
                         subheader='15:51'
                     />
                     <CardContent>
-                        <Typography className={ classes.cardMessage } color='textSecondary'>
-                            Hey Richard, yes it's at 2pm at the Googleplex <span role='img' aria-label='emoji'>⚛️</span>
+                        <Typography className={ classes.cardMessage }>
+                            Hey Richard, yes it's at 2pm at the Googleplex
                         </Typography>
-                        <Typography component='p'>
-                            Retrieved from:<br />
-                            <Icon color='primary' className={ classes.appIcon }>calendar_today</Icon> Google Calendar
+
+                        <Typography color='textSecondary' component='div' gutterBottom>
+                            Retrieved from:
+                        </Typography>
+                        <Typography className={ classes.googleCalendar }>
+                            <img className={ classes.appIcon } src={ googleCalendar } alt='Google Calendar'/> Google Calendar
                         </Typography>
                     </CardContent>
                     {/*<CardActions>
@@ -120,23 +160,26 @@ function Activity(props) {
                             root: classes.cardHeader,
                         }}
                         avatar={
-                            <Avatar alt='Ali Connors' src={ avatar2 } className={classes.avatar} />
+                            <Avatar alt='Ali Connors' src={ avatar2 } className={classes.avatar}/>
                         }
                         action={
                             <IconButton>
                                 <Icon>more_vert</Icon>
                             </IconButton>
                         }
-                        title='Ali Connors'
+                        title='To: Ali Connors'
                         subheader='15:51'
                     />
                     <CardContent>
-                        <Typography className={ classes.cardMessage } color='textSecondary'>
-                            Hey Richard, yes it's at 2pm at the Googleplex
+                        <Typography className={ classes.cardMessage }>
+                            I have! About a year ago in the cinema
                         </Typography>
-                        <Typography component='p'>
-                            Retrieved from:<br />
-                            <Icon color='primary' className={ classes.appIcon }>public</Icon> Facebook
+
+                        <Typography color='textSecondary' component='div' gutterBottom>
+                            Retrieved from:
+                        </Typography>
+                        <Typography color='primary' className={ classes.facebook }>
+                            <img className={ classes.appIcon } src={ facebook } alt='Facebook'/> Facebook
                         </Typography>
                     </CardContent>
                 </Card>
@@ -153,24 +196,27 @@ function Activity(props) {
                                 <Icon>more_vert</Icon>
                             </IconButton>
                         }
-                        title='Kellie Max'
+                        title='To: Trevor Holten'
                         subheader='15:51'
                     />
                     <CardContent>
-                        <Typography className={ classes.cardMessage } color='textSecondary'>
-                            Hey Richard, yes it's at 2pm at the Googleplex
+                        <Typography className={ classes.cardMessage }>
+                            I did yes <span role='img' aria-label='emoji'>😌️</span>
                         </Typography>
-                        <Typography component='p'>
-                            Retrieved from:<br />
-                            <Icon color='primary' className={ classes.appIcon }>location_on</Icon> Location
-                            <Icon color='primary' className={ classes.appIcon }>wifi</Icon> WiFi connection
+
+                        <Typography color='textSecondary' component='div' gutterBottom>
+                            Retrieved from:
+                        </Typography>
+                        <Typography color='primary'>
+                            <Icon className={ classes.systemIcon }>location_on</Icon> Location
+                            <Icon className={ classes.systemIcon }>wifi</Icon> WiFi connection
                         </Typography>
                     </CardContent>
                 </Card>
 
 
                 <Typography variant='caption' align='center' className={ classes.timeStamp }>
-                    Yesterday • { month } 17
+                    Yesterday • <Moment format='MMM Do' subtract={{ days: 1 }}>{ date }</Moment>
                 </Typography>
 
                 <Card className={ classes.card } square>
@@ -186,16 +232,19 @@ function Activity(props) {
                                 <Icon>more_vert</Icon>
                             </IconButton>
                         }
-                        title='Richard Roe'
+                        title='To: Richard Roe'
                         subheader='15:51'
                     />
                     <CardContent>
-                        <Typography className={ classes.cardMessage } color='textSecondary'>
+                        <Typography className={ classes.cardMessage }>
                             Hey Richard, yes it's at 2pm at the Googleplex
                         </Typography>
-                        <Typography component='p'>
-                            Retrieved from:<br />
-                            <Icon color='primary' className={ classes.appIcon }>calendar_today</Icon> Google Calendar
+
+                        <Typography color='textSecondary' component='div' gutterBottom>
+                            Retrieved from:
+                        </Typography>
+                        <Typography className={ classes.googleCalendar }>
+                            <img className={ classes.appIcon } src={ googleCalendar } alt='Google Calendar'/> Google Calendar
                         </Typography>
                     </CardContent>
                 </Card>

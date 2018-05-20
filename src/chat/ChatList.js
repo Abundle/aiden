@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 
 // import Portal from './chat/Portal';
 import { UserListContainer } from '../containers/UserListContainer';
@@ -52,7 +52,7 @@ class ChatList extends Component {
 
         return (
             <div className={ classes.root }>
-                <AppBar elevation={ 0 } position='static' color='secondary'> {/*TODO: move appBar within slide?*/}
+                <AppBar elevation={ 0 } position='static' color='secondary'>
                     <Toolbar classes={{ root: classes.titleToolbar }}>
                         <Typography variant='headline' color='default' className={ classes.titleToolbar }>
                             Chats {/*TODO: scroll behaviour title https://material-components-web.appspot.com/toolbar/index.html*/}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import BottomNavigation, { BottomNavigationAction } from '@material-ui/core/BottomNavigation';
+import Icon from '@material-ui/core/Icon';
 
 // Local import
 import ChatList from './chat/ChatList';

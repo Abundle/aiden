@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import CssBaseline from 'material-ui/CssBaseline';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import red from 'material-ui/colors/red';
+import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 
 // custom import
 import Phone from './Phone';
@@ -12,7 +12,7 @@ import onePlusImage from './assets/oneplus3_outline.svg'
 
 const theme = createMuiTheme({
     palette: {
-        primary: red,
+        primary: red, // TODO: Check theme correct usage
         secondary: {
             main: '#ff0000',
             light: '#fff',
@@ -55,15 +55,20 @@ const theme = createMuiTheme({
         MuiList: {
             padding: {
                 paddingTop: 0,
-                paddingBottom: 150,
+                // paddingBottom: 150,
             },
         },
         MuiListItemSecondaryAction: {
             root: {
-                top: '35%',
+                // top: '35%',
                 right: 10,
             },
-        }
+        },
+        /*MuiInput: {
+            formControl: {
+                maxWidth: 250,
+            },
+        },*/
     },
 });
 

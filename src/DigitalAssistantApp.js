@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-// import AppBar from 'material-ui/AppBar';
-// import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Icon from '@material-ui/core/Icon';
 
 // Local import
 import Activity from './activity/Activity';
 import Calendar from './calendar/Calendar';
 import ChatList from './chat/ChatList';
-import Settings from './settings/Settings';
+import Settings from './settings/Setting';
+
+let date = new Date();
+let time = date.getHours() + ':' + date.getMinutes();
 
 const styles = {
     root: {
@@ -55,7 +59,7 @@ class DigitalAssistantApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 0,
+            value: 3,
         };
     }
 
@@ -76,7 +80,7 @@ class DigitalAssistantApp extends Component {
                     {/*<Typography variant='body1' className={ classes.time }>48%</Typography>*/}
                     <Icon className={ classes.statusIcon }>battery_full</Icon>
 
-                    <Typography variant='body1' className={ classes.time }>10:30</Typography>
+                    <Typography variant='body1' className={ classes.time }>{ time }</Typography>
                 </div>
 
                 {/*<AppBar position='static' color='default' className={ classes.appBar }>

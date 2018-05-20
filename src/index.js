@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 // Custom import
 // import { addUser } from './actions';
@@ -28,14 +30,14 @@ sagaMiddleware.run(handleNewMessage, { socket, username });
     console.log(store.getState());
 });*/
 
-// TODO: store state in database?
-
 // register ourselves as present in the chat
 // store.dispatch(addUser('Me'));
 
 ReactDOM.render(
     <Provider store={ store }>
-        <App />
+        <MuiPickersUtilsProvider utils={ MomentUtils }>
+            <App />
+        </MuiPickersUtilsProvider>
     </Provider>,
     document.getElementById('root')
 );

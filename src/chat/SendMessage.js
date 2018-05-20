@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
     root: {
@@ -41,10 +41,11 @@ const styles = theme => ({
 });
 
 class SendMessage extends Component {
-    handleSubmit(event, input) { // TODO: check if text area is empty
-        /*if (!input.value.trim()) {
+    handleSubmit(event, input) {
+        // Check if text area is empty
+        if (!input.value.trim()) {
             return
-        }*/
+        }
         this.props.dispatch(input.value, 'Me', this.props.users.activeUser);
         input.value = '';
     }

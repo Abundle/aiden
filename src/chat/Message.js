@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
 let date = new Date();
 let time = date.getHours() + ':' + date.getMinutes();
@@ -21,7 +21,7 @@ const styles = theme => ({
         margin: '15px 10px 5px 100px', // TODO: fix spacing another way
         padding: 10,
         textAlign: 'right',
-        color: theme.palette.secondary.main,
+        color: theme.palette.secondary.light,
         backgroundColor: theme.palette.primary.main,
     },
 });
