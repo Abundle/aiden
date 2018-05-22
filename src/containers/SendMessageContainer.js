@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
     // console.log(state);
     return {
         users: state.users, // TODO: check which state subtree is needed
+        assistant: state.assistant,
     }
 };
 

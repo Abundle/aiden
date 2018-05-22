@@ -46,7 +46,10 @@ class SendMessage extends Component {
         if (!input.value.trim()) {
             return
         }
-        this.props.dispatch(input.value, 'Aidan Bundel', this.props.users.activeUser); //Me
+        let sender = this.props.assistant ? ('Aidan Bundel') : ('Dave Kellie');
+        console.log(sender, this.props.users.activeUser);
+
+        this.props.dispatch(input.value, sender, this.props.users.activeUser); //Me
         input.value = '';
     }
 

@@ -57,6 +57,7 @@ class Chat extends Component {
             node.addEventListener('scroll', () => console.log('scroll!')); // TODO: clean up
 
             console.log(node.scrollHeight);
+            // TODO: Also scroll when SEND_MESSAGE is dispatched
             node.scrollTo(0, node.scrollHeight);
         }
     };
@@ -64,13 +65,13 @@ class Chat extends Component {
     render() {
         const { classes, assistant, users, messages } = this.props;
 
-        let currentUser = assistant ? ('user0') :('user1'); //users.usersOnline[0];
-        const messagesSender = users.byId[currentUser].messages;
-        const messagesReceiver = users.activeUser.messages || [];
+        let currentUser = assistant ? ('user0') : ('user1'); //users.usersOnline[0];
+        let messagesSender = users.byId[currentUser].messages;
+        let messagesReceiver = users.activeUser.messages || [];
         let messagesArray = messagesSender.concat(messagesReceiver);
 
         messagesArray.sort();
-        console.log(messagesArray);
+        console.log(messagesSender, messagesReceiver);
         // console.log(messagesSender.concat(messagesReceiver));
         // console.log(users.byId['user0'].messages);
 
@@ -104,8 +105,9 @@ class Chat extends Component {
                         <ul>
                             { (messagesArray || []).map(id => {
                                 // console.log(users.byId[currentUser].name);
+                                // console.log(messages.byId[id]);
 
-                                return ( // TODO: write in cleaner way
+                                return (
                                     messages.byId[id].receiver === (users.activeUser.name) ||
                                     messages.byId[id].receiver === (users.byId[currentUser].name) ?
                                         (<Message
@@ -114,24 +116,20 @@ class Chat extends Component {
                                         >
                                             { messages.byId[id].message }
                                         </Message>) : (null)
-
                                 )
+
+                               /* return ( // TODO: write in cleaner way
+                                    messages.byId[id].receiver === (users.activeUser.name) ||
+                                    messages.byId[id].receiver === (users.byId[currentUser].name) ?
+                                        (<Message
+                                            key={ id }
+                                            author={ messages.byId[id].author }
+                                        >
+                                            { messages.byId[id].message }
+                                        </Message>) : (null)
+                                )*/
                             }) }
                         </ul>
-
-                        {/*<ul>
-                            { (users.activeUser.messages || []).map(id => {
-                                // console.log(messages.byId[id]);
-                                return (
-                                    <Message
-                                        key={ id }
-                                        author={ messages.byId[id].author }
-                                    >
-                                        { messages.byId[id].message }
-                                    </Message>
-                                )
-                            }) }
-                        </ul>*/}
                     </div>
 
                     <SendMessageContainer />

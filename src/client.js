@@ -23,8 +23,8 @@ const setupSocket = (dispatch, id) => { // username
                 // dispatch(addUser(data.users));
                 break;
             case 'SEND_MESSAGE':
-                console.log('hi');
-                dispatch(messageReceived(data.message, data.author));
+                console.log(data.activeUser);
+                dispatch(messageReceived(data.message, data.author, data.activeUser));
                 break;
             /*case 'ADD_MESSAGE':
                 // dispatch(messageReceived(data.message, data.author));

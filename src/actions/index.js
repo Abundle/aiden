@@ -1,6 +1,6 @@
 // import * as types from './ActionTypes';
 
-let nextMessageId = 4;
+let nextMessageId = 5;
 // let nextUserId = 3;
 
 export const sendMessage = (message, author, activeUser) => ({
@@ -10,6 +10,7 @@ export const sendMessage = (message, author, activeUser) => ({
     author,
     message,
     activeUser, // receiver
+    // receiver: activeUser,
     // payload: [message, author],
 });
 
@@ -30,13 +31,14 @@ export const addUser = id => ({ // = assign user
     name,
 });*/
 
-export const messageReceived = (message, author) => {
-    console.log('hi');
+export const messageReceived = (message, author, activeUser) => {
+    // console.log('hi');
     return {
         type: 'MESSAGE_RECEIVED',
-        id: nextMessageId++,
-        message,
+        id: 'message' + nextMessageId++,
         author,
+        message,
+        activeUser, // receiver
     }
 };
 

@@ -75,6 +75,7 @@ wss.on('connection', (ws) => {
                     // payload: { message: data.message, author: data.author },
                     author: data.author,
                     message: data.message,
+                    //receiver
                     activeUser: data.activeUser,
                 }, ws);
                 console.log('server SEND_MESSAGE');
