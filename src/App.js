@@ -6,8 +6,10 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
 // custom import
-import Phone from './Phone';
-import onePlusImage from './assets/oneplus3_outline.svg'
+import { UserGreetingContainer } from './containers/UserGreetingContainer';
+// import Phone from './Phone';
+import { PhoneContainer } from './containers/PhoneContainer';
+import onePlusImage from './assets/oneplus3_outline.svg';
 // import samsungImage from './assets/samsung_galaxy_s4_putline.svg'
 
 const theme = createMuiTheme({
@@ -88,7 +90,13 @@ class App extends Component {
             <div className={ classes.root }>
                 <CssBaseline />
                 <MuiThemeProvider theme={ theme }>
-                    <Phone image={ onePlusImage } assistant />
+                    [Aiden logo]
+
+                    <UserGreetingContainer />
+
+                    <PhoneContainer image={ onePlusImage }/>
+                    {/*<Phone image={ onePlusImage } />*/}
+                    {/*<Phone image={ onePlusImage } assistant />*/}
 
                     {/*<Phone image={ samsungImage }/>*/}
                 </ MuiThemeProvider>

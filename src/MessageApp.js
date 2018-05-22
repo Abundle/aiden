@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import BottomNavigation, { BottomNavigationAction } from '@material-ui/core/BottomNavigation';
-import Icon from '@material-ui/core/Icon';
+// import BottomNavigation, { BottomNavigationAction } from '@material-ui/core/BottomNavigation';
+// import Icon from '@material-ui/core/Icon';
 
 // Local import
 import ChatList from './chat/ChatList';
@@ -38,25 +38,11 @@ class DigitalAssistant extends Component {
 
     render() {
         const { classes } = this.props;
-        const { value } = this.state;
+        // const { value } = this.state;
 
         return (
             <div className={ classes.root }>
-                { value === 0 && <div>hi</div> }
-                { value === 1 && <ChatList /> }
-                { value === 2 && <div>hi hi again</div> }
-
-                <BottomNavigation
-                    value={ value }
-                    onChange={ this.handleChange }
-                    showLabels
-                    className={ classes.nav }
-                >
-                    <BottomNavigationAction label='Mail' icon={ <Icon>mail_outline</Icon> } />
-                    {/*<BottomNavigationAction label='Contacts' icon={ <Icon>people</Icon> } />*/}
-                    <BottomNavigationAction label='Chats' icon={ <Icon>chat_bubble_outline</Icon> } />
-                    <BottomNavigationAction label='Settings' icon={ <Icon>settings</Icon> } />
-                </BottomNavigation>
+                <ChatList />
             </div>
         );
     }

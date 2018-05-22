@@ -1,14 +1,15 @@
 // import * as types from '../constants/ActionTypes';
 // import { messageReceived } from './actions';
-import { addUser, activateAssistant } from './actions';
+import { activateAssistant, messageReceived, populateUsersList } from './actions'; //addUser
 
-const setupSocket = (dispatch, username) => {
+const setupSocket = (dispatch, id) => { // username
     const socket = new WebSocket('ws://localhost:8989');
 
     socket.onopen = () => { // initial connection
         socket.send(JSON.stringify({
             type: 'ADD_USER',
-            name: username
+            payload: id,
+            // name: username
         }));
     };
     socket.onmessage = (event) => {
@@ -17,18 +18,26 @@ const setupSocket = (dispatch, username) => {
 
         switch (data.type) {
             case 'ACTIVATE_ASSISTANT':
-                dispatch(activateAssistant(data.payload));
+                dispatch(activateAssistant(data.payload.assistant));
+                // dispatch(activateAssistant(data.payload.assistant, data.payload.user));
+                // dispatch(addUser(data.users));
                 break;
-            case 'ADD_MESSAGE':
+            case 'SEND_MESSAGE':
+                console.log('hi');
+                dispatch(messageReceived(data.message, data.author));
+                break;
+            /*case 'ADD_MESSAGE':
                 // dispatch(messageReceived(data.message, data.author));
                 break;
             case 'ADD_USER':
                 dispatch(addUser(data.name));
-                break;
-            /*case 'USERS_LIST':
-                dispatch(populateUsersList(data.users));
                 break;*/
+            case 'USERS_LIST': // dispatch 'users online' action
+                dispatch(populateUsersList(data.payload.users));
+                // console.log(data.payload.users);
+                break;
             default:
+                console.log(data);
                 break;
         }
     };

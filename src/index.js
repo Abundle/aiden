@@ -16,15 +16,19 @@ import createSagaMiddleware from 'redux-saga'
 import handleNewMessage from './saga';
 import setupSocket from './client';
 
-const username = 'John Doe';
+const id = 'user0';
+// const id = Math.floor(Math.random() * 10);
+// const username = 'John Doe';
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     rootReducer,
     applyMiddleware(sagaMiddleware),
 );
-const socket = setupSocket(store.dispatch, username);
+const socket = setupSocket(store.dispatch);
+// const socket = setupSocket(store.dispatch, id);
 
-sagaMiddleware.run(handleNewMessage, { socket, username });
+sagaMiddleware.run(handleNewMessage, { socket, id });
+// sagaMiddleware.run(handleNewMessage, { socket, username });
 
 /*store.subscribe(() => {
     console.log(store.getState());

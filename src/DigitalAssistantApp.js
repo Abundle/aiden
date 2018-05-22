@@ -12,7 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import Activity from './activity/Activity';
 import Calendar from './calendar/Calendar';
 import ChatList from './chat/ChatList';
-import Settings from './settings/Setting';
+import Settings from './settings/Settings';
 
 let date = new Date();
 let time = date.getHours() + ':' + date.getMinutes();
@@ -59,7 +59,7 @@ class DigitalAssistantApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 1,
+            value: 2,
         };
     }
 
@@ -76,20 +76,10 @@ class DigitalAssistantApp extends Component {
                 <div className={ classes.statusBar }>
                     <Icon className={ classes.statusIcon }>network_wifi</Icon>
                     <Icon className={ classes.statusIcon }>network_cell</Icon>
-
-                    {/*<Typography variant='body1' className={ classes.time }>48%</Typography>*/}
                     <Icon className={ classes.statusIcon }>battery_full</Icon>
 
                     <Typography variant='body1' className={ classes.time }>{ time }</Typography>
                 </div>
-
-                {/*<AppBar position='static' color='default' className={ classes.appBar }>
-                    <Toolbar>
-                        <Typography variant='title' color='inherit'>
-                            Aiden
-                        </Typography>
-                    </Toolbar>
-                </AppBar>*/}
 
                 { value === 0 && <Activity /> }
                 { value === 1 && <Calendar /> }

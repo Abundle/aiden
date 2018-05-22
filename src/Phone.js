@@ -30,6 +30,12 @@ const styles = {
         minWidth: 300.45,
         backgroundColor: 'gray',
     },
+    mobile: {
+        position: 'absolute',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'blue',
+    },
 };
 
 class Phone extends Component {
@@ -38,8 +44,16 @@ class Phone extends Component {
         const ui = assistant ? (
             <DigitalAssistantApp />
         ) : (
-            <MessageApp/>
+            <MessageApp />
         );
+
+
+        // TODO: implement mobile view with Bootstrap
+        /*return (
+            <div className={ classes.mobile }>
+                <DigitalAssistantApp />
+            </div>
+        )*/
 
         return (
             <div className={ classes.root }>
@@ -53,9 +67,9 @@ class Phone extends Component {
     }
 }
 
-Phone.defaultProps = {
+/*Phone.defaultProps = {
     assistant: false,
-};
+};*/
 
 Phone.propTypes = {
     assistant: PropTypes.bool.isRequired,

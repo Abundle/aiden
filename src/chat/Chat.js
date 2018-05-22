@@ -54,12 +54,26 @@ const styles = theme => ({
 class Chat extends Component {
     componentDidMount = (node) => {
         if (node) {
-            node.addEventListener('scroll', () => console.log('scroll!'));
+            node.addEventListener('scroll', () => console.log('scroll!')); // TODO: clean up
+
+            console.log(node.scrollHeight);
+            node.scrollTo(0, node.scrollHeight);
         }
     };
 
     render() {
-        const { classes, users, messages } = this.props;
+        const { classes, assistant, users, messages } = this.props;
+
+        let currentUser = assistant ? ('user0') :('user1'); //users.usersOnline[0];
+        const messagesSender = users.byId[currentUser].messages;
+        const messagesReceiver = users.activeUser.messages || [];
+        let messagesArray = messagesSender.concat(messagesReceiver);
+
+        messagesArray.sort();
+        console.log(messagesArray);
+        // console.log(messagesSender.concat(messagesReceiver));
+        // console.log(users.byId['user0'].messages);
+
 
         return (
             <Slide
@@ -88,6 +102,24 @@ class Chat extends Component {
                         ref={ this.componentDidMount }
                     >
                         <ul>
+                            { (messagesArray || []).map(id => {
+                                // console.log(users.byId[currentUser].name);
+
+                                return ( // TODO: write in cleaner way
+                                    messages.byId[id].receiver === (users.activeUser.name) ||
+                                    messages.byId[id].receiver === (users.byId[currentUser].name) ?
+                                        (<Message
+                                            key={ id }
+                                            author={ messages.byId[id].author }
+                                        >
+                                            { messages.byId[id].message }
+                                        </Message>) : (null)
+
+                                )
+                            }) }
+                        </ul>
+
+                        {/*<ul>
                             { (users.activeUser.messages || []).map(id => {
                                 // console.log(messages.byId[id]);
                                 return (
@@ -99,8 +131,9 @@ class Chat extends Component {
                                     </Message>
                                 )
                             }) }
-                        </ul>
+                        </ul>*/}
                     </div>
+
                     <SendMessageContainer />
                 </Paper>
             </Slide>

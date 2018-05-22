@@ -26,6 +26,10 @@ const styles = theme => ({
     toolBar: {
         padding: 0,
     },
+    list: {
+        height: 'calc(100% - 56px)',
+        overflowY: 'scroll',
+    },
 });
 
 function OpenSourceLicences(props) {
@@ -52,7 +56,7 @@ function OpenSourceLicences(props) {
                     </Toolbar>
                 </AppBar>
 
-                <List>
+                <List className={ classes.list }>
                     <ListItem>
                         <ListItemText primary='Create React App'/>
                     </ListItem>
@@ -76,6 +80,9 @@ function OpenSourceLicences(props) {
                     </ListItem>
                     <ListItem>
                         <ListItemText primary='Moment'/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText primary='React Big Calendar'/>
                     </ListItem>
                 </List>
             </Paper>

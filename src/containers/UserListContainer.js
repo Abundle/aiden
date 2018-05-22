@@ -5,6 +5,7 @@ import { selectChat } from '../actions';
 const mapStateToProps = (state) => ({
     users: state.users,
     messages: state.messages, // TODO: check which state subtree is needed
+    assistant: state.assistant,
 });
 
 const mapDispatchToProps = (dispatch) => ({

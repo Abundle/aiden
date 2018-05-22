@@ -3,7 +3,8 @@
 const WebSocket = require('ws');
 const PORT = 8989;
 const wss = new WebSocket.Server({ port: PORT });
-// const users = [];
+const users = [];
+let index = users.length;
 
 const broadcast = (data, ws) => {
     wss.clients.forEach((client) => {
@@ -14,8 +15,7 @@ const broadcast = (data, ws) => {
 };
 
 wss.on('connection', (ws) => {
-    let index;
-
+    // let index;
     console.log('listening on *: ' + PORT);
 
     ws.on('message', (message) => {
@@ -23,24 +23,41 @@ wss.on('connection', (ws) => {
 
         switch (data.type) {
             case 'ADD_USER': {
-                index = users.length;
+                // index = users.length;
+                users.push('user' + index);
+                // index++;
 
-                if (index === 0) { // First client
+                console.log(users);
+
+                if (users.length === 1) { // First client
                     // Show digital assistant
-                    console.log("You're the first");
+                    console.log("You're the first " + index); // user0 online
+
                     ws.send(JSON.stringify({
                         type: 'ACTIVATE_ASSISTANT',
-                        payload: true,
+                        payload: { assistant: true }, // At this moment it will be only 1 user
+                        // payload: { assistant: true, user: users }, // At this moment it will be only 1 user
                     }));
                     broadcast({
                         type: 'ACTIVATE_ASSISTANT',
-                        payload: true,
+                        payload: { assistant: true },
+                        // payload: { assistant: true, user: users },
                     }, ws);
-                } /*else {
-                    console.log('Sender phone');
-                }*/
+                }
 
-                users.push({ name: data.name, id: index + 1 });
+                ws.send(JSON.stringify({
+                    type: 'USERS_LIST',
+                    payload: { users: users }, // index = client
+                }));
+                broadcast({
+                    type: 'USERS_LIST',
+                    payload: { users: users }
+                    // users,
+                    // payload: { users, client: index },
+                }, ws);
+
+                index++;
+
 
                 /*ws.send(JSON.stringify({
                     type: 'USERS_LIST',
@@ -52,23 +69,31 @@ wss.on('connection', (ws) => {
                 }, ws);*/
                 break;
             }
-            case 'ADD_MESSAGE':
+            case 'SEND_MESSAGE':
                 broadcast({
-                    type: 'ADD_MESSAGE',
+                    type: 'SEND_MESSAGE',
+                    // payload: { message: data.message, author: data.author },
+                    author: data.author,
                     message: data.message,
-                    author: data.author
+                    activeUser: data.activeUser,
                 }, ws);
+                console.log('server SEND_MESSAGE');
                 break;
             default:
                 break
         }
     });
 
-    ws.on('close', () => {
+    ws.on('close', () => { // TODO: if two windows are open, one is reloaded, it should make the other window the assistant?
+        index--;
         users.splice(index, 1);
+
+        console.log('close');
+        console.log(users);
         broadcast({
             type: 'USERS_LIST',
-            users
+            payload: { users: users },
+            // users
         }, ws)
     })
 });
