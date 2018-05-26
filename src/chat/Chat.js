@@ -13,6 +13,11 @@ import IconButton from '@material-ui/core/IconButton';
 import { SendMessageContainer } from '../containers/SendMessageContainer';
 import Message from './Message';
 
+let naturalSort = require('natsort');
+let nodeElement;
+let nodeElementHeight;
+let previous;
+
 const styles = theme => ({
     root: {
         position: 'absolute',
@@ -54,11 +59,25 @@ const styles = theme => ({
 class Chat extends Component {
     componentDidMount = (node) => {
         if (node) {
-            node.addEventListener('scroll', () => console.log('scroll!')); // TODO: clean up
+            nodeElement = node;
+            nodeElementHeight = node.scrollHeight;
+            /*node.addEventListener('scroll', () => {
+                nodeElementHeight = nodeElement.scrollHeight;
+                console.log(nodeElementHeight);
+            });*/
 
-            console.log(node.scrollHeight);
-            // TODO: Also scroll when SEND_MESSAGE is dispatched
-            node.scrollTo(0, node.scrollHeight);
+            // node.scrollTo(0, node.scrollHeight);
+            this.pushMessage(node);
+        }
+    };
+
+    pushMessage = (node) => { // TODO: check if height has changed
+        if (node) {
+            setTimeout(() => { // TODO: find different way to do this?
+                node.scrollTo(0, node.scrollHeight);
+                // nodeElement.scrollBy(0, 100);
+                // console.log(nodeElementHeight);
+            }, 50);
         }
     };
 
@@ -69,12 +88,26 @@ class Chat extends Component {
         let messagesSender = users.byId[currentUser].messages;
         let messagesReceiver = users.activeUser.messages || [];
         let messagesArray = messagesSender.concat(messagesReceiver);
+        let current = messagesArray.length;
 
-        messagesArray.sort();
-        console.log(messagesSender, messagesReceiver);
+        if (current !== previous) {
+            this.pushMessage(nodeElement);
+            previous = current;
+        }
+
+        messagesArray.sort(naturalSort());
+
+        // messagesArray.sort((a, b) => a - b);
+        // messagesArray.sort();
+        /*if (messagesArray.length >= 9) {
+            messagesArray.sort((a, b) => a - b);
+        } else {
+            messagesArray.sort();
+        }*/
+        // console.log(messagesArray);
+        // console.log(messagesSender, messagesReceiver);
         // console.log(messagesSender.concat(messagesReceiver));
         // console.log(users.byId['user0'].messages);
-
 
         return (
             <Slide
@@ -133,6 +166,7 @@ class Chat extends Component {
                     </div>
 
                     <SendMessageContainer />
+                    {/*<SendMessageContainer onSend={ this.pushMessage }/>*/}
                 </Paper>
             </Slide>
         )

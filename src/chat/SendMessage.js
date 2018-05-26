@@ -42,6 +42,8 @@ const styles = theme => ({
 
 class SendMessage extends Component {
     handleSubmit(event, input) {
+        // this.props.onSend();
+
         // Check if text area is empty
         if (!input.value.trim()) {
             return
@@ -65,6 +67,7 @@ class SendMessage extends Component {
                         event.preventDefault();
                         this.handleSubmit(event, input);
                     }}
+                    /*onSubmit={ (event) => this.props.onSend(event) }*/
                 >
                     <Paper className={ classes.inputBox } elevation={ 3 }>
                         <input

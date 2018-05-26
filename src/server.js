@@ -1,6 +1,6 @@
 // TODO watch https://www.youtube.com/watch?v=84GXJANOYFw&list=PLfUtdEcvGHFHdOYFXj4cY6ZIFkSp6MOuY&index=1&t=0s
 
-const WebSocket = require('ws');
+const WebSocket = require('ws'); // TODO: switch to socket.io?
 const PORT = 8989;
 const wss = new WebSocket.Server({ port: PORT });
 const users = [];
@@ -22,7 +22,7 @@ wss.on('connection', (ws) => {
         const data = JSON.parse(message);
 
         switch (data.type) {
-            case 'ADD_USER': {
+            case 'ADD_USER': { // TODO: assistant should be on by default?
                 // index = users.length;
                 users.push('user' + index);
                 // index++;

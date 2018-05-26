@@ -34,6 +34,10 @@ class UserList extends Component {
     render() {
         const { classes, users, messages, assistant } = this.props;
 
+        const userAssistant = 'user0';
+        let messageArrayAssistant =  users.byId[userAssistant].messages;
+        let lastMessageAssistant = messageArrayAssistant[messageArrayAssistant.length - 1];
+
         // TODO: https://stackoverflow.com/questions/45100477/how-render-object-in-react?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
         // console.log(users.byId['user0'].name);
@@ -69,13 +73,13 @@ class UserList extends Component {
                     )
                 ) : (
                     <ListItem
-                        value={ users.byId['user0'].name }
-                        onClick={ () => this.handleClick(users.byId['user0']) }
+                        value={ users.byId[userAssistant].name }
+                        onClick={ () => this.handleClick(users.byId[userAssistant]) }
                         button
                         divider
                     >
-                        <Avatar alt={ users.byId['user0'].name } src={ avatar1 }/>
-                        <ListItemText primary={ users.byId['user0'].name } secondary='[should be empty]' />
+                        <Avatar alt={ users.byId[userAssistant].name } src={ avatar1 }/>
+                        <ListItemText primary={ users.byId[userAssistant].name } secondary={ messages.byId[lastMessageAssistant].message } />
 
                         <ListItemSecondaryAction>
                             <Typography variant='caption' color='primary'>
