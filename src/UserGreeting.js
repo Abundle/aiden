@@ -1,23 +1,26 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-// Local import
-import DigitalAssistantApp from './DigitalAssistantApp';
-import MessageApp from './MessageApp';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
     root: {
-        backgroundColor: 'gray',
+        padding: 15,
+        // backgroundColor: 'gray',
+        textAlign: 'center',
     },
 };
 
 function UserGreeting(props) {
     const { classes, assistant } = props;
     const userGreeting = assistant ? (
-        <p>[Aidan Bundel]</p>
+        <Typography variant='display1'>
+            [Aidan Bundel]
+        </Typography>
     ) : (
-        <p>[Dave Kellie]</p>
+        <Typography variant='display1'>
+            [Dave Kellie]
+        </Typography>
     );
 
     return (

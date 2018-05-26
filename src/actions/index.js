@@ -14,16 +14,21 @@ export const sendMessage = (message, author, activeUser) => ({
     // payload: [message, author],
 });
 
+export const selectMessage = scenario => ({
+    type: 'MESSAGE_SELECTED',
+    payload: scenario,
+});
+
 export const selectChat = user => ({
     type: 'CHAT_SELECTED',
     payload: user,
 });
 
-export const addUser = id => ({ // = assign user
+/*export const addUser = id => ({ // = assign user
     type: 'ADD_USER',
     id: 'user' + id,
     // name,
-});
+});*/
 
 /*export const addUser = (name) => ({
     type: 'ADD_USER',

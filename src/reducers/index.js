@@ -32,7 +32,8 @@ const reducers = (state = {
                 receiver: 'Dave Kellie',
             },
         },
-        allIds: ['message0', 'message1', 'message2', 'message3', 'message4']
+        allIds: ['message0', 'message1', 'message2', 'message3', 'message4'],
+        messageSelected: [],
     },
     users: {
         byId: {
@@ -53,7 +54,12 @@ const reducers = (state = {
             },
         },
         allIds: ['user0', 'user1', 'user2'],
-        activeUser: [], // chat selected
+        activeUser: {
+            id: 'user0',
+            name: 'Aidan Bundel',
+            messages: ['message0', 'message4'],
+        },
+        // activeUser: [], // chat selected
         usersOnline: [],
     },
     assistant: false, // if true, user0 is online
@@ -134,8 +140,17 @@ const reducers = (state = {
                     }*/
                 }
             };
-        case 'CHAT_SELECTED':
+        case 'MESSAGE_SELECTED':
             // console.log(action.payload);
+            return {
+                ...state,
+                messages: {
+                    ...state.messages,
+                    messageSelected: action.payload,
+                }
+            };
+        case 'CHAT_SELECTED':
+            console.log(action.payload);
             return {
                 ...state,
                 users: {

@@ -23,9 +23,7 @@ wss.on('connection', (ws) => {
 
         switch (data.type) {
             case 'ADD_USER': { // TODO: assistant should be on by default?
-                // index = users.length;
                 users.push('user' + index);
-                // index++;
 
                 console.log(users);
 
@@ -43,7 +41,18 @@ wss.on('connection', (ws) => {
                         payload: { assistant: true },
                         // payload: { assistant: true, user: users },
                     }, ws);
-                }
+                } /*else {
+                    console.log("You're the " + index);
+
+                    ws.send(JSON.stringify({
+                        type: 'DEACTIVATE_ASSISTANT',
+                        payload: index,
+                    }));
+                    broadcast({
+                        type: 'DEACTIVATE_ASSISTANT',
+                        payload: index,
+                    }, ws);
+                }*/
 
                 ws.send(JSON.stringify({
                     type: 'USERS_LIST',
@@ -52,21 +61,9 @@ wss.on('connection', (ws) => {
                 broadcast({
                     type: 'USERS_LIST',
                     payload: { users: users }
-                    // users,
-                    // payload: { users, client: index },
                 }, ws);
 
                 index++;
-
-
-                /*ws.send(JSON.stringify({
-                    type: 'USERS_LIST',
-                    users,
-                }));
-                broadcast({
-                    type: 'USERS_LIST',
-                    users,
-                }, ws);*/
                 break;
             }
             case 'SEND_MESSAGE':

@@ -37,12 +37,10 @@ class ChatList extends Component {
     }
 
     handleOpen = () => {
-        // console.log(this.state.open);
         this.setState({ open: true });
     };
 
     handleClose = () => {
-        // console.log(this.state.open);
         this.setState({ open: false });
     };
 
@@ -71,18 +69,6 @@ class ChatList extends Component {
                     open={ open }
                     onClose={ this.handleClose }
                 />
-                {/*Handling state from https://www.nearform.com/blog/exploring-react-portals/*/}
-                {/*<Chat
-                    open={ open }
-                    selectedChat={ selectedChat }
-                    onClose={ this.handleClose }
-                />*/}
-
-                {/*<Portal
-                    open={ open }
-                    selectedChat={ 'My Portal Modal' }
-                    onClose={ this.handleClose }
-                />*/}
             </div>
         );
     }

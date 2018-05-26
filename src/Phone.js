@@ -12,7 +12,8 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: '50px 100px',
+        margin: '25px 75px',
+        // margin: '50px 100px',
         height: '45vw', // original image: 640x1280px
         minHeight: 682,
         width: '22vw',

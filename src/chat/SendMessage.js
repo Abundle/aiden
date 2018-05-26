@@ -41,6 +41,14 @@ const styles = theme => ({
 });
 
 class SendMessage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '',
+            // value: messages.messageSelected.keywords
+        }
+    }
+
     handleSubmit(event, input) {
         // this.props.onSend();
 
@@ -56,8 +64,10 @@ class SendMessage extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, messages } = this.props;
         let input;
+        let value = messages.messageSelected.keywords || '';
+        // console.log(messages.messageSelected.keywords);
 
         return (
             <div className={ classes.root }>
@@ -75,7 +85,10 @@ class SendMessage extends Component {
                             ref={ (node) => {
                                 input = node;
                             }}
-                            placeholder='Type a message'
+                            placeholder='Select a message card'
+                            // placeholder='Type a message'
+                            // defaultValue=''
+                            value={ value }
                         />
                     </Paper>
                     <Button

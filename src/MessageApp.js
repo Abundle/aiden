@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import BottomNavigation, { BottomNavigationAction } from '@material-ui/core/BottomNavigation';
-// import Icon from '@material-ui/core/Icon';
 
 // Local import
-import ChatList from './chat/ChatList';
+import { ChatContainer } from './containers/ChatContainer';
+// import ChatList from './chat/ChatList';
 
-const styles = {
+const styles = theme => ({
     root: {
         position: 'relative',
         height: '100%',
         width: '100%',
         backgroundColor: 'lightblue',
     },
-    nav: {
+    test: {
+        position: 'relative',
+        width: '100%',
+        // TODO: make bottom navigation disappear when chat is clicked
+        // Minus status bar, app bar and bottom navigation
+        height: 'calc(100% - 56px)', //'calc(100% - 20px)',
+        backgroundColor: theme.palette.secondary.light,
+        overflow: 'hidden',
+    },
+    /*nav: {
         position: 'absolute',
         width: '100%',
         minWidth: 266,
         bottom: 0,
         zIndex: 1,
         border: '1px solid black',
-    }
-};
+    }*/
+});
 
-class DigitalAssistant extends Component {
+class MessageApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,14 +50,21 @@ class DigitalAssistant extends Component {
 
         return (
             <div className={ classes.root }>
-                <ChatList />
+                <div className={ classes.test }>
+                    <ChatContainer
+                        open={ true }
+                        onClose={ this.handleClose }
+                    />
+                </div>
+
+                {/*<ChatList />*/}
             </div>
         );
     }
 }
 
-DigitalAssistant.propTypes = {
+MessageApp.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DigitalAssistant);
+export default withStyles(styles)(MessageApp);

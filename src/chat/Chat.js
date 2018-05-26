@@ -15,7 +15,7 @@ import Message from './Message';
 
 let naturalSort = require('natsort');
 let nodeElement;
-let nodeElementHeight;
+// let nodeElementHeight;
 let previous;
 
 const styles = theme => ({
@@ -60,13 +60,6 @@ class Chat extends Component {
     componentDidMount = (node) => {
         if (node) {
             nodeElement = node;
-            nodeElementHeight = node.scrollHeight;
-            /*node.addEventListener('scroll', () => {
-                nodeElementHeight = nodeElement.scrollHeight;
-                console.log(nodeElementHeight);
-            });*/
-
-            // node.scrollTo(0, node.scrollHeight);
             this.pushMessage(node);
         }
     };
@@ -75,8 +68,6 @@ class Chat extends Component {
         if (node) {
             setTimeout(() => { // TODO: find different way to do this?
                 node.scrollTo(0, node.scrollHeight);
-                // nodeElement.scrollBy(0, 100);
-                // console.log(nodeElementHeight);
             }, 50);
         }
     };
@@ -121,7 +112,7 @@ class Chat extends Component {
                 >
                     <AppBar elevation={ 0 } position='static' color='primary'>
                         <Toolbar className={ classes.toolBar }>
-                            <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
+                            <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
                                 <Icon>chevron_left</Icon>
                             </IconButton>
                             <Typography variant='title' color='inherit'>
