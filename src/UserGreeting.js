@@ -6,20 +6,20 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
     root: {
         padding: 15,
-        // backgroundColor: 'gray',
+        paddingBottom: 0,
         textAlign: 'center',
     },
 };
 
 function UserGreeting(props) {
-    const { classes, assistant } = props;
+    const { classes, users, assistant } = props;
     const userGreeting = assistant ? (
         <Typography variant='display1'>
-            [Aidan Bundel]
+            { users.byId['user0'].name }
         </Typography>
     ) : (
         <Typography variant='display1'>
-            [Dave Kellie]
+            { users.byId['user1'].name }
         </Typography>
     );
 
@@ -31,6 +31,7 @@ function UserGreeting(props) {
 }
 
 UserGreeting.propTypes = {
+    // users: PropTypes.[].isRequired,
     assistant: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
 };

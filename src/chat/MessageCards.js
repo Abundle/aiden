@@ -45,8 +45,6 @@ class MessageCards extends Component {
     render() {
         const { classes, assistant } = this.props;
 
-        console.log(scenarios);
-
         return (
             <div className={ classes.root }>
                 { assistant ? (null) : (

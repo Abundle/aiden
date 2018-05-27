@@ -84,6 +84,9 @@ function OpenSourceLicences(props) {
                     <ListItem>
                         <ListItemText primary='React Big Calendar'/>
                     </ListItem>
+                    <ListItem>
+                        <ListItemText primary='Natsort'/>
+                    </ListItem>
                 </List>
             </Paper>
         </Slide>

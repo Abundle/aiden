@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 
-// import Portal from './chat/Portal';
+// Local import
 import { UserListContainer } from '../containers/UserListContainer';
 import { ChatContainer } from '../containers/ChatContainer';
 

@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Local import
 import { ChatContainer } from './containers/ChatContainer';
-// import ChatList from './chat/ChatList';
 
 const styles = theme => ({
     root: {
@@ -13,23 +12,13 @@ const styles = theme => ({
         width: '100%',
         backgroundColor: 'lightblue',
     },
-    test: {
+    container: {
         position: 'relative',
         width: '100%',
-        // TODO: make bottom navigation disappear when chat is clicked
-        // Minus status bar, app bar and bottom navigation
-        height: 'calc(100% - 56px)', //'calc(100% - 20px)',
+        height: '100%',
         backgroundColor: theme.palette.secondary.light,
         overflow: 'hidden',
     },
-    /*nav: {
-        position: 'absolute',
-        width: '100%',
-        minWidth: 266,
-        bottom: 0,
-        zIndex: 1,
-        border: '1px solid black',
-    }*/
 });
 
 class MessageApp extends Component {
@@ -46,18 +35,15 @@ class MessageApp extends Component {
 
     render() {
         const { classes } = this.props;
-        // const { value } = this.state;
 
         return (
             <div className={ classes.root }>
-                <div className={ classes.test }>
+                <div className={ classes.container }>
                     <ChatContainer
                         open={ true }
                         onClose={ this.handleClose }
                     />
                 </div>
-
-                {/*<ChatList />*/}
             </div>
         );
     }

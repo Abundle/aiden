@@ -15,7 +15,6 @@ import Message from './Message';
 
 let naturalSort = require('natsort');
 let nodeElement;
-// let nodeElementHeight;
 let previous;
 
 const styles = theme => ({
@@ -88,18 +87,6 @@ class Chat extends Component {
 
         messagesArray.sort(naturalSort());
 
-        // messagesArray.sort((a, b) => a - b);
-        // messagesArray.sort();
-        /*if (messagesArray.length >= 9) {
-            messagesArray.sort((a, b) => a - b);
-        } else {
-            messagesArray.sort();
-        }*/
-        // console.log(messagesArray);
-        // console.log(messagesSender, messagesReceiver);
-        // console.log(messagesSender.concat(messagesReceiver));
-        // console.log(users.byId['user0'].messages);
-
         return (
             <Slide
                 direction='left'
@@ -121,7 +108,6 @@ class Chat extends Component {
                         </Toolbar>
                     </AppBar>
 
-                    {/*TODO: automatically scroll down/push to newest message*/}
                     <div
                         className={ classes.chatContent }
                         ref={ this.componentDidMount }
@@ -141,23 +127,11 @@ class Chat extends Component {
                                             { messages.byId[id].message }
                                         </Message>) : (null)
                                 )
-
-                               /* return ( // TODO: write in cleaner way
-                                    messages.byId[id].receiver === (users.activeUser.name) ||
-                                    messages.byId[id].receiver === (users.byId[currentUser].name) ?
-                                        (<Message
-                                            key={ id }
-                                            author={ messages.byId[id].author }
-                                        >
-                                            { messages.byId[id].message }
-                                        </Message>) : (null)
-                                )*/
                             }) }
                         </ul>
                     </div>
 
                     <SendMessageContainer />
-                    {/*<SendMessageContainer onSend={ this.pushMessage }/>*/}
                 </Paper>
             </Slide>
         )

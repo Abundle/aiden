@@ -46,7 +46,7 @@ const pronouns = [
     'Female',
     'Male',
     'Neutral',
-    'Rather not say',
+    //'Rather not say',
     "Retrieve from 'Connected accounts'",
 ];
 
