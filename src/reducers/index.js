@@ -54,11 +54,12 @@ const reducers = (state = {
             },
         },
         allIds: ['user0', 'user1', 'user2'],
-        activeUser: {
+        activeUser: ['user1'],
+        /*activeUser: {
             id: 'user0',
             name: 'Aidan Bundel',
             messages: ['message0', 'message4'],
-        },
+        },*/
         // activeUser: [], // chat selected
         // usersOnline: [],
     },
@@ -73,6 +74,7 @@ const reducers = (state = {
                 assistant: action.payload.assistant,
             };*/
         case 'SEND_MESSAGE':
+            // console.log(action.receiver);
             return {
                 ...state,
                 messages: {
@@ -81,9 +83,9 @@ const reducers = (state = {
                         ...state.messages.byId,
                         [action.id]: {
                             id: action.id,
-                            author: action.author,
+                            author: action.author.name,
                             message: action.message,
-                            receiver: action.activeUser.name,
+                            receiver: action.receiver.name,
                         }
                     },
                     allIds: [...state.messages.allIds, action.id]
@@ -92,19 +94,19 @@ const reducers = (state = {
                     ...state.users,
                     byId: {
                         ...state.users.byId,
-                        [action.activeUser.id]: {
-                            ...state.users.byId[action.activeUser.id],
-                            messages: [...state.users.byId[action.activeUser.id].messages, action.id]
+                        [action.author.id]: {
+                            ...state.users.byId[action.author.id],
+                            messages: [...state.users.byId[action.author.id].messages, action.id]
                         }
                     },
                     // allIds: [...state.users.allIds, 'user3'],
-                    activeUser: {
+                    /*activeUser: {
                         ...state.users.activeUser,
                         messages: [...state.users.activeUser.messages, action.id]
-                    }
+                    }*/
                 }
             };
-        case 'MESSAGE_RECEIVED':
+        /*case 'MESSAGE_RECEIVED':
             // console.log(action.activeUser);
             return {
                 ...state,
@@ -130,12 +132,12 @@ const reducers = (state = {
                             messages: [...state.users.byId[action.activeUser.id].messages, action.id]
                         }
                     },
-                    /*activeUser: {
+                    /!*activeUser: {
                         ...state.users.activeUser,
                         messages: [...state.users.activeUser.messages, action.id]
-                    }*/
+                    }*!/
                 }
-            };
+            };*/
         case 'MESSAGE_SELECTED':
             // console.log(action.payload);
             return {
@@ -146,7 +148,7 @@ const reducers = (state = {
                 }
             };
         case 'CHAT_SELECTED':
-            console.log(action.payload);
+            // console.log(action.payload);
             return {
                 ...state,
                 users: {

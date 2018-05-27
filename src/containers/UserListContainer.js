@@ -9,8 +9,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatch: (user) => {
-        dispatch(selectChat(user))
+    dispatch: (id) => {
+        dispatch(selectChat(id))
     },
 });
 

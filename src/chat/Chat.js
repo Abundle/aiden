@@ -90,25 +90,26 @@ class Chat extends Component {
     };
 
     render() {
-        const { classes, assistant, users, messages } = this.props;
+        const { classes, users, messages } = this.props;
 
         let userAssistant = users.byId['user0'];
-        let userMessageApp = users.byId['user1'];
-        let userSender = assistant ? userAssistant : userMessageApp;
-        let userReceiver = assistant ? userMessageApp : userAssistant;
+        let userSelected = users.activeUser;
+        /*let userSender = users.byId['user0'];
+        let userReceiver = users.activeUser;*/
 
-        let messagesSender = userSender.messages || [];
-        let messagesReceiver = userReceiver.messages || [];
-        let messagesArray = messagesSender.concat(messagesReceiver);
+        let messagesUserAssistant = userAssistant.messages || [];
+        let messagesUserSelected = users.byId[userSelected].messages || [];
+        let messagesArray = messagesUserAssistant.concat(messagesUserSelected);
         let current = messagesArray.length;
 
-        console.log(nodeElement);
         if (current !== previous) {
             this.pushMessage(nodeElement);
             previous = current;
         }
 
         messagesArray.sort(naturalSort());
+        console.log(messagesArray);
+        // console.log(messagesUserAssistant, messagesUserSelected);
 
         return (
             <Slide
@@ -120,13 +121,11 @@ class Chat extends Component {
                 <Paper className={ classes.root }>
                     <AppBar elevation={ 0 } position='static' color='primary'>
                         <Toolbar className={ classes.toolBar }>
-                            { assistant &&
-                                <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
-                                    <Icon>chevron_left</Icon>
-                                </IconButton>
-                            }
-                            <Typography variant='title' color='inherit' className={ assistant ? classes.noPadding : classes.padding }>
-                                { userReceiver.name }
+                            <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
+                                <Icon>chevron_left</Icon>
+                            </IconButton>
+                            <Typography variant='title' color='inherit'>
+                                { users.byId[userSelected].name }
                             </Typography>
                         </Toolbar>
                     </AppBar>
@@ -137,23 +136,27 @@ class Chat extends Component {
                     >
                         <ul>
                             { (messagesArray || []).map(id => {
+                                // console.log(messages.byId[id].receiver, userSelected.name);
                                 // console.log(id);
                                 return (
-                                    <Message
-                                        key={ id }
-                                        author={ messages.byId[id].author }
-                                        sender={ userReceiver.name }
-                                    >
-                                        { messages.byId[id].message }
-                                    </Message>
-                                )
-
-                                /*return (
-                                    messages.byId[id].receiver === (userAssistant.name) ||
-                                    messages.byId[id].receiver === (userSender.name) ?
+                                    users.byId[userSelected].name === messages.byId[id].receiver ||
+                                    users.byId[userSelected].name === messages.byId[id].author    ?
                                         (<Message
                                             key={ id }
                                             author={ messages.byId[id].author }
+                                            sender={ userAssistant.name }
+                                        >
+                                            { messages.byId[id].message }
+                                        </Message>) : (null)
+                                )
+
+                                /*return (
+                                    userSelected.name === messages.byId[id].receiver ||
+                                    userSelected.name === messages.byId[id].author    ?
+                                        (<Message
+                                            key={ id }
+                                            author={ messages.byId[id].author }
+                                            sender={ userAssistant.name }
                                         >
                                             { messages.byId[id].message }
                                         </Message>) : (null)

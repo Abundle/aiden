@@ -14,7 +14,7 @@ const styles = theme => ({
         margin: '15px 0',
         padding: 10,
     },
-    me: {
+    sender: {
         width: '20vw',
         minWidth: 50,
         maxWidth: 150,
@@ -30,7 +30,7 @@ const Message = (props) => {
     const { classes } = props;
 
     return (
-        <Paper className={ props.author === props.sender ? classes.root : classes.me }>
+        <Paper className={ props.author === props.sender ? classes.sender : classes.root }>
             {/*<b>{ props.author }:</b><br />*/}
             { props.children }<br />
 

@@ -56,15 +56,19 @@ class SendMessage extends Component {
         if (!input.value.trim()) {
             return
         }
-        let sender = this.props.assistant ? ('Aidan Bundel') : ('Dave Kellie'); // TODO: retrieve from Redux store
+        let sender = this.props.assistant ? this.props.users.byId['user0'] : this.props.users.byId['user1'];
+        // let sender = this.props.assistant ? ('Aidan Bundel') : ('Dave Kellie'); // TODO: retrieve from Redux store
+        let receiver = this.props.assistant ? this.props.users.byId[this.props.users.activeUser] : this.props.users.byId['user0'];
+        // let receiver = this.props.assistant ? this.props.users.activeUser : this.props.users.byId['user0'];
         // console.log(sender, this.props.users.activeUser);
 
-        this.props.dispatch(input.value, sender, this.props.users.activeUser); //Me
+        this.props.dispatch(input.value, sender, receiver);
+        // this.props.dispatch(input.value, sender, this.props.users.activeUser); //Me
         input.value = '';
     }
 
     render() {
-        const { classes, messages, assistant } = this.props;
+        const { classes, messages, assistant, users } = this.props;
         let input;
         let value = messages.messageSelected.keywords || '';
         // console.log(messages.messageSelected.keywords);

@@ -65,7 +65,7 @@ class ChatList extends Component {
                     onOpen={ this.handleOpen }
                 />
 
-                <ChatContainer assistant={ assistant }
+                <ChatContainer
                     open={ open }
                     onClose={ this.handleClose }
                 />

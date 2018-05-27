@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux'; //applyMiddleware
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
@@ -12,30 +12,20 @@ import './index.css';
 import App from './App';
 import rootReducer from './reducers';
 
-import createSagaMiddleware from 'redux-saga'
-import handleNewMessage from './saga';
-import setupSocket from './client';
+// import createSagaMiddleware from 'redux-saga'
+// import handleNewMessage from './saga';
+// import setupSocket from './client';
 
-const id = 'user0';
-// const id = Math.floor(Math.random() * 10);
-// const username = 'John Doe';
-const sagaMiddleware = createSagaMiddleware();
+// const id = 'user0';
+
+// const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware),
+    // applyMiddleware(sagaMiddleware),
 );
-const socket = setupSocket(store.dispatch);
-// const socket = setupSocket(store.dispatch, id);
 
-sagaMiddleware.run(handleNewMessage, { socket, id });
-// sagaMiddleware.run(handleNewMessage, { socket, username });
-
-/*store.subscribe(() => {
-    console.log(store.getState());
-});*/
-
-// register ourselves as present in the chat
-// store.dispatch(addUser('Me'));
+/*const socket = setupSocket(store.dispatch);
+sagaMiddleware.run(handleNewMessage, { socket, id });*/
 
 ReactDOM.render(
     <Provider store={ store }>

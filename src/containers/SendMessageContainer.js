@@ -14,9 +14,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    dispatch: (message, author, activeUser) => {
-        dispatch(sendMessage(message, author, activeUser))
+    dispatch: (message, author, receiver) => {
+        dispatch(sendMessage(message, author, receiver))
     }
+    /*dispatch: (message, author, activeUser) => {
+        dispatch(sendMessage(message, author, activeUser))
+    }*/
 });
 
 export const SendMessageContainer = connect(

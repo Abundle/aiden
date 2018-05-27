@@ -1,5 +1,4 @@
-// TODO watch https://www.youtube.com/watch?v=84GXJANOYFw&list=PLfUtdEcvGHFHdOYFXj4cY6ZIFkSp6MOuY&index=1&t=0s
-
+/*
 const WebSocket = require('ws'); // TODO: switch to socket.io?
 const PORT = 8989;
 const wss = new WebSocket.Server({ port: PORT });
@@ -22,7 +21,7 @@ wss.on('connection', (ws) => {
         const data = JSON.parse(message);
 
         switch (data.type) {
-            case 'ADD_USER': { // TODO: assistant should be on by default?
+            case 'ADD_USER': {
                 users.push('user' + index);
 
                 console.log(users);
@@ -56,7 +55,6 @@ wss.on('connection', (ws) => {
             case 'SEND_MESSAGE':
                 broadcast({
                     type: 'SEND_MESSAGE',
-                    // payload: { message: data.message, author: data.author },
                     author: data.author,
                     message: data.message,
                     //receiver
@@ -78,8 +76,8 @@ wss.on('connection', (ws) => {
         broadcast({
             type: 'USERS_LIST',
             payload: { users: users },
-            // users
         }, ws)
     })
 });
 
+*/

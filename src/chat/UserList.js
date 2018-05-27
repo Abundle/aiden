@@ -26,8 +26,8 @@ const styles = theme => ({
 });
 
 class UserList extends Component {
-    handleClick(user) {
-        this.props.dispatch(user);
+    handleClick(name) {
+        this.props.dispatch(name);
         this.props.onOpen();
     }
 
@@ -40,7 +40,6 @@ class UserList extends Component {
 
         // TODO: https://stackoverflow.com/questions/45100477/how-render-object-in-react?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
-        // console.log(users.byId['user0'].name);
         return (
             <List className={ classes.root }>
                 { assistant ? (
@@ -54,7 +53,7 @@ class UserList extends Component {
                             { id !== 0 &&
                                 <ListItem
                                     value={ users.byId[user].name }
-                                    onClick={ () => this.handleClick(users.byId[user]) }
+                                    onClick={ () => this.handleClick(users.byId[user].id) }
                                     button
                                     divider
                                 >

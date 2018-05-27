@@ -1,3 +1,4 @@
+/*
 import { activateAssistant, messageReceived, populateUsersList } from './actions'; //addUser
 
 const setupSocket = (dispatch, id) => { // username
@@ -34,4 +35,4 @@ const setupSocket = (dispatch, id) => { // username
     return socket;
 };
 
-export default setupSocket;
+export default setupSocket;*/

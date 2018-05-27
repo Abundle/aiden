@@ -127,7 +127,7 @@ class MessageApp extends Component {
     };
 
     render() {
-        const { classes, users, messages, assistant } = this.props;
+        const { classes, users, messages } = this.props;
 
         let userSender = users.byId['user1'];
         let userReceiver = users.byId['user0'];
@@ -143,6 +143,7 @@ class MessageApp extends Component {
         }
 
         messagesArray.sort(naturalSort());
+        console.log(users.byId['user0']);
 
         return (
             <div className={ classes.root }>
@@ -164,12 +165,7 @@ class MessageApp extends Component {
                         <Paper className={ classes.paper }>
                             <AppBar elevation={ 0 } position='static' color='primary'>
                                 <Toolbar className={ classes.toolBar }>
-                                    { assistant &&
-                                    <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
-                                        <Icon>chevron_left</Icon>
-                                    </IconButton>
-                                    }
-                                    <Typography variant='title' color='inherit' className={ assistant ? classes.noPadding : classes.padding }>
+                                    <Typography variant='title' color='inherit' className={ classes.padding }>
                                         { userReceiver.name }
                                     </Typography>
                                 </Toolbar>
@@ -181,16 +177,27 @@ class MessageApp extends Component {
                             >
                                 <ul>
                                     { (messagesArray || []).map(id => {
-                                        // console.log(id);
+                                        // console.log(messages.byId[id].receiver, messages.byId[id].author, userSender.name);
                                         return (
+                                            userSender.name === messages.byId[id].receiver ||
+                                            userSender.name === messages.byId[id].author    ?
+                                                (<Message
+                                                    key={ id }
+                                                    author={ messages.byId[id].author }
+                                                    sender={ userSender.name }
+                                                >
+                                                    { messages.byId[id].message }
+                                                </Message>) : (null)
+                                        )
+                                        /*return (
                                             <Message
                                                 key={ id }
                                                 author={ messages.byId[id].author }
-                                                sender={ userReceiver.name }
+                                                sender={ userSender.name }
                                             >
                                                 { messages.byId[id].message }
                                             </Message>
-                                        )
+                                        )*/
                                     }) }
                                 </ul>
                             </div>
