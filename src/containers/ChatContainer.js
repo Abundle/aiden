@@ -5,7 +5,6 @@ const mapStateToProps = state => ({
     users: {
         byId: state.users.byId,
         activeUser: state.users.activeUser,
-        // usersOnline: state.users.usersOnline,
     },
     messages: state.messages,
 });

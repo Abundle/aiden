@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Slide from '@material-ui/core/Slide';
+import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 // Local import
 import { SendMessageContainer } from '../containers/SendMessageContainer';
 import Message from './Message';
+import avatar1 from '../assets/avatar1.jpg';
 
 let naturalSort = require('natsort');
 let nodeElement;
@@ -24,7 +26,7 @@ const styles = theme => ({
         height: '100%',
         top: 0,
         left: 0,
-        backgroundColor: theme.palette.background.paper,
+        // backgroundColor: theme.palette.background.paper,
     },
     toolBar: {
         padding: 0,
@@ -34,6 +36,10 @@ const styles = theme => ({
         overflowY: 'scroll',
         height: '100%',
         paddingBottom: 150,
+        backgroundColor: '#ECE5DD',
+    },
+    messages: {
+        padding: 0,
     },
     sendMessage: {
         position: 'fixed',
@@ -54,13 +60,14 @@ const styles = theme => ({
         minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
-    /*container: {
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        backgroundColor: theme.palette.secondary.light,
-        overflow: 'hidden',
-    },*/
+    avatar: {
+        marginLeft: 'auto',
+        marginRight: theme.spacing.unit * 2,
+    },
+    title: {
+        marginLeft: 'auto',
+        // marginRight: theme.spacing.unit * 3,
+    },
 });
 
 class Chat extends Component {
@@ -89,8 +96,6 @@ class Chat extends Component {
 
         let userAssistant = users.byId['user0'];
         let userSelected = users.activeUser;
-        /*let userSender = users.byId['user0'];
-        let userReceiver = users.activeUser;*/
 
         let messagesUserAssistant = userAssistant.messages || [];
         let messagesUserSelected = users.byId[userSelected].messages || [];
@@ -117,9 +122,12 @@ class Chat extends Component {
                             <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
                                 <Icon>chevron_left</Icon>
                             </IconButton>
-                            <Typography variant='title' color='inherit'>
+
+                            <Typography variant='title' color='inherit' className={ classes.title }>
                                 { users.byId[userSelected].name }
                             </Typography>
+
+                            <Avatar alt={ users.byId['user0'].name } src={ avatar1 } className={ classes.avatar }/>
                         </Toolbar>
                     </AppBar>
 
@@ -127,12 +135,8 @@ class Chat extends Component {
                         className={ classes.chatContent }
                         ref={ this.componentDidMount }
                     >
-                        <ul>
+                        <ul className={ classes.messages }>
                             { (messagesArray || []).map(id => {
-                                // console.log(messages.byId[id].receiver, userSelected.name);
-                                // console.log(messages.byId[id].author);
-                                // const assistant = messages.byId[id].author === users.byId['user0'].name;
-                                // console.log(assistant);
 
                                 return (
                                     users.byId[userSelected].name === messages.byId[id].receiver ||

@@ -78,7 +78,7 @@ const styles = theme => ({
         maxHeight: 435,
     },
     subHeader: {
-        color: theme.palette.secondary.main,
+        color: theme.palette.primary.main,
         backgroundColor: theme.palette.secondary.light,
     },
     appIcon: {
@@ -425,7 +425,7 @@ class Settings extends Component {
                             </ListItemIcon>
                             <ListItemText primary='On/off' />
                             <ListItemSecondaryAction>
-                                <Switch checked />
+                                <Switch checked color='primary' />
                             </ListItemSecondaryAction>
                         </ListItem>
                         <ListItem>
@@ -438,6 +438,7 @@ class Settings extends Component {
                                     checked={ assistantScheduled }
                                     onChange={ this.handleChange('assistantScheduled') }
                                     value='assistantScheduled'
+                                    color='primary'
                                 />
                             </ListItemSecondaryAction>
                         </ListItem>

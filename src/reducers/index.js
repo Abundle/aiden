@@ -59,14 +59,18 @@ const reducers = (state = {
     scenarios: {
         Echo: {
             title: 'Echo',
-            keywords: 'Lizards are a widespread group of squamate reptiles 😂',
-            // content: 'Lizards are a widespread group of squamate reptiles 😂',
-            response: 'Lizards are a widespread group of squamate reptiles 😂',
+            keywords: 'Lizards are a widespread group of squamate reptiles.',
+            response: 'Lizards are a widespread group of squamate reptiles.',
         },
         Hello: {
             title: 'Hello',
-            keywords: 'hi 😂',
-            response: 'hello',
+            keywords: 'Hi',
+            response: 'Hello',
+        },
+        Whereabouts: {
+            title: 'Whereabouts',
+            keywords: 'Where u at 😂',
+            response: 'Like right next to you',
         },
     }
 }, action) => {
@@ -99,7 +103,6 @@ const reducers = (state = {
                 }
             };
         case 'SEND_RESPONSE':
-            // console.log(state.scenarios[action.scenario].response);
             return {
                 ...state,
                 messages: {
@@ -135,7 +138,6 @@ const reducers = (state = {
                 }
             };
         case 'CHAT_SELECTED':
-            // console.log(action.payload);
             return {
                 ...state,
                 users: {
@@ -149,15 +151,3 @@ const reducers = (state = {
 };
 
 export default reducers;
-
-/*
-import { combineReducers } from 'redux';
-import usersReducer from './usersReducer';
-import messagesReducer from './messagesReducer';
-
-const rootReducer = combineReducers({
-    users: usersReducer,
-    messages: messagesReducer,
-});
-
-export default rootReducer;*/

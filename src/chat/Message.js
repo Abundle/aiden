@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+
+// Local import
+import logoAiden from '../assets/logo.svg';
 
 let date = new Date();
 let time = date.getHours() + ':' + date.getMinutes();
@@ -11,19 +16,35 @@ const styles = theme => ({
         width: '20vw',
         minWidth: 50,
         maxWidth: 150,
-        margin: '15px 0',
+        marginLeft: theme.spacing.unit,
+        marginBottom: theme.spacing.unit,
+        // margin: '15px 0',
         padding: 10,
     },
     sender: {
         width: '20vw',
         minWidth: 50,
         maxWidth: 150,
-        margin: '15px 10px 5px 100px', // TODO: fix spacing another way
+        marginRight: theme.spacing.unit,
+        marginLeft: 'auto',
+        marginBottom: theme.spacing.unit,
         padding: 10,
         textAlign: 'right',
         color: theme.palette.secondary.light,
         backgroundColor: theme.palette.primary.main,
     },
+    time: {
+        alignSelf: 'center',
+    },
+    avatar: {
+        height: 25,
+        width: 25,
+        marginLeft: 'auto',
+        marginRight: 0,
+    },
+    footer: {
+        display: 'flex',
+    }
 });
 
 const Message = (props) => {
@@ -34,23 +55,31 @@ const Message = (props) => {
     return (
         <Paper className={ props.author === props.sender ? classes.sender : classes.root }>
             {/*<b>{ props.author }:</b><br />*/}
-            { props.children }<br />
+            <Typography
+                variant='body2'
+                color={ props.author === props.sender ? 'secondary' : 'default' }
+                className={ classes.content }
+            >
+                { props.children }
+            </Typography>
 
-            <b>{ assistant } </b><i>{ time }</i>
+            <div className={ classes.footer }>
+                <Typography
+                    variant='caption'
+                    className={ classes.time }
+                    color={ props.author === props.sender ? 'secondary' : 'default' }
+                >
+                    { time }
+                </Typography>
+
+                { assistant && <Avatar alt='Assistant Aiden' src={ logoAiden } className={ classes.avatar }/> }
+            </div>
         </Paper>
     );
-
-    /*<Paper className={ props.author === 'Me' ? classes.me : classes.root }>
-        <b>{ props.author }:</b><br />
-        { props.message }<br />
-
-        <i>{ time }</i>
-    </Paper>*/
 };
 
 Message.propTypes = {
     children: PropTypes.string.isRequired,
-    // message: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired
 };
 

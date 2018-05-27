@@ -21,22 +21,8 @@ const styles = {
     },
 };
 
-/*const scenarios = {
-    Echo: {
-        title: 'Echo',
-        keywords: 'Lizards are a widespread group of squamate reptiles 😂',
-        response: 'hi',
-    },
-    Hello: {
-        title: 'Hello',
-        keywords: 'hi 😂',
-        response: 'hello',
-    },
-};*/
-
 class MessageCards extends Component {
     onClick = (scenario) => {
-        // console.log(scenario);
         this.props.dispatch(scenario);
     };
 

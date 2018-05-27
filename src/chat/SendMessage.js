@@ -10,6 +10,7 @@ const styles = theme => ({
         position: 'fixed',
         bottom: 0,
         padding: 10,
+        backgroundColor: '#ECE5DD',
     },
     form: {
         display: 'flex',
@@ -45,7 +46,6 @@ class SendMessage extends Component {
         super(props);
         this.state = {
             value: '',
-            // value: messages.messageSelected.keywords
         }
     }
 
@@ -61,21 +61,12 @@ class SendMessage extends Component {
 
         this.props.dispatch(input.value, sender, receiver, scenario);
         input.value = ''; // TODO: does not seem to work
-
-        /*if (!this.props.assistant) {
-            setTimeout(() => {
-                // const response = this.props.scenarios['Echo'];
-                // console.log(response, input.value);
-                // this.props.dispatch(input.value, 'Echo');
-            }, 1000)
-        }*/
     }
 
     render() {
         const { classes, messages, assistant } = this.props;
         let input;
         let value = messages.messageSelected.keywords || '';
-        // console.log(messages.messageSelected.keywords);
 
         return (
             <div className={ classes.root }>
@@ -87,7 +78,6 @@ class SendMessage extends Component {
                             this.handleSubmit(event, input);
                         }
                     }}
-                    /*onSubmit={ (event) => this.props.onSend(event) }*/
                 >
                     <Paper className={ classes.inputBox } elevation={ 3 }>
                         <input
@@ -98,7 +88,7 @@ class SendMessage extends Component {
                             placeholder='Select a message card'
                             // placeholder='Type a message'
                             // defaultValue=''
-                            value={ !assistant && value }
+                            value={ (!assistant && value) || '' }
                         />
                     </Paper>
                     <Button
@@ -121,7 +111,6 @@ SendMessage.propTypes = {
     classes: PropTypes.object.isRequired,
     activeUser: PropTypes.oneOfType([
         PropTypes.array,
-        // PropTypes.object,
     ]),
 };
 

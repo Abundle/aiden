@@ -18,7 +18,7 @@ const theme = createMuiTheme({
     palette: {
         primary: red, // TODO: Check theme correct usage
         secondary: {
-            main: '#ff0000',
+            main: '#fff',
             light: '#fff',
         },
         /*primary: {
@@ -31,10 +31,6 @@ const theme = createMuiTheme({
             main: '#cc0000',
         },*/
     },
-    /*typography: {
-        fontFamily: 'Roboto, Arial, Helvetica, sans-serif',
-        fontSize: 20,
-    },*/
     overrides: {
         MuiAppBar: {
             colorSecondary: {
@@ -59,18 +55,13 @@ const theme = createMuiTheme({
         MuiList: {
             padding: {
                 paddingTop: 0,
-                // paddingBottom: 150,
             },
         },
         MuiListItemSecondaryAction: {
             root: {
-                // top: '35%',
                 right: 10,
             },
         },
-        /*MuiListSubheader: {
-            component: 'div',
-        },*/
     },
 });
 
@@ -78,9 +69,6 @@ const styles = {
     root: {
         display: 'flex',
         justifyContent: 'center',
-        // flexDirection: 'row',
-        // textAlign: 'center',
-        // backgroundColor: 'lightgray',
     },
     phone: {
         // backgroundColor: 'lightblue',
@@ -89,8 +77,6 @@ const styles = {
         position: 'absolute',
         left: 0,
         margin: 15,
-        // height: 100,
-        // width: 100,
     }
 };
 

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import SendMessage from '../chat/SendMessage';
 import { sendResponseWithTimeout } from '../actions';
-// import { sendMessage } from '../actions';
 
 const mapStateToProps = state => {
     return {
@@ -16,8 +15,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     dispatch: (message, author, receiver, scenario) => {
         dispatch(sendResponseWithTimeout(message, author, receiver, scenario));
-        // dispatch(sendMessage(message, author, receiver));
-        // dispatch(sendResponse(message, scenario));
     }
 });
 

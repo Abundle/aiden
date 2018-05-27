@@ -5,8 +5,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 // Local import
 import avatar1 from '../assets/avatar1.jpg';
@@ -46,7 +46,6 @@ class UserList extends Component {
                     Object.keys(users.byId).map((user, id) => {
                         let messageArray =  users.byId[user].messages;
                         let lastMessage = messageArray[messageArray.length - 1];
-                        // let test = messages.byId[lastMessage].message === undefined ? 'hi' : 'ho';
 
                         return (
                             <div key={ id }>
@@ -87,31 +86,6 @@ class UserList extends Component {
                         </ListItemSecondaryAction>
                     </ListItem>
                 ) }
-
-                {/*{ Object.keys(users.byId).map((user, id) => {
-                    let messageArray =  users.byId[user].messages;
-                    let lastMessage = messageArray[messageArray.length - 1];
-                    // let test = messages.byId[lastMessage].message === undefined ? 'hi' : 'ho';
-
-                    return (
-                        <ListItem
-                            key={ id }
-                            value={ users.byId[user].name }
-                            onClick={ () => this.handleClick(users.byId[user]) }
-                            button
-                            divider
-                        >
-                            <Avatar alt={ users.byId[user].name } src={ avatar1 }/>
-                            <ListItemText primary={ users.byId[user].name } secondary={ messages.byId[lastMessage].message }/>
-
-                            <ListItemSecondaryAction>
-                                <Typography variant='caption' color='primary'>
-                                    { time }
-                                </Typography>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    ) }
-                ) }*/}
             </List>
         );
     }

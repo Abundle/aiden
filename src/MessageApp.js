@@ -5,12 +5,15 @@ import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Slide from '@material-ui/core/Slide';
+import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 
 // Local import
 import { SendMessageContainer } from './containers/SendMessageContainer';
 import Message from './chat/Message';
+import me from './assets/me.jpg';
 
 let naturalSort = require('natsort');
 let nodeElement;
@@ -56,15 +59,20 @@ const styles = theme => ({
         height: '100%',
         top: 0,
         left: 0,
-        backgroundColor: theme.palette.background.paper,
+        // backgroundColor: theme.palette.background.paper,
     },
     toolBar: {
         padding: 0,
+        backgroundColor: theme.palette.background.paper,
     },
     chatContent: {
         overflowY: 'scroll',
         height: '100%',
         paddingBottom: 150,
+        backgroundColor: '#ECE5DD',
+    },
+    messages: {
+        padding: 0,
     },
     sendMessage: {
         position: 'fixed',
@@ -85,11 +93,12 @@ const styles = theme => ({
         minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
-    padding: {
-        paddingLeft: theme.spacing.unit * 3,
+    avatar: {
+        marginLeft: 'auto',
+        marginRight: theme.spacing.unit * 2,
     },
-    noPadding: {
-        paddingLeft: 0,
+    title: {
+        marginLeft: 'auto',
     },
 });
 
@@ -164,9 +173,15 @@ class MessageApp extends Component {
                         <Paper className={ classes.paper }>
                             <AppBar elevation={ 0 } position='static' color='default'>
                                 <Toolbar className={ classes.toolBar }>
-                                    <Typography variant='title' color='inherit' className={ classes.padding }>
+                                    <IconButton disabled color='inherit' onClick={ this.props.onClose } aria-label='Close'>
+                                        <Icon>chevron_left</Icon>
+                                    </IconButton>
+
+                                    <Typography variant='title' color='inherit' className={ classes.title }>
                                         { userReceiver.name }
                                     </Typography>
+
+                                    <Avatar alt={ users.byId['user0'].name } src={ me } className={ classes.avatar }/>
                                 </Toolbar>
                             </AppBar>
 
@@ -174,9 +189,9 @@ class MessageApp extends Component {
                                 className={ classes.chatContent }
                                 ref={ this.componentDidMount }
                             >
-                                <ul>
+                                <ul className={ classes.messages }>
                                     { (messagesArray || []).map(id => {
-                                        // console.log(messages.byId[id].receiver, messages.byId[id].author, userSender.name);
+
                                         return (
                                             userSender.name === messages.byId[id].receiver ||
                                             userSender.name === messages.byId[id].author    ?
@@ -188,15 +203,6 @@ class MessageApp extends Component {
                                                     { messages.byId[id].message }
                                                 </Message>) : (null)
                                         )
-                                        /*return (
-                                            <Message
-                                                key={ id }
-                                                author={ messages.byId[id].author }
-                                                sender={ userSender.name }
-                                            >
-                                                { messages.byId[id].message }
-                                            </Message>
-                                        )*/
                                     }) }
                                 </ul>
                             </div>
