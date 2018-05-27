@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import SendMessage from '../chat/SendMessage';
-import { sendMessage } from '../actions';
+import { sendResponseWithTimeout } from '../actions';
+// import { sendMessage } from '../actions';
 
 const mapStateToProps = state => {
     return {
@@ -8,18 +9,16 @@ const mapStateToProps = state => {
         messages: {
             messageSelected: state.messages.messageSelected,
         },
-        // onSend: ownProps.onSend
-        // assistant: state.assistant,
+        scenarios: state.scenarios,
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    dispatch: (message, author, receiver) => {
-        dispatch(sendMessage(message, author, receiver))
+    dispatch: (message, author, receiver, scenario) => {
+        dispatch(sendResponseWithTimeout(message, author, receiver, scenario));
+        // dispatch(sendMessage(message, author, receiver));
+        // dispatch(sendResponse(message, scenario));
     }
-    /*dispatch: (message, author, activeUser) => {
-        dispatch(sendMessage(message, author, activeUser))
-    }*/
 });
 
 export const SendMessageContainer = connect(

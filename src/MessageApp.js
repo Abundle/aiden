@@ -7,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 
 // Local import
 import { SendMessageContainer } from './containers/SendMessageContainer';
@@ -143,7 +142,7 @@ class MessageApp extends Component {
         }
 
         messagesArray.sort(naturalSort());
-        console.log(users.byId['user0']);
+        // console.log(users.byId['user0']);
 
         return (
             <div className={ classes.root }>
@@ -163,7 +162,7 @@ class MessageApp extends Component {
                         unmountOnExit
                     >
                         <Paper className={ classes.paper }>
-                            <AppBar elevation={ 0 } position='static' color='primary'>
+                            <AppBar elevation={ 0 } position='static' color='default'>
                                 <Toolbar className={ classes.toolBar }>
                                     <Typography variant='title' color='inherit' className={ classes.padding }>
                                         { userReceiver.name }

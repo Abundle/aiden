@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
@@ -22,8 +21,7 @@ const styles = {
     },
 };
 
-// const card = 'Lizards are a widespread group of squamate reptiles 😂';
-const scenarios = {
+/*const scenarios = {
     Echo: {
         title: 'Echo',
         keywords: 'Lizards are a widespread group of squamate reptiles 😂',
@@ -34,7 +32,7 @@ const scenarios = {
         keywords: 'hi 😂',
         response: 'hello',
     },
-};
+};*/
 
 class MessageCards extends Component {
     onClick = (scenario) => {
@@ -43,7 +41,7 @@ class MessageCards extends Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, scenarios } = this.props;
 
         return (
             <div className={ classes.root }>

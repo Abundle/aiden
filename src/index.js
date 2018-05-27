@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'; //applyMiddleware
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
@@ -21,6 +22,7 @@ import rootReducer from './reducers';
 // const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     rootReducer,
+    applyMiddleware(thunk),
     // applyMiddleware(sagaMiddleware),
 );
 

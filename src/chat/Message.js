@@ -28,13 +28,15 @@ const styles = theme => ({
 
 const Message = (props) => {
     const { classes } = props;
+    const assistant = props.author === 'Aidan Bundel' ? 'assistant' : null; // TODO: connect with settings
+    // console.log(assistant);
 
     return (
         <Paper className={ props.author === props.sender ? classes.sender : classes.root }>
             {/*<b>{ props.author }:</b><br />*/}
             { props.children }<br />
 
-            <i>{ time }</i>
+            <b>{ assistant } </b><i>{ time }</i>
         </Paper>
     );
 

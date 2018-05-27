@@ -28,6 +28,7 @@ const styles = theme => ({
     },
     toolBar: {
         padding: 0,
+        backgroundColor: theme.palette.background.paper,
     },
     chatContent: {
         overflowY: 'scroll',
@@ -52,12 +53,6 @@ const styles = theme => ({
         minWidth: 55,
         minHeight: 55,
         marginLeft: theme.spacing.unit,
-    },
-    padding: {
-        paddingLeft: theme.spacing.unit * 3,
-    },
-    noPadding: {
-        paddingLeft: 0,
     },
     /*container: {
         position: 'relative',
@@ -108,8 +103,6 @@ class Chat extends Component {
         }
 
         messagesArray.sort(naturalSort());
-        console.log(messagesArray);
-        // console.log(messagesUserAssistant, messagesUserSelected);
 
         return (
             <Slide
@@ -119,7 +112,7 @@ class Chat extends Component {
                 unmountOnExit
             >
                 <Paper className={ classes.root }>
-                    <AppBar elevation={ 0 } position='static' color='primary'>
+                    <AppBar elevation={ 0 } position='static' color='default'>
                         <Toolbar className={ classes.toolBar }>
                             <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
                                 <Icon>chevron_left</Icon>
@@ -137,7 +130,10 @@ class Chat extends Component {
                         <ul>
                             { (messagesArray || []).map(id => {
                                 // console.log(messages.byId[id].receiver, userSelected.name);
-                                // console.log(id);
+                                // console.log(messages.byId[id].author);
+                                // const assistant = messages.byId[id].author === users.byId['user0'].name;
+                                // console.log(assistant);
+
                                 return (
                                     users.byId[userSelected].name === messages.byId[id].receiver ||
                                     users.byId[userSelected].name === messages.byId[id].author    ?
@@ -145,22 +141,11 @@ class Chat extends Component {
                                             key={ id }
                                             author={ messages.byId[id].author }
                                             sender={ userAssistant.name }
+                                            // assistant={ assistant }
                                         >
                                             { messages.byId[id].message }
                                         </Message>) : (null)
                                 )
-
-                                /*return (
-                                    userSelected.name === messages.byId[id].receiver ||
-                                    userSelected.name === messages.byId[id].author    ?
-                                        (<Message
-                                            key={ id }
-                                            author={ messages.byId[id].author }
-                                            sender={ userAssistant.name }
-                                        >
-                                            { messages.byId[id].message }
-                                        </Message>) : (null)
-                                )*/
                             }) }
                         </ul>
                     </div>
