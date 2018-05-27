@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -83,7 +81,7 @@ class DigitalAssistantApp extends Component {
 
                 { value === 0 && <Activity /> }
                 { value === 1 && <Calendar /> }
-                { value === 2 && <ChatList /> }
+                { value === 2 && <ChatList assistant /> }
                 { value === 3 && <Settings /> }
 
                 <BottomNavigation

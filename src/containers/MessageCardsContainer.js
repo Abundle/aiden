@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import ChatCards from '../chat/MessageCards';
 import { selectMessage } from '../actions';
 
-const mapStateToProps = (state) => ({
+/*const mapStateToProps = (state) => ({
     assistant: state.assistant,
-});
+});*/
 
 const mapDispatchToProps = dispatch => ({
     dispatch: (scenario) => {
@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const MessageCardsContainer = connect(
-    mapStateToProps,
+    null,
+    // mapStateToProps,
     mapDispatchToProps,
 )(ChatCards);

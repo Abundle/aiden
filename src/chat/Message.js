@@ -30,8 +30,8 @@ const Message = (props) => {
     const { classes } = props;
 
     return (
-        <Paper className={ props.author === 'Me' ? classes.me : classes.root }>
-            <b>{ props.author }:</b><br />
+        <Paper className={ props.author === props.sender ? classes.root : classes.me }>
+            {/*<b>{ props.author }:</b><br />*/}
             { props.children }<br />
 
             <i>{ time }</i>

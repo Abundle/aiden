@@ -23,6 +23,8 @@ function UserGreeting(props) {
         </Typography>
     );
 
+
+    // console.log(assistant);
     return (
         <div className={ classes.root }>
             { userGreeting }
@@ -32,7 +34,7 @@ function UserGreeting(props) {
 
 UserGreeting.propTypes = {
     // users: PropTypes.[].isRequired,
-    assistant: PropTypes.bool.isRequired,
+    // assistant: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
 };
 

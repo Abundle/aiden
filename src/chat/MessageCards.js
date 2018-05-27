@@ -43,28 +43,30 @@ class MessageCards extends Component {
     };
 
     render() {
-        const { classes, assistant } = this.props;
+        const { classes } = this.props;
 
         return (
             <div className={ classes.root }>
-                { assistant ? (null) : (
-                    Object.keys(scenarios).map(scenario => (
-                        <Card
-                            key={ scenario }
-                            className={ classes.card }
-                            onClick={ () => this.onClick(scenarios[scenario]) }
-                        >
-                            <CardContent>
-                                <Typography gutterBottom variant='headline' component='h2'>
-                                    { scenario }
-                                </Typography>
-                                <Typography component='p'>
-                                    { scenarios[scenario].keywords }
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    ) )
-                ) }
+                <Typography variant='title'>
+                    Select a card
+                </Typography>
+
+                { Object.keys(scenarios).map(scenario => (
+                    <Card
+                        key={ scenario }
+                        className={ classes.card }
+                        onClick={ () => this.onClick(scenarios[scenario]) }
+                    >
+                        <CardContent>
+                            <Typography gutterBottom variant='headline' component='h2'>
+                                { scenario }
+                            </Typography>
+                            <Typography component='p'>
+                                { scenarios[scenario].keywords }
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                ) ) }
             </div>
         );
     }

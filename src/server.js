@@ -34,25 +34,12 @@ wss.on('connection', (ws) => {
                     ws.send(JSON.stringify({
                         type: 'ACTIVATE_ASSISTANT',
                         payload: { assistant: true }, // At this moment it will be only 1 user
-                        // payload: { assistant: true, user: users }, // At this moment it will be only 1 user
                     }));
                     broadcast({
                         type: 'ACTIVATE_ASSISTANT',
                         payload: { assistant: true },
-                        // payload: { assistant: true, user: users },
                     }, ws);
-                } /*else {
-                    console.log("You're the " + index);
-
-                    ws.send(JSON.stringify({
-                        type: 'DEACTIVATE_ASSISTANT',
-                        payload: index,
-                    }));
-                    broadcast({
-                        type: 'DEACTIVATE_ASSISTANT',
-                        payload: index,
-                    }, ws);
-                }*/
+                }
 
                 ws.send(JSON.stringify({
                     type: 'USERS_LIST',
@@ -82,7 +69,7 @@ wss.on('connection', (ws) => {
         }
     });
 
-    ws.on('close', () => { // TODO: if two windows are open, one is reloaded, it should make the other window the assistant?
+    ws.on('close', () => {
         index--;
         users.splice(index, 1);
 

@@ -56,15 +56,15 @@ class SendMessage extends Component {
         if (!input.value.trim()) {
             return
         }
-        let sender = this.props.assistant ? ('Aidan Bundel') : ('Dave Kellie');
-        console.log(sender, this.props.users.activeUser);
+        let sender = this.props.assistant ? ('Aidan Bundel') : ('Dave Kellie'); // TODO: retrieve from Redux store
+        // console.log(sender, this.props.users.activeUser);
 
         this.props.dispatch(input.value, sender, this.props.users.activeUser); //Me
         input.value = '';
     }
 
     render() {
-        const { classes, messages } = this.props;
+        const { classes, messages, assistant } = this.props;
         let input;
         let value = messages.messageSelected.keywords || '';
         // console.log(messages.messageSelected.keywords);
@@ -73,9 +73,11 @@ class SendMessage extends Component {
             <div className={ classes.root }>
                 <form
                     className={ classes.form }
-                    onSubmit={ event => {
+                    onSubmit={ (event, assistant) => {
                         event.preventDefault();
-                        this.handleSubmit(event, input);
+                        if (!assistant) {
+                            this.handleSubmit(event, input);
+                        }
                     }}
                     /*onSubmit={ (event) => this.props.onSend(event) }*/
                 >
@@ -88,7 +90,7 @@ class SendMessage extends Component {
                             placeholder='Select a message card'
                             // placeholder='Type a message'
                             // defaultValue=''
-                            value={ value }
+                            value={ !assistant && value }
                         />
                     </Paper>
                     <Button

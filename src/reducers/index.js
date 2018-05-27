@@ -60,22 +60,19 @@ const reducers = (state = {
             messages: ['message0', 'message4'],
         },
         // activeUser: [], // chat selected
-        usersOnline: [],
+        // usersOnline: [],
     },
-    assistant: false, // if true, user0 is online
+    // assistant: false, // if true, user0 is online
 }, action) => {
     // console.log(action);
     switch (action.type) {
-        case 'ACTIVATE_ASSISTANT':
+       /* case 'ACTIVATE_ASSISTANT':
             // console.log(action.payload.user);
             return {
                 ...state,
                 assistant: action.payload.assistant,
-            };
-            // return action.payload;
+            };*/
         case 'SEND_MESSAGE':
-            // console.log('SEND_MESSAGE');
-            // console.log(action.receiver);
             return {
                 ...state,
                 messages: {
@@ -108,8 +105,7 @@ const reducers = (state = {
                 }
             };
         case 'MESSAGE_RECEIVED':
-            console.log(action.activeUser);
-            // return state;
+            // console.log(action.activeUser);
             return {
                 ...state,
                 messages: {

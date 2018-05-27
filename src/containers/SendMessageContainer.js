@@ -2,13 +2,14 @@ import { connect } from 'react-redux';
 import SendMessage from '../chat/SendMessage';
 import { sendMessage } from '../actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         users: state.users, // TODO: check which state subtree is needed
         messages: {
             messageSelected: state.messages.messageSelected,
         },
-        assistant: state.assistant,
+        // onSend: ownProps.onSend
+        // assistant: state.assistant,
     }
 };
 

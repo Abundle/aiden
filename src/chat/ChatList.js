@@ -45,7 +45,7 @@ class ChatList extends Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, assistant } = this.props;
         const { open }  = this.state;
 
         return (
@@ -61,11 +61,11 @@ class ChatList extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <UserListContainer
+                <UserListContainer assistant={ assistant }
                     onOpen={ this.handleOpen }
                 />
 
-                <ChatContainer
+                <ChatContainer assistant={ assistant }
                     open={ open }
                     onClose={ this.handleClose }
                 />

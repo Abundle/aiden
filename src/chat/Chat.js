@@ -53,6 +53,19 @@ const styles = theme => ({
         minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
+    padding: {
+        paddingLeft: theme.spacing.unit * 3,
+    },
+    noPadding: {
+        paddingLeft: 0,
+    },
+    /*container: {
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        backgroundColor: theme.palette.secondary.light,
+        overflow: 'hidden',
+    },*/
 });
 
 class Chat extends Component {
@@ -60,10 +73,15 @@ class Chat extends Component {
         if (node) {
             nodeElement = node;
             this.pushMessage(node);
+
+            /*node.addEventListener('scroll', () => {
+                console.log(node.scrollHeight);
+            });*/
         }
     };
 
-    pushMessage = (node) => { // TODO: check if height has changed
+    pushMessage = (node) => {
+        // console.log(event)
         if (node) {
             setTimeout(() => { // TODO: find different way to do this?
                 node.scrollTo(0, node.scrollHeight);
@@ -74,12 +92,17 @@ class Chat extends Component {
     render() {
         const { classes, assistant, users, messages } = this.props;
 
-        let currentUser = assistant ? ('user0') : ('user1'); //users.usersOnline[0];
-        let messagesSender = users.byId[currentUser].messages;
-        let messagesReceiver = users.activeUser.messages || [];
+        let userAssistant = users.byId['user0'];
+        let userMessageApp = users.byId['user1'];
+        let userSender = assistant ? userAssistant : userMessageApp;
+        let userReceiver = assistant ? userMessageApp : userAssistant;
+
+        let messagesSender = userSender.messages || [];
+        let messagesReceiver = userReceiver.messages || [];
         let messagesArray = messagesSender.concat(messagesReceiver);
         let current = messagesArray.length;
 
+        console.log(nodeElement);
         if (current !== previous) {
             this.pushMessage(nodeElement);
             previous = current;
@@ -94,16 +117,16 @@ class Chat extends Component {
                 mountOnEnter
                 unmountOnExit
             >
-                <Paper
-                    className={ classes.root }
-                >
+                <Paper className={ classes.root }>
                     <AppBar elevation={ 0 } position='static' color='primary'>
                         <Toolbar className={ classes.toolBar }>
-                            <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
-                                <Icon>chevron_left</Icon>
-                            </IconButton>
-                            <Typography variant='title' color='inherit'>
-                                { users.activeUser.name }
+                            { assistant &&
+                                <IconButton color='inherit' onClick={ this.props.onClose } aria-label='Close'>
+                                    <Icon>chevron_left</Icon>
+                                </IconButton>
+                            }
+                            <Typography variant='title' color='inherit' className={ assistant ? classes.noPadding : classes.padding }>
+                                { userReceiver.name }
                             </Typography>
                         </Toolbar>
                     </AppBar>
@@ -114,24 +137,32 @@ class Chat extends Component {
                     >
                         <ul>
                             { (messagesArray || []).map(id => {
-                                // console.log(users.byId[currentUser].name);
-                                // console.log(messages.byId[id]);
-
+                                // console.log(id);
                                 return (
-                                    messages.byId[id].receiver === (users.activeUser.name) ||
-                                    messages.byId[id].receiver === (users.byId[currentUser].name) ?
+                                    <Message
+                                        key={ id }
+                                        author={ messages.byId[id].author }
+                                        sender={ userReceiver.name }
+                                    >
+                                        { messages.byId[id].message }
+                                    </Message>
+                                )
+
+                                /*return (
+                                    messages.byId[id].receiver === (userAssistant.name) ||
+                                    messages.byId[id].receiver === (userSender.name) ?
                                         (<Message
                                             key={ id }
                                             author={ messages.byId[id].author }
                                         >
                                             { messages.byId[id].message }
                                         </Message>) : (null)
-                                )
+                                )*/
                             }) }
                         </ul>
                     </div>
 
-                    <SendMessageContainer />
+                    <SendMessageContainer assistant/>
                 </Paper>
             </Slide>
         )
@@ -141,11 +172,9 @@ class Chat extends Component {
 Chat.propTypes = {
     classes: PropTypes.object.isRequired,
     users: PropTypes.oneOfType([
-        // PropTypes.array,
         PropTypes.object,
     ]),
     messages: PropTypes.oneOfType([
-        // PropTypes.array,
         PropTypes.object,
     ]),
 };

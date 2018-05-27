@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import UserGreeting from '../UserGreeting';
 
-const mapStateToProps = (state) => ({
-    assistant: state.assistant,
+const mapStateToProps = (state, ownProps) => ({
+    assistant: ownProps.assistant,
     users: {
         byId: state.users.byId,
     },

@@ -4,7 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Local import
 import DigitalAssistantApp from './DigitalAssistantApp';
-import MessageApp from './MessageApp';
+import { MessageAppContainer } from './containers/MessageAppContainer';
+// import MessageApp from './MessageApp';
 
 const styles = {
     root: {
@@ -29,7 +30,7 @@ const styles = {
         minHeight: 534.45,
         width: '19.55vw', //374
         minWidth: 300.45,
-        backgroundColor: 'gray',
+        // backgroundColor: 'gray',
     },
     mobile: {
         position: 'absolute',
@@ -45,7 +46,7 @@ class Phone extends Component {
         const ui = assistant ? (
             <DigitalAssistantApp />
         ) : (
-            <MessageApp />
+            <MessageAppContainer />
         );
 
 
@@ -68,12 +69,8 @@ class Phone extends Component {
     }
 }
 
-/*Phone.defaultProps = {
-    assistant: false,
-};*/
-
 Phone.propTypes = {
-    assistant: PropTypes.bool.isRequired,
+    // assistant: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
 };
 

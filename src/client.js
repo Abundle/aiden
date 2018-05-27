@@ -1,5 +1,3 @@
-// import * as types from '../constants/ActionTypes';
-// import { messageReceived } from './actions';
 import { activateAssistant, messageReceived, populateUsersList } from './actions'; //addUser
 
 const setupSocket = (dispatch, id) => { // username
@@ -9,7 +7,6 @@ const setupSocket = (dispatch, id) => { // username
         socket.send(JSON.stringify({
             type: 'ADD_USER',
             payload: id,
-            // name: username
         }));
     };
     socket.onmessage = (event) => {
@@ -19,12 +16,7 @@ const setupSocket = (dispatch, id) => { // username
         switch (data.type) {
             case 'ACTIVATE_ASSISTANT':
                 dispatch(activateAssistant(data.payload.assistant));
-                // dispatch(activateAssistant(data.payload.assistant, data.payload.user));
-                // dispatch(addUser(data.users));
                 break;
-            /*case 'DEACTIVATE_ASSISTANT':
-                dispatch(selectChat('user' + data.payload));
-                break;*/
             case 'SEND_MESSAGE':
                 console.log(data.activeUser);
                 dispatch(messageReceived(data.message, data.author, data.activeUser));

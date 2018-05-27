@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+/*import { connect } from 'react-redux';
 import Phone from '../Phone';
 
 const mapStateToProps = (state) => ({
@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 export const PhoneContainer = connect(
     mapStateToProps,
     {}
-)(Phone);
+)(Phone);*/
 
 /*export const ChatContainer = connect(state => ({
     activeUser: state.activeUser,
