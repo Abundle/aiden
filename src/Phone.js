@@ -47,14 +47,6 @@ class Phone extends Component {
             <MessageAppContainer />
         );
 
-
-        // TODO: implement mobile view with Bootstrap
-        /*return (
-            <div className={ classes.mobile }>
-                <DigitalAssistantApp />
-            </div>
-        )*/
-
         return (
             <div className={ classes.root }>
                 <img className={ classes.image } src={ this.props.image } alt='phone'/>

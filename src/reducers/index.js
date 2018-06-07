@@ -1,15 +1,17 @@
 // Local import
 import me from '../assets/me.jpg';
 import avatar1 from '../assets/avatar1.jpg';
-import avatar2 from '../assets/avatar2.jpg';
+// import avatar2 from '../assets/avatar2.jpg';
 import avatar3 from '../assets/avatar3.jpg';
-// import avatar4 from '../assets/avatar4.jpg';
+import avatar4 from '../assets/avatar4.jpg';
 
 import googleCalendar from '../assets/google_calendar.svg';
-import facebook from '../assets/facebook.svg';
+// import facebook from '../assets/facebook.svg';
+import outlook from '../assets/outlook.png';
 import whatsapp from '../assets/whatsapp.svg';
 import bodySensors from '../assets/directions_run.svg'
 import location from '../assets/location.svg';
+import contacts from '../assets/contacts.svg';
 
 const reducers = (state = {
     messages: {
@@ -73,7 +75,7 @@ const reducers = (state = {
                 id: 'user2',
                 name: 'Ali Connors',
                 messages: ['message2'],
-                avatar: avatar2,
+                avatar: avatar4,
                 relation: 'Friend',
             },
             'user3': {
@@ -110,9 +112,9 @@ const reducers = (state = {
                 }
             },
             data: {
-                icon: googleCalendar,
-                app: 'Previous messages',
-                color: '#0045CE',
+                icon: whatsapp,
+                app: 'WhatsApp behaviour',
+                color: '#075E54',
             }
         },
         Whereabouts: {
@@ -215,8 +217,8 @@ const reducers = (state = {
                 }
             },
             data: {
-                icon: facebook,
-                app: 'Outlook Calendar',
+                icon: outlook,
+                app: 'Outlook',
                 color: '#0045CE',
             }
         },
@@ -255,9 +257,9 @@ const reducers = (state = {
                 }
             },
             data: {
-                icon: googleCalendar,
+                icon: contacts,
                 app: 'Contact settings',
-                color: '#0045CE',
+                color: 'black',
             }
         },
         Helpdesk: {
@@ -276,7 +278,7 @@ const reducers = (state = {
             },
             data: {
                 icon: whatsapp,
-                app: 'Previous messages',
+                app: 'WhatsApp behaviour',
                 color: '#075E54',
             }
         },

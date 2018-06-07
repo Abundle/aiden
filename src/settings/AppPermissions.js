@@ -42,7 +42,7 @@ function AppPermissions(props) {
 
     return (
         <Slide
-            direction='up'
+            direction='left'
             in={ props.open }
             mountOnEnter
             unmountOnExit

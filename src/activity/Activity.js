@@ -17,9 +17,12 @@ import Moment from 'react-moment'; // TODO: change to regular moment library?
 // Local import
 import avatar1 from '../assets/avatar1.jpg';
 import avatar2 from '../assets/avatar2.jpg';
-import avatar3 from '../assets/avatar3.jpg';
+// import avatar3 from '../assets/avatar3.jpg';
+import avatar8 from '../assets/avatar8.jpg';
+import avatar9 from '../assets/avatar9.jpg';
 import facebook from '../assets/facebook.svg';
 import googleCalendar from '../assets/google_calendar.svg';
+import whatsApp from '../assets/whatsapp.svg';
 
 const styles = theme => ({
     root: {
@@ -67,6 +70,9 @@ const styles = theme => ({
     },
     googleCalendar: {
         color: '#0045CE',
+    },
+    whatsApp: {
+        color: '#075E54',
     },
     facebook: {
         color: '#3C5A98',
@@ -138,7 +144,7 @@ class Activity extends Component {
                         />
                         <CardContent>
                             <Typography color='textSecondary' component='div' gutterBottom>
-                                Today you have been talking to 20 people on 3 different platforms.<br />
+                                Today you have been talking to 3 people on 1 platform.<br />
                                 2 appointments have been requested.
                             </Typography>
                         </CardContent>
@@ -158,7 +164,7 @@ class Activity extends Component {
 
 
                     <Typography variant='caption' align='center' className={ classes.timeStamp }>
-                        Today • <Moment format='MMM Do'>{ date }</Moment>
+                        Yesterday • <Moment format='MMMM Do' subtract={{ days: 1 }}>{ date }</Moment>
                     </Typography>
 
                     <Card className={ classes.card } square>
@@ -167,26 +173,21 @@ class Activity extends Component {
                                 root: classes.cardHeader,
                             }}
                             avatar={
-                                <Avatar alt='Richard Roe' src={ avatar1 } className={classes.avatar} />
-                            }
-                            action={
-                                <IconButton>
-                                    <Icon>more_vert</Icon>
-                                </IconButton>
+                                <Avatar alt='Richard Roe' src={ avatar9 } className={classes.avatar} />
                             }
                             title='To: Richard Roe'
-                            subheader='15:51'
+                            subheader="'Happy birthday Aidan! 🎉' at 15:51"
                         />
                         <CardContent>
                             <Typography className={ classes.cardMessage }>
-                                Hey Richard, yes it's at 2pm at the Googleplex
+                                Thanks man!
                             </Typography>
 
                             <Typography color='textSecondary' component='div' gutterBottom>
                                 Retrieved from:
                             </Typography>
-                            <Typography className={ classes.googleCalendar }>
-                                <img className={ classes.appIcon } src={ googleCalendar } alt='Google Calendar'/> Google Calendar
+                            <Typography className={ classes.whatsApp }>
+                                <img className={ classes.appIcon } src={ whatsApp } alt='WhatsApp'/> WhatsApp
                             </Typography>
                         </CardContent>
                         {/*<CardActions>
@@ -201,13 +202,8 @@ class Activity extends Component {
                             avatar={
                                 <Avatar alt='Ali Connors' src={ avatar2 } className={classes.avatar}/>
                             }
-                            action={
-                                <IconButton>
-                                    <Icon>more_vert</Icon>
-                                </IconButton>
-                            }
                             title='To: Ali Connors'
-                            subheader='15:51'
+                            subheader="'Have you ever seen Blade Runner?' at 15:45"
                         />
                         <CardContent>
                             <Typography className={ classes.cardMessage }>
@@ -228,15 +224,10 @@ class Activity extends Component {
                                 root: classes.cardHeader,
                             }}
                             avatar={
-                                <Avatar alt='Kellie Max' src={ avatar3 } className={classes.avatar} />
-                            }
-                            action={
-                                <IconButton>
-                                    <Icon>more_vert</Icon>
-                                </IconButton>
+                                <Avatar alt='Kellie Max' src={ avatar8 } className={classes.avatar} />
                             }
                             title='To: Trevor Holten'
-                            subheader='15:51'
+                            subheader="'Did you arrive home safely?' at 00:30"
                         />
                         <CardContent>
                             <Typography className={ classes.cardMessage }>
@@ -255,7 +246,7 @@ class Activity extends Component {
 
 
                     <Typography variant='caption' align='center' className={ classes.timeStamp }>
-                        Yesterday • <Moment format='MMM Do' subtract={{ days: 1 }}>{ date }</Moment>
+                        <Moment format='MMMM Do' subtract={{ days: 2 }}>{ date }</Moment>
                     </Typography>
 
                     <Card className={ classes.card } square>
@@ -264,19 +255,14 @@ class Activity extends Component {
                                 root: classes.cardHeader,
                             }}
                             avatar={
-                                <Avatar alt='Richard Roe' src={ avatar1 } className={classes.avatar} />
+                                <Avatar alt='Dave Kellie' src={ avatar1 } className={classes.avatar} />
                             }
-                            action={
-                                <IconButton>
-                                    <Icon>more_vert</Icon>
-                                </IconButton>
-                            }
-                            title='To: Richard Roe'
-                            subheader='15:51'
+                            title='To: Dave Kellie'
+                            subheader="'Hi Aidan, we have a meeting today right?' at 08:30"
                         />
                         <CardContent>
                             <Typography className={ classes.cardMessage }>
-                                Hey Richard, yes it's at 2pm at the Googleplex
+                                Hi Dave, at 2pm at the Googleplex
                             </Typography>
 
                             <Typography color='textSecondary' component='div' gutterBottom>

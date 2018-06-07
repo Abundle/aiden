@@ -10,9 +10,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
+// import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-// import Avatar from '@material-ui/core/Avatar';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { DatePicker, TimePicker } from 'material-ui-pickers';
@@ -29,10 +32,11 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 // Class ConfirmationDialog
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
 
 // Local import
+import ContactGroups  from './ContactGroups';
 import OpenSourceLicences  from './OpenSourceLicences';
 import AppPermissions  from './AppPermissions';
 import whatsapp from '../assets/whatsapp.svg';
@@ -47,15 +51,16 @@ const pronouns = [
     'Male',
     'Neutral',
     //'Rather not say',
-    "Retrieve from 'Connected accounts'",
+    'Retrieved from Facebook: Male',
 ];
 
-const options = [
-    'Assistant enabled',
-    'Assistant enabled on custom groups', // TODO: Elaborate this option
-    'Assistant disabled',
-];
-
+/*const options = [
+    'Assistant enabled on all contact groups',
+    // "Assistant enabled on 'Family'",
+    // "Assistant enabled on 'Friends'",
+    // "Assistant enabled on 'Colleagues'",
+    'Assistant disabled on all contact groups',
+];*/
 
 const styles = theme => ({
     root: {
@@ -86,7 +91,7 @@ const styles = theme => ({
     },
 });
 
-class ConfirmationDialog extends React.Component {
+class ConfirmationDialog extends Component {
     constructor(props, context) {
         super(props, context);
         this.state.value = this.props.gender;
@@ -162,11 +167,6 @@ class ConfirmationDialog extends React.Component {
     }
 }
 
-ConfirmationDialog.propTypes = {
-    onClose: PropTypes.func,
-    value: PropTypes.string,
-};
-
 class Picker extends PureComponent {
     constructor(props) {
         super(props);
@@ -193,10 +193,82 @@ class Picker extends PureComponent {
     }
 }
 
-class SimpleListMenu extends React.Component {
+class ConnectedAccount extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            readData: true,
+            postData: true,
+            // antoine: true,
+        };
+    }
+
+    handleChange = index => event => {
+        this.setState({ [index]: event.target.checked });
+    };
+
+    render() {
+        return (
+            <Dialog
+                open={ this.props.open }
+                aria-labelledby='form-dialog-title'
+            >
+                <DialogTitle id='form-dialog-title'>{ this.props.platform }</DialogTitle>
+                <DialogContent>
+                    <FormControl component='fieldset'>
+                        Change platform permissions
+                        <FormGroup>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        color='primary'
+                                        checked={ this.state.readData }
+                                        onChange={ this.handleChange('readData') }
+                                    />
+                                }
+                                label='Allow gathering data from this platform'
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        color='primary'
+                                        checked={ this.state.writeData }
+                                        onChange={ this.handleChange('writeData') }
+                                    />
+                                }
+                                label='Allow assistant to act on this platform'
+                            />
+                            {/*<FormControlLabel
+                                control={
+                                    <Checkbox
+                                        color='primary'
+                                        checked={ this.state.antoine }
+                                        onChange={ this.handleChange('antoine') }
+                                    />
+                                }
+                                label='Antoine Llorca'
+                            />*/}
+                        </FormGroup>
+                    </FormControl>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={ this.props.onClose } color='primary'>
+                        Remove account
+                    </Button>
+
+                    <Button onClick={ this.props.onClose } color='primary'>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+}
+
+/*class MessagePreferences extends Component {
     state = {
         anchorEl: null,
-        selectedIndex: 1,
+        selectedIndex: 0,
     };
 
     button = undefined;
@@ -214,7 +286,6 @@ class SimpleListMenu extends React.Component {
     };
 
     render() {
-        // const { classes } = this.props;
         const { anchorEl } = this.state;
 
         return (
@@ -253,7 +324,7 @@ class SimpleListMenu extends React.Component {
             </div>
         );
     }
-}
+}*/
 
 class Settings extends Component {
     constructor(props) {
@@ -261,11 +332,14 @@ class Settings extends Component {
         this.state = {
             openDialogGender: false,
             openDialogMail: false,
+            openContactGroups: false,
             openDialogPermissions: false,
             openDialogLicences: false,
+            openDialogAccount: false,
             birthdate: new Date('March 6, 1996'),
             // date: new Date(),
-            gender: "Retrieve from 'Connected accounts'",
+            gender: 'From Facebook: Male',
+            platform: 'WhatsApp',
 
             assistantScheduled: true,
         };
@@ -279,6 +353,10 @@ class Settings extends Component {
         this.setState({ gender: value, openDialogGender: false });
     };
 
+    handleContactsDialog = () => {
+        this.setState({ openContactGroups: !this.state.openContactGroups });
+    };
+
     handleLicenceDialog = () => {
         this.setState({ openDialogLicences: !this.state.openDialogLicences });
     };
@@ -287,15 +365,18 @@ class Settings extends Component {
         this.setState({ openDialogPermissions: !this.state.openDialogPermissions });
     };
 
+    handleAccountDialog = (platform) => {
+        this.setState({
+            openDialogAccount: !this.state.openDialogAccount,
+            platform: platform,
+        });
+    };
+
     handleClickOpen = () => {
         this.setState({ openDialogMail: true });
     };
     handleClose = () => {
         this.setState({ openDialogMail: false });
-    };
-
-    handleAccount = () => {
-        alert('hi');
     };
 
     handleDateChange = date => {
@@ -319,7 +400,7 @@ class Settings extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <List className={ classes.list } subheader={<div />}>
+                <List className={ classes.list } subheader={ <div /> }>
                     <div>
                         <ListSubheader classes={{
                             sticky: classes.subHeader,
@@ -344,7 +425,8 @@ class Settings extends Component {
                                 <DatePicker
                                     fullWidth
                                     keyboard
-                                    label='Birthday'
+                                    keyboardIcon='cake'
+                                    label='Birthday from Google account'
                                     format='DD/MM/YYYY'
                                     placeholder='06/03/1996'
                                     // handle clearing outside => pass plain array if you are not controlling value outside
@@ -379,7 +461,7 @@ class Settings extends Component {
                             divider
                             onClick={ this.handleClickOpen }
                         >
-                            <ListItemText inset primary='Email address' secondary='aidan@outlook.com'/>
+                            <ListItemText inset primary='Email address' secondary='From Google account: aidan@outlook.com'/>
                         </ListItem>
 
                         <Dialog
@@ -389,9 +471,9 @@ class Settings extends Component {
                         >
                             <DialogTitle id='form-dialog-title'>Email address</DialogTitle>
                             <DialogContent>
-                                <DialogContentText>
+                                {/*<DialogContentText>
                                     In case we need to contact you about your account.
-                                </DialogContentText>
+                                </DialogContentText>*/}
                                 <TextField
                                     autoFocus
                                     margin='dense'
@@ -455,11 +537,16 @@ class Settings extends Component {
 
                                     <Picker time='October 15, 2018 17:00:00' placeholder='17:00 PM'/>
                                 </ListItem>
+
+                                <ListItem button>
+                                    <ListItemText inset primary='Days' secondary='Enabled on Mon, Wed, Fri'/>
+                                </ListItem>
                             </div>
                         }
 
                         <ListItem
                             button
+                            onClick={ this.handleContactsDialog }
                             >
                             <ListItemIcon>
                                 <Icon>people_outline</Icon>
@@ -470,7 +557,7 @@ class Settings extends Component {
                             />
                         </ListItem>
 
-                        <SimpleListMenu />
+                        {/*<MessagePreferences />*/}
 
                         <ListItem
                             button
@@ -504,7 +591,7 @@ class Settings extends Component {
                                 <img className={ classes.appIcon } src={ whatsapp } alt='WhatsApp'/>
                             </ListItemIcon>
                             <ListItemText primary='WhatsApp' />
-                            <ListItemSecondaryAction onClick={ this.handleAccount }>
+                            <ListItemSecondaryAction onClick={ () => this.handleAccountDialog('WhatsApp') }>
                                 <IconButton aria-label='Settings'>
                                     <Icon>settings</Icon>
                                 </IconButton>
@@ -515,7 +602,7 @@ class Settings extends Component {
                                 <img className={ classes.appIcon } src={ facebook } alt='Facebook'/>
                             </ListItemIcon>
                             <ListItemText primary='Facebook' />
-                            <ListItemSecondaryAction>
+                            <ListItemSecondaryAction onClick={ () => this.handleAccountDialog('Facebook') }>
                                 <IconButton aria-label='Settings'>
                                     <Icon>settings</Icon>
                                 </IconButton>
@@ -526,7 +613,7 @@ class Settings extends Component {
                                 <img className={ classes.appIcon } src={ googleCalendar } alt='Google Calendar'/>
                             </ListItemIcon>
                             <ListItemText primary='Google Calendar' />
-                            <ListItemSecondaryAction>
+                            <ListItemSecondaryAction onClick={ () => this.handleAccountDialog('Google Calendar') }>
                                 <IconButton aria-label='Settings'>
                                     <Icon>settings</Icon>
                                 </IconButton>
@@ -537,7 +624,7 @@ class Settings extends Component {
                                 <img className={ classes.appIcon } src={ outlook } alt='Outlook'/>
                             </ListItemIcon>
                             <ListItemText primary='Outlook' />
-                            <ListItemSecondaryAction>
+                            <ListItemSecondaryAction onClick={ () => this.handleAccountDialog('Outlook') }>
                                 <IconButton aria-label='Settings'>
                                     <Icon>settings</Icon>
                                 </IconButton>
@@ -548,7 +635,7 @@ class Settings extends Component {
                                 <img className={ classes.appIcon } src={ instagram } alt='Instagram'/>
                             </ListItemIcon>
                             <ListItemText primary='Instagram' />
-                            <ListItemSecondaryAction>
+                            <ListItemSecondaryAction onClick={ () => this.handleAccountDialog('Instagram') }>
                                 <IconButton aria-label='Settings'>
                                     <Icon>settings</Icon>
                                 </IconButton>
@@ -559,7 +646,7 @@ class Settings extends Component {
                                 <img className={ classes.appIcon } src={ twitter } alt='Twitter'/>
                             </ListItemIcon>
                             <ListItemText primary='Twitter' />
-                            <ListItemSecondaryAction>
+                            <ListItemSecondaryAction onClick={ () => this.handleAccountDialog('Twitter') }>
                                 <IconButton aria-label='Settings'>
                                     <Icon>settings</Icon>
                                 </IconButton>
@@ -590,6 +677,17 @@ class Settings extends Component {
                         </ListItem>
                     </div>
                 </List>
+
+                <ContactGroups
+                    open={ this.state.openContactGroups }
+                    onClose={ this.handleContactsDialog }
+                />
+
+                <ConnectedAccount
+                    open={ this.state.openDialogAccount }
+                    onClose={ () => this.handleAccountDialog(this.state.platform) }
+                    platform={ this.state.platform }
+                />
 
                 <AppPermissions
                     open={ this.state.openDialogPermissions }
