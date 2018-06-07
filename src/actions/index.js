@@ -1,7 +1,7 @@
 // import * as types from './ActionTypes';
 
-let nextMessageId = 5;
-let delay = 1000;
+let nextMessageId = 6;
+let delay = 1500;
 const userAssistant = 'Aidan Bundel';  // TODO: get from Redux store if possible?
 
 export const sendMessage = (message, author, receiver) => ({
@@ -30,6 +30,7 @@ export const sendResponse = (scenario, author, receiver) => ({
     scenario,
     author,
     receiver,
+    // relation,
 });
 
 export const selectMessage = scenario => ({
@@ -40,4 +41,9 @@ export const selectMessage = scenario => ({
 export const selectChat = id => ({
     type: 'CHAT_SELECTED',
     payload: id,
+});
+
+export const changeUser = index => ({
+    type: 'USER_CHANGED',
+    payload: index,
 });

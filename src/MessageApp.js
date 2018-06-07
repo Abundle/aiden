@@ -13,7 +13,6 @@ import IconButton from '@material-ui/core/IconButton';
 // Local import
 import { SendMessageContainer } from './containers/SendMessageContainer';
 import Message from './chat/Message';
-import me from './assets/me.jpg';
 
 let naturalSort = require('natsort');
 let nodeElement;
@@ -65,6 +64,9 @@ const styles = theme => ({
         padding: 0,
         backgroundColor: theme.palette.background.paper,
     },
+    header: {
+        marginLeft: theme.spacing.unit * 2,
+    },
     chatContent: {
         overflowY: 'scroll',
         height: '100%',
@@ -93,13 +95,16 @@ const styles = theme => ({
         minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
-    avatar: {
+    /*avatar: {
         marginLeft: 'auto',
         marginRight: theme.spacing.unit * 2,
     },
     title: {
         marginLeft: 'auto',
-    },
+    },*/
+    dateTime: {
+        margin: theme.spacing.unit,
+    }
 });
 
 class MessageApp extends Component {
@@ -137,7 +142,7 @@ class MessageApp extends Component {
     render() {
         const { classes, users, messages } = this.props;
 
-        let userSender = users.byId['user1'];
+        let userSender = users.byId[this.props.users.activeUser];
         let userReceiver = users.byId['user0'];
 
         let messagesSender = userSender.messages || [];
@@ -177,11 +182,16 @@ class MessageApp extends Component {
                                         <Icon>chevron_left</Icon>
                                     </IconButton>
 
-                                    <Typography variant='title' color='inherit' className={ classes.title }>
-                                        { userReceiver.name }
-                                    </Typography>
+                                    <Avatar alt={ users.byId['user0'].name } src={ users.byId['user0'].avatar } className={ classes.avatar }/>
 
-                                    <Avatar alt={ users.byId['user0'].name } src={ me } className={ classes.avatar }/>
+                                    <div>
+                                        <Typography variant='title' color='inherit' className={ classes.header }>
+                                            { userReceiver.name }
+                                        </Typography>
+                                        <Typography variant='caption' className={ classes.header }>
+                                            Online
+                                        </Typography>
+                                    </div>
                                 </Toolbar>
                             </AppBar>
 
@@ -189,6 +199,10 @@ class MessageApp extends Component {
                                 className={ classes.chatContent }
                                 ref={ this.componentDidMount }
                             >
+                                <Typography variant='caption' align='center' className={ classes.dateTime }>
+                                    June 8
+                                </Typography>
+
                                 <ul className={ classes.messages }>
                                     { (messagesArray || []).map(id => {
 

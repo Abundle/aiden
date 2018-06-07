@@ -8,6 +8,7 @@ import Icon from '@material-ui/core/Icon';
 const styles = theme => ({
     root: {
         position: 'fixed',
+        right: 6,
         bottom: 0,
         padding: 10,
         backgroundColor: '#ECE5DD',
@@ -54,7 +55,7 @@ class SendMessage extends Component {
         if (!input.value.trim()) {
             return
         }
-        let sender = this.props.assistant ? this.props.users.byId['user0'] : this.props.users.byId['user1'];
+        let sender = this.props.assistant ? this.props.users.byId['user0'] : this.props.users.byId[this.props.users.activeUser];
         let receiver = this.props.assistant ? this.props.users.byId[this.props.users.activeUser] : this.props.users.byId['user0'];
 
         let scenario = this.props.messages.messageSelected.title;

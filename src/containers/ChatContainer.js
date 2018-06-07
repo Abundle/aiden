@@ -4,7 +4,7 @@ import Chat from '../chat/Chat';
 const mapStateToProps = state => ({
     users: {
         byId: state.users.byId,
-        activeUser: state.users.activeUser,
+        selectedUser: state.users.selectedUser,
     },
     messages: state.messages,
 });

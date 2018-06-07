@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
+import Typography from '@material-ui/core/Typography';
 
 // Local import
 import { UserGreetingContainer } from './containers/UserGreetingContainer';
@@ -69,15 +70,23 @@ const styles = {
     root: {
         display: 'flex',
         justifyContent: 'center',
+        marginTop: 10,
     },
     phone: {
         // backgroundColor: 'lightblue',
     },
+    demo: {
+        width: 225,
+        height: '100%',
+        paddingTop: 16,
+        // backgroundColor: 'lightblue',
+    },
     logo: {
-        position: 'absolute',
         left: 0,
-        margin: 15,
-    }
+    },
+    introduction: {
+        marginTop: 100,
+    },
 };
 
 class App extends Component {
@@ -88,7 +97,25 @@ class App extends Component {
             <div className={ classes.root }>
                 <CssBaseline />
                 <MuiThemeProvider theme={ theme }>
-                    <img src={ logoAiden } className={ classes.logo } alt='Aiden logo' /> {/*TODO: Only show when assistant is enabled*/}
+                    <div className={ classes.demo }>
+                        <img src={ logoAiden } className={ classes.logo } alt='Aiden logo' /> {/*TODO: Only show when assistant is enabled*/}
+
+                        <Typography variant='title' gutterBottom className={ classes.introduction }>
+                            Hi there!
+                        </Typography>
+
+                        <Typography variant='body1' gutterBottom align='justify'>
+                           Meet my digital assistant Aiden. Shoot me a message as a colleague, family, friend or browse
+                            through the assistant application
+                        </Typography>
+
+                        <br />
+
+                        <Typography variant='caption'>
+                            Aidan Bundel <br />
+                            Industrial Design TU/e
+                        </Typography>
+                    </div>
 
                     <div className={ classes.phone }>
                         <UserGreetingContainer assistant />
@@ -96,13 +123,13 @@ class App extends Component {
                         <Phone image={ onePlusImage } assistant />
                     </div>
 
+                    <MessageCardsContainer />
+
                     <div className={ classes.phone }>
                         <UserGreetingContainer />
 
                         <Phone image={ samsungImage }/>
                     </div>
-
-                    <MessageCardsContainer />
                 </ MuiThemeProvider>
             </div>
         );

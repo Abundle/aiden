@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 // Local import
-import logoAiden from '../assets/logo.svg';
+import logoAidenBlack from '../assets/logo_aiden_badge.svg';
 
 let date = new Date();
 let time = date.getHours() + ':' + date.getMinutes();
@@ -15,7 +15,7 @@ const styles = theme => ({
     root: {
         width: '20vw',
         minWidth: 50,
-        maxWidth: 150,
+        maxWidth: 200,
         marginLeft: theme.spacing.unit,
         marginBottom: theme.spacing.unit,
         // margin: '15px 0',
@@ -41,6 +41,7 @@ const styles = theme => ({
         width: 25,
         marginLeft: 'auto',
         marginRight: 0,
+        padding: 3,
     },
     footer: {
         display: 'flex',
@@ -72,8 +73,20 @@ const Message = (props) => {
                     { time }
                 </Typography>
 
-                { assistant && <Avatar alt='Assistant Aiden' src={ logoAiden } className={ classes.avatar }/> }
+                { assistant && <Avatar alt='Assistant Aiden' src={ logoAidenBlack } className={ classes.avatar }/> }
             </div>
+
+            {/*<div className={ classes.footer }>
+                { assistant && <Avatar alt='Assistant Aiden' src={ logoAidenBlack } className={ classes.avatar }/> }
+
+                <Typography
+                    variant='caption'
+                    className={ classes.time }
+                    color={ props.author === props.sender ? 'secondary' : 'default' }
+                >
+                    { time }
+                </Typography>
+            </div>*/}
         </Paper>
     );
 };

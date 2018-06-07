@@ -31,9 +31,11 @@ class MessageCards extends Component {
 
         return (
             <div className={ classes.root }>
-                <Typography variant='title'>
-                    Select a card
+                <Typography variant='title' align='center'>
+                    1. Select a card <span role='img' aria-label='down'>⬇️</span>
                 </Typography>
+
+                <br />
 
                 { Object.keys(scenarios).map(scenario => (
                     <Card
@@ -42,15 +44,22 @@ class MessageCards extends Component {
                         onClick={ () => this.onClick(scenarios[scenario]) }
                     >
                         <CardContent>
-                            <Typography gutterBottom variant='headline' component='h2'>
+                            {/*<Typography gutterBottom variant='headline' component='h2'>
                                 { scenario }
-                            </Typography>
+                            </Typography>*/}
                             <Typography component='p'>
                                 { scenarios[scenario].keywords }
                             </Typography>
                         </CardContent>
                     </Card>
                 ) ) }
+
+                <br />
+
+                <Typography variant='title' align='center'>
+                    2. Send the message and <br />
+                    see my assistant's response <span role='img' aria-label='right'>➡️</span>
+                </Typography>
             </div>
         );
     }

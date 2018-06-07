@@ -145,7 +145,7 @@ class ConfirmationDialog extends React.Component {
                         onChange={ this.handleChange }
                     >
                         { pronouns.map(option => (
-                            <FormControlLabel value={ option } key={ option } control={ <Radio /> } label={ option } />
+                            <FormControlLabel value={ option } key={ option } control={ <Radio color='primary'/> } label={ option } />
                         )) }
                     </RadioGroup>
                 </DialogContent>
@@ -383,8 +383,8 @@ class Settings extends Component {
                         </ListItem>
 
                         <Dialog
-                            open={this.state.openDialogMail}
-                            onClose={this.handleClose}
+                            open={ this.state.openDialogMail }
+                            onClose={ this.handleClose }
                             aria-labelledby='form-dialog-title'
                         >
                             <DialogTitle id='form-dialog-title'>Email address</DialogTitle>

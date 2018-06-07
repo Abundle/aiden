@@ -8,12 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-// Local import
-import avatar1 from '../assets/avatar1.jpg';
-/*import avatar2 from './assets/avatar2.jpg';
-import avatar3 from './assets/avatar3.jpg';
-import avatar4 from './assets/avatar4.jpg';*/
-
 let date = new Date();
 let time = date.getHours() + ':' + date.getMinutes();
 
@@ -32,24 +26,51 @@ class UserList extends Component {
     }
 
     render() {
-        const { classes, users, messages, assistant } = this.props;
+        const { classes, users, messages } = this.props;
 
-        const userAssistant = 'user0';
+        /*const userAssistant = 'user0';
         let messageArrayAssistant =  users.byId[userAssistant].messages;
-        let lastMessageAssistant = messageArrayAssistant[messageArrayAssistant.length - 1];
+        let lastMessageAssistant = messageArrayAssistant[messageArrayAssistant.length - 1];*/
 
         // TODO: https://stackoverflow.com/questions/45100477/how-render-object-in-react?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
         return (
             <List className={ classes.root }>
-                { assistant ? (
+                { Object.keys(users.byId).map((user, id) => {
+                    let messageArray =  users.byId[user].messages;
+                    let lastMessage = messageArray[messageArray.length - 1];
+
+                    return (
+                        <div key={ id }>
+                            { id !== 0 &&
+                            <ListItem
+                                value={ users.byId[user].name }
+                                onClick={ () => this.handleClick(users.byId[user].id) }
+                                button
+                                divider
+                            >
+                                <Avatar alt={ users.byId[user].name } src={ users.byId[user].avatar }/>
+                                <ListItemText primary={ users.byId[user].name } secondary={ messages.byId[lastMessage].message }/>
+
+                                <ListItemSecondaryAction>
+                                    <Typography variant='caption' color='primary'>
+                                        { time }
+                                    </Typography>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                            }
+                        </div>
+                    ) }
+                ) }
+
+                {/*{ assistant ? (
                     Object.keys(users.byId).map((user, id) => {
                         let messageArray =  users.byId[user].messages;
                         let lastMessage = messageArray[messageArray.length - 1];
 
                         return (
                             <div key={ id }>
-                            { id !== 0 &&
+                                { id !== 0 &&
                                 <ListItem
                                     value={ users.byId[user].name }
                                     onClick={ () => this.handleClick(users.byId[user].id) }
@@ -65,7 +86,7 @@ class UserList extends Component {
                                         </Typography>
                                     </ListItemSecondaryAction>
                                 </ListItem>
-                            }
+                                }
                             </div>
                         ) }
                     )
@@ -85,7 +106,7 @@ class UserList extends Component {
                             </Typography>
                         </ListItemSecondaryAction>
                     </ListItem>
-                ) }
+                ) }*/}
             </List>
         );
     }

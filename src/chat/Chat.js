@@ -13,11 +13,11 @@ import IconButton from '@material-ui/core/IconButton';
 // Local import
 import { SendMessageContainer } from '../containers/SendMessageContainer';
 import Message from './Message';
-import avatar1 from '../assets/avatar1.jpg';
 
 let naturalSort = require('natsort');
 let nodeElement;
-let previous;
+let previousMessagesLength;
+// let previousUser;
 
 const styles = theme => ({
     root: {
@@ -31,6 +31,9 @@ const styles = theme => ({
     toolBar: {
         padding: 0,
         backgroundColor: theme.palette.background.paper,
+    },
+    header: {
+        marginLeft: theme.spacing.unit * 2,
     },
     chatContent: {
         overflowY: 'scroll',
@@ -60,14 +63,16 @@ const styles = theme => ({
         minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
-    avatar: {
+    /*avatar: {
         marginLeft: 'auto',
         marginRight: theme.spacing.unit * 2,
     },
     title: {
         marginLeft: 'auto',
-        // marginRight: theme.spacing.unit * 3,
-    },
+    },*/
+    dateTime: {
+        margin: theme.spacing.unit,
+    }
 });
 
 class Chat extends Component {
@@ -83,7 +88,6 @@ class Chat extends Component {
     };
 
     pushMessage = (node) => {
-        // console.log(event)
         if (node) {
             setTimeout(() => { // TODO: find different way to do this?
                 node.scrollTo(0, node.scrollHeight);
@@ -95,17 +99,22 @@ class Chat extends Component {
         const { classes, users, messages } = this.props;
 
         let userAssistant = users.byId['user0'];
-        let userSelected = users.activeUser;
+        let userSelected = users.selectedUser;
 
         let messagesUserAssistant = userAssistant.messages || [];
         let messagesUserSelected = users.byId[userSelected].messages || [];
         let messagesArray = messagesUserAssistant.concat(messagesUserSelected);
-        let current = messagesArray.length;
+        let currentMessagesLength = messagesArray.length;
 
-        if (current !== previous) {
+        if (currentMessagesLength !== previousMessagesLength) {
             this.pushMessage(nodeElement);
-            previous = current;
+            previousMessagesLength = currentMessagesLength;
         }
+
+        /*if (userSelected !== previousUser) {
+            this.pushMessage(nodeElement);
+            // previousUser = userSelected;
+        }*/
 
         messagesArray.sort(naturalSort());
 
@@ -123,11 +132,16 @@ class Chat extends Component {
                                 <Icon>chevron_left</Icon>
                             </IconButton>
 
-                            <Typography variant='title' color='inherit' className={ classes.title }>
-                                { users.byId[userSelected].name }
-                            </Typography>
+                            <Avatar alt={ users.byId[userSelected].name } src={ users.byId[userSelected].avatar } className={ classes.avatar }/>
 
-                            <Avatar alt={ users.byId['user0'].name } src={ avatar1 } className={ classes.avatar }/>
+                            <div>
+                                <Typography variant='title' color='inherit' className={ classes.header }>
+                                    { users.byId[userSelected].name }
+                                </Typography>
+                                <Typography variant='caption' className={ classes.header }>
+                                    Online
+                                </Typography>
+                            </div>
                         </Toolbar>
                     </AppBar>
 
@@ -135,6 +149,10 @@ class Chat extends Component {
                         className={ classes.chatContent }
                         ref={ this.componentDidMount }
                     >
+                        <Typography variant='caption' align='center' className={ classes.dateTime }>
+                            June 8
+                        </Typography>
+
                         <ul className={ classes.messages }>
                             { (messagesArray || []).map(id => {
 
