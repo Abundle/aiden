@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 // Local import
 import { UserGreetingContainer } from './containers/UserGreetingContainer';
 import { MessageCardsContainer } from './containers/MessageCardsContainer';
-// import { PhoneContainer } from './containers/PhoneContainer';
+import MobileApp from './MobileApp';
 import onePlusImage from './assets/oneplus3_outline.svg';
 import logoAiden from './assets/logo_aiden.png';
 import samsungImage from './assets/samsung_galaxy_s4_outline.svg'
@@ -72,9 +72,6 @@ const styles = {
         justifyContent: 'center',
         marginTop: 10,
     },
-    phone: {
-        // backgroundColor: 'lightblue',
-    },
     demo: {
         width: 225,
         height: '100%',
@@ -96,41 +93,48 @@ class App extends Component {
         return (
             <div className={ classes.root }>
                 <CssBaseline />
+
                 <MuiThemeProvider theme={ theme }>
-                    <div className={ classes.demo }>
-                        <img src={ logoAiden } className={ classes.logo } alt='Aiden logo' /> {/*TODO: Only show when assistant is enabled*/}
+                    <MobileApp />
 
-                        <Typography variant='title' gutterBottom className={ classes.introduction }>
-                            Hi there!
-                        </Typography>
+                    <div className='demo'>
+                        <div className={ classes.demo }>
+                            <img src={ logoAiden } className={ classes.logo } alt='Aiden logo' />
 
-                        <Typography variant='body1' gutterBottom align='justify'>
-                           Meet my digital assistant Aiden. Shoot me a message as a colleague, family, friend or browse
-                            through the assistant application
-                        </Typography>
+                            <Typography variant='title' gutterBottom className={ classes.introduction }>
+                                Hi there!
+                            </Typography>
 
-                        <br />
+                            <Typography variant='body1' gutterBottom align='justify'>
+                               Meet my digital assistant Aiden. Shoot me a message as a colleague, family, friend or browse
+                                through the assistant application.
+                            </Typography>
 
-                        <Typography variant='caption'>
-                            Aidan Bundel <br />
-                            Industrial Design TU/e
-                        </Typography>
+                            <br />
+
+                            <Typography variant='caption'>
+                                Aidan Bundel <br />
+                                Industrial Design TU/e
+                            </Typography>
+                        </div>
                     </div>
 
-                    <div className={ classes.phone }>
+                    <div className='demo'>
                         <UserGreetingContainer assistant />
 
                         <Phone image={ onePlusImage } assistant />
                     </div>
 
-                    <MessageCardsContainer />
+                    <div className='demo'>
+                        <MessageCardsContainer />
+                    </div>
 
-                    <div className={ classes.phone }>
+                    <div className='demo'>
                         <UserGreetingContainer />
 
                         <Phone image={ samsungImage }/>
                     </div>
-                </ MuiThemeProvider>
+                </MuiThemeProvider>
             </div>
         );
     }

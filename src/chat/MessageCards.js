@@ -47,6 +47,8 @@ class MessageCards extends Component {
                             {/*<Typography gutterBottom variant='headline' component='h2'>
                                 { scenario }
                             </Typography>*/}
+                            {/*{ scenarios[scenario].icon }*/}
+
                             <Typography component='p'>
                                 { scenarios[scenario].keywords }
                             </Typography>

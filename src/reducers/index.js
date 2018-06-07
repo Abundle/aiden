@@ -5,6 +5,12 @@ import avatar2 from '../assets/avatar2.jpg';
 import avatar3 from '../assets/avatar3.jpg';
 // import avatar4 from '../assets/avatar4.jpg';
 
+import googleCalendar from '../assets/google_calendar.svg';
+import facebook from '../assets/facebook.svg';
+import whatsapp from '../assets/whatsapp.svg';
+import bodySensors from '../assets/directions_run.svg'
+import location from '../assets/location.svg';
+
 const reducers = (state = {
     messages: {
         byId: {
@@ -17,12 +23,12 @@ const reducers = (state = {
             'message1': {
                 id: 'message1',
                 author: 'Dave Kellie',
-                message: "Hey Aidan, I'm fine thank you!",
+                message: "Hey Aidan, I'm good, thanks!",
                 receiver: 'Aidan Bundel',
             },
             'message2': {
                 id: 'message2',
-                author: 'Kellie Max',
+                author: 'Ali Connors',
                 message: 'Thanks for the info!',
                 receiver: 'Aidan Bundel',
             },
@@ -65,7 +71,7 @@ const reducers = (state = {
             },
             'user2': {
                 id: 'user2',
-                name: 'Kellie Max',
+                name: 'Ali Connors',
                 messages: ['message2'],
                 avatar: avatar2,
                 relation: 'Friend',
@@ -91,6 +97,7 @@ const reducers = (state = {
         Hello: {
             title: 'Hello',
             keywords: 'Hi!',
+            // icon: '👋',
             responses: {
                 Colleague: {
                     response: 'Hello!',
@@ -102,21 +109,31 @@ const reducers = (state = {
                     response: 'Hi!',
                 }
             },
+            data: {
+                icon: googleCalendar,
+                app: 'Previous messages',
+                color: '#0045CE',
+            }
         },
         Whereabouts: {
             title: 'Whereabouts',
             keywords: 'Where are you? 👀',
             responses: {
                 Colleague: {
-                    response: 'In Laplace',
+                    response: 'Sorry, I cannot disclose this information',
                 },
                 Family: {
                     response: 'At uni',
                 },
                 Friend: {
-                    response: 'Like right next to you',
+                    response: 'In Laplace',
                 }
             },
+            data: {
+                icon: location,
+                app: 'Location',
+                color: 'black',
+            }
         },
         Activity: {
             title: 'Activity',
@@ -132,6 +149,11 @@ const reducers = (state = {
                     response: 'Nope, biking as usual 🚲',
                 }
             },
+            data: {
+                icon: bodySensors,
+                app: 'Body sensors',
+                color: 'black',
+            }
         },
         /*Planning: {
             title: 'Planning',
@@ -140,10 +162,10 @@ const reducers = (state = {
         },*/
         AlmostThere: {
             title: 'AlmostThere',
-            keywords: 'Are you on your way? 🚗',
+            keywords: 'Are you almost here for our appointment? 🚗',
             responses: {
                 Colleague: {
-                    response: 'Yes',
+                    response: 'Not yet, my apologies',
                 },
                 Family: {
                     response: "Not yet, so I'll probably be a bit later because of who I am as a person",
@@ -152,6 +174,11 @@ const reducers = (state = {
                     response: "Not yet, so I'll probably be a bit later because of who I am as a person",
                 }
             },
+            data: {
+                icon: location,
+                app: 'Location',
+                color: 'black',
+            }
         },
         Meeting: {
             title: 'Meeting',
@@ -167,8 +194,33 @@ const reducers = (state = {
                     response: "We don't have a meeting",
                 }
             },
+            data: {
+                icon: googleCalendar,
+                app: 'Google Calendar',
+                color: '#0045CE',
+            }
         },
-        Birthday: {
+        Focus: {
+            title: 'Focus',
+            keywords: 'Can I call you right now?',
+            responses: {
+                Colleague: {
+                    response: "Sorry I don't have time now, can this wait till tomorrow?",
+                },
+                Family: {
+                    response: 'Now is not a great time, is it urgent?',
+                },
+                Friend: {
+                    response: 'Now is not a great time, is it urgent?',
+                }
+            },
+            data: {
+                icon: facebook,
+                app: 'Outlook Calendar',
+                color: '#0045CE',
+            }
+        },
+        /*Birthday: {
             title: 'Birthday',
             keywords: 'Happy birthday Aidan! 🎉',
             responses: {
@@ -182,36 +234,51 @@ const reducers = (state = {
                     response: 'It is not my birthday today bruh',
                 }
             },
-        },
-        Private: { // TODO: only when sent from 'business' contact
+            data: {
+                icon: facebook,
+                app: 'Facebook',
+                color: '#0045CE',
+            }
+        },*/
+        Private: {
             title: 'Private',
-            keywords: 'Can I have your private email adress?',
+            keywords: 'Can I have your email adress?',
             responses: {
                 Colleague: {
                     response: 'Sorry, I cannot disclose this information',
                 },
                 Family: {
-                    response: "You don't have it??",
+                    response: "I'm surprised you don't have it already, it's aidan@outlook.com",
                 },
                 Friend: {
-                    response: 'aidan@outlook.com',
+                    response: "Sure, it's aidan@outlook.com",
                 }
             },
+            data: {
+                icon: googleCalendar,
+                app: 'Contact settings',
+                color: '#0045CE',
+            }
         },
-        Helpdesk: { // TODO: only when sent from 'business' contact
+        Helpdesk: {
             title: 'Helpdesk',
             keywords: 'Hey Aidan, I have some trouble with connecting my email to Outlook, can you help me?',
             responses: {
                 Colleague: {
-                    response: 'Have you followed the steps described here: https://tinyurl.com/y7cpeqv4',
+                    response: 'Have you followed the steps described here? https://tinyurl.com/y7cpeqv4',
                 },
                 Family: {
-                    response: 'Yeah sure, have you followed the steps described here: https://tinyurl.com/y7cpeqv4',
+                    response: 'Yeah sure, have you followed the steps described here? https://tinyurl.com/y7cpeqv4',
                 },
                 Friend: {
-                    response: 'Yeah sure, have you followed the steps described here: https://tinyurl.com/y7cpeqv4',
+                    response: 'Yeah sure, have you followed the steps described here? https://tinyurl.com/y7cpeqv4',
                 }
             },
+            data: {
+                icon: whatsapp,
+                app: 'Previous messages',
+                color: '#075E54',
+            }
         },
     }
 }, action) => {
@@ -255,6 +322,7 @@ const reducers = (state = {
                             author: action.author.name,
                             message: state.scenarios[action.scenario].responses[action.receiver.relation].response,
                             receiver: action.receiver.name,
+                            data: state.scenarios[action.scenario].data,
                         },
                     },
                     allIds: [...state.messages.allIds, action.id]
@@ -270,34 +338,6 @@ const reducers = (state = {
                     },
                 }
             };
-        /*case 'SEND_RESPONSE':
-            console.log(action.receiver);
-            return {
-                ...state,
-                messages: {
-                    ...state.messages,
-                    byId: {
-                        ...state.messages.byId,
-                        [action.id]: {
-                            id: action.id,
-                            author: action.author.name,
-                            message: state.scenarios[action.scenario].response,
-                            receiver: action.receiver.name,
-                        },
-                    },
-                    allIds: [...state.messages.allIds, action.id]
-                },
-                users: {
-                    ...state.users,
-                    byId: {
-                        ...state.users.byId,
-                        [action.author.id]: {
-                            ...state.users.byId[action.author.id],
-                            messages: [...state.users.byId[action.author.id].messages, action.id]
-                        },
-                    },
-                }
-            };*/
         case 'MESSAGE_SELECTED':
             return {
                 ...state,
@@ -307,7 +347,6 @@ const reducers = (state = {
                 }
             };
         case 'CHAT_SELECTED':
-            console.log(action);
             return {
                 ...state,
                 users: {

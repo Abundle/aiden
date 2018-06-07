@@ -7,9 +7,12 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
-let date = new Date();
-let time = date.getHours() + ':' + date.getMinutes();
+let time = moment().format('HH:mm');
+
+/*let date = new Date();
+let time = date.getHours() + ':' + date.getMinutes();*/
 
 const styles = theme => ({
     root: {

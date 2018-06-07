@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
+import moment from 'moment';
 
 // Local import
 import { SendMessageContainer } from './containers/SendMessageContainer';
@@ -18,8 +19,7 @@ let naturalSort = require('natsort');
 let nodeElement;
 let previous;
 
-let date = new Date();
-let time = date.getHours() + ':' + date.getMinutes();
+let time = moment().format('HH:mm');
 
 const styles = theme => ({
     root: {
@@ -213,6 +213,7 @@ class MessageApp extends Component {
                                                     key={ id }
                                                     author={ messages.byId[id].author }
                                                     sender={ userSender.name }
+                                                    data={ messages.byId[id].data }
                                                 >
                                                     { messages.byId[id].message }
                                                 </Message>) : (null)

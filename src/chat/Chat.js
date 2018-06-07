@@ -155,7 +155,6 @@ class Chat extends Component {
 
                         <ul className={ classes.messages }>
                             { (messagesArray || []).map(id => {
-
                                 return (
                                     users.byId[userSelected].name === messages.byId[id].receiver ||
                                     users.byId[userSelected].name === messages.byId[id].author    ?
@@ -163,7 +162,7 @@ class Chat extends Component {
                                             key={ id }
                                             author={ messages.byId[id].author }
                                             sender={ userAssistant.name }
-                                            // assistant={ assistant }
+                                            data={ messages.byId[id].data }
                                         >
                                             { messages.byId[id].message }
                                         </Message>) : (null)

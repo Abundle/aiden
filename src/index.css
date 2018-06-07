@@ -41,3 +41,23 @@ input {
     background-color:  #ff6666;
     /*background: #ff0000;*/
 }
+
+.mobile-app {
+    position: absolute;
+    /* Minus top margin in App.js */
+    height: calc(100% - 10px);
+    width: 100%;
+}
+
+@media only screen and (min-width: 900px) {
+    .mobile-app {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .demo {
+        display: none;
+    }
+}
+

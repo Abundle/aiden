@@ -68,7 +68,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Body sensors' secondary='Used to detect current activity'/>
                         <ListItemSecondaryAction>
-                            <Switch checked/>
+                            <Switch color='primary' checked/>
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -78,7 +78,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Camera' secondary='Used for taking pictures automatically'/>
                         <ListItemSecondaryAction>
-                            <Switch />
+                            <Switch color='primary'/>
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -88,7 +88,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Contacts' secondary='Used to retrieve contact names'/>
                         <ListItemSecondaryAction>
-                            <Switch checked/>
+                            <Switch color='primary' checked/>
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -98,7 +98,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Location' secondary='Used to detect activity, travel means and activity'/>
                         <ListItemSecondaryAction>
-                            <Switch checked/>
+                            <Switch color='primary' checked/>
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -108,7 +108,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Microphone' secondary='Used to listen for voice commands'/>
                         <ListItemSecondaryAction>
-                            <Switch />
+                            <Switch color='primary' />
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -118,7 +118,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='SMS' secondary='Used to read and send SMS texts'/>
                         <ListItemSecondaryAction>
-                            <Switch checked/>
+                            <Switch color='primary' checked/>
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -128,7 +128,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Storage' secondary='Used to store data locally'/>
                         <ListItemSecondaryAction>
-                            <Switch/>
+                            <Switch color='primary'/>
                         </ListItemSecondaryAction>
                     </ListItem>
 
@@ -138,7 +138,7 @@ function AppPermissions(props) {
                         </ListItemIcon>
                         <ListItemText primary='Telephone' secondary='Used to receive and make phone calls'/>
                         <ListItemSecondaryAction>
-                            <Switch checked/>
+                            <Switch color='primary' checked/>
                         </ListItemSecondaryAction>
                     </ListItem>
                 </List>

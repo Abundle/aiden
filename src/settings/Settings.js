@@ -133,7 +133,7 @@ class ConfirmationDialog extends React.Component {
                 <DialogTitle id='confirmation-dialog-title'>Pronouns</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Help other call you by the proper pronoun
+                        Help others call you by the proper pronoun
                     </DialogContentText>
                     <RadioGroup
                         ref={ node => {
@@ -265,7 +265,7 @@ class Settings extends Component {
             openDialogLicences: false,
             birthdate: new Date('March 6, 1996'),
             // date: new Date(),
-            gender: 'Male',
+            gender: "Retrieve from 'Connected accounts'",
 
             assistantScheduled: true,
         };

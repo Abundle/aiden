@@ -70,12 +70,6 @@ function OpenSourceLicences(props) {
                         <ListItemText primary='React Redux'/>
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary='Redux Saga'/>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary='WS'/>
-                    </ListItem>
-                    <ListItem>
                         <ListItemText primary='Material UI Pickers'/>
                     </ListItem>
                     <ListItem>

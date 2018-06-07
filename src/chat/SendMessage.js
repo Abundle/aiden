@@ -86,8 +86,8 @@ class SendMessage extends Component {
                             ref={ (node) => {
                                 input = node;
                             }}
-                            placeholder='Select a message card'
-                            // placeholder='Type a message'
+                            placeholder={ assistant ? 'Assistant is handling messages' : 'Select a message card' }
+                            disabled={ assistant }
                             // defaultValue=''
                             value={ (!assistant && value) || '' }
                         />
@@ -97,6 +97,7 @@ class SendMessage extends Component {
                         type='submit'
                         color='primary'
                         aria-label='add'
+                        disabled={ assistant }
                         className={ classes.button }
                     >
                         <Icon>send</Icon>

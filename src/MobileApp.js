@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Icon from '@material-ui/core/Icon';
-import moment from 'moment';
 
 // Local import
 import Activity from './activity/Activity';
@@ -13,32 +11,13 @@ import Calendar from './calendar/Calendar';
 import ChatList from './chat/ChatList';
 import Settings from './settings/Settings';
 
-let time = moment().format('HH:mm');
-
 const styles = {
-    root: {
-        position: 'relative',
-        height: '100%',
+    /*root: {
+        position: 'absolute',
+        // Minus top margin in App.js
+        height: 'calc(100% - 10px)',
         width: '100%',
-        // backgroundColor: 'lightblue',
-    },
-    statusBar: {
-        height: 20,
-        padding: '0 4px',
-        backgroundColor: '#DCDCDC',
-        textAlign: 'right',
-        color: '#808080',
-    },
-    time: {
-        display: 'inline-block',
-        verticalAlign: 'top',
-        marginLeft: 3,
-    },
-    statusIcon: {
-        fontSize: 17,
-        marginLeft: 3,
-        // verticalAlign: 'super',
-    },
+    },*/
     appBar: {
         flexGrow: 1,
         // zIndex: 3,
@@ -53,7 +32,7 @@ const styles = {
     }
 };
 
-class DigitalAssistantApp extends Component {
+class MobileApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -67,18 +46,11 @@ class DigitalAssistantApp extends Component {
 
     render() {
         const { classes } = this.props;
-        const { value } = this.state; //href='#chats'
+        const { value } = this.state;
 
         return (
-            <div className={ classes.root }>
-                <div className={ classes.statusBar }>
-                    <Icon className={ classes.statusIcon }>network_wifi</Icon>
-                    <Icon className={ classes.statusIcon }>network_cell</Icon>
-                    <Icon className={ classes.statusIcon }>battery_full</Icon>
-
-                    <Typography variant='body1' className={ classes.time }>{ time }</Typography>
-                </div>
-
+            <div className='mobile-app'>
+            {/*<div className={ classes.root }>*/}
                 { value === 0 && <Activity /> }
                 { value === 1 && <Calendar /> }
                 { value === 2 && <ChatList assistant /> }
@@ -100,8 +72,8 @@ class DigitalAssistantApp extends Component {
     }
 }
 
-DigitalAssistantApp.propTypes = {
+MobileApp.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DigitalAssistantApp);
+export default withStyles(styles)(MobileApp);

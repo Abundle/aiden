@@ -12,7 +12,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
-import Moment from 'react-moment';
+import Moment from 'react-moment'; // TODO: change to regular moment library?
 
 // Local import
 import avatar1 from '../assets/avatar1.jpg';
@@ -72,7 +72,7 @@ const styles = theme => ({
         color: '#3C5A98',
     },
     appIcon: {
-        width: 24,
+        width: 24, //24
         marginRight: 5,
         verticalAlign: '-25%',
     },
