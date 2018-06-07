@@ -50,7 +50,7 @@ button.rbc-input::-moz-focus-inner {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 .rbc-rtl {
   direction: rtl;
@@ -72,7 +72,7 @@ button.rbc-input::-moz-focus-inner {
   /*text-align: center;*/
   vertical-align: middle;
   font-weight: bold;
-  font-size: 90%;
+  font-size: 80%;
   min-height: 0;
   /*border-bottom: 1px solid #DDD;*/
 }
@@ -194,10 +194,11 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-event {
   padding: 2px 5px;
-  background-color: #ff0000;
+  background-color: #ff6666;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+  font-size: 75%;
 }
 .rbc-slot-selecting .rbc-event {
   cursor: inherit;
@@ -207,7 +208,7 @@ button.rbc-input::-moz-focus-inner {
   background-color: #ff0000;
 }
 .rbc-event-label {
-  font-size: 80%;
+  font-size: 60%;
 }
 .rbc-event-overlaps {
   box-shadow: -1px 1px 5px 0px rgba(51, 51, 51, 0.5);
@@ -254,7 +255,7 @@ button.rbc-input::-moz-focus-inner {
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 4;
   font-weight: bold;
-  font-size: 85%;
+  font-size: 75%;
   height: auto;
   line-height: normal;
   white-space: nowrap;
@@ -262,7 +263,7 @@ button.rbc-input::-moz-focus-inner {
 .rbc-month-view {
   position: relative;
   /*border: 1px solid #DDD;*/
-  padding: 8px;
+  /*padding: 8px;*/
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -524,7 +525,7 @@ button.rbc-input::-moz-focus-inner {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 75%;
+  font-size: 65%;
   width: 100%;
   padding: 3px;
 }

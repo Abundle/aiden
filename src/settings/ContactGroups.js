@@ -14,6 +14,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Collapse from '@material-ui/core/Collapse';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
+// import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
@@ -124,7 +125,17 @@ class ContactGroups extends Component {
                         subheader={ <div /> }
                     >
                         <div>
-                            <ListSubheader className={ classes.subHeader }>Assistant enabled on these groups</ListSubheader>
+                            <ListSubheader className={ classes.subHeader }>Assistant per contact group</ListSubheader>
+                            <ListItem dense>
+                                <ListItemText secondary='Note that the assistant will
+                                always allow urgent matters to come through'/>
+                            </ListItem>
+                            {/*<ListItem>
+                                <Button variant='outlined'>
+                                    Learn More
+                                </Button>
+                            </ListItem>*/}
+
                             { Object.keys(contactGroups).map((id) => (
                                 <ListItem
                                     key={ id }
@@ -141,27 +152,11 @@ class ContactGroups extends Component {
                                     <ListItemText primary={ id } secondary={ contactGroups[id].description }/>
                                 </ListItem>
                             )) }
-
-                            {/*{ contactGroups.map(value => (
-                                <ListItem
-                                    key={ value }
-                                    //dense
-                                    button
-                                    onClick={ this.handleToggle(value) }
-                                >
-                                    <Checkbox
-                                        color='primary'
-                                        checked={ this.state.checked.indexOf(value) !== -1 }
-                                        tabIndex={ -1 }
-                                        disableRipple
-                                    />
-                                    <ListItemText primary={ value } secondary={ value.description }/>
-                                </ListItem>
-                            )) }*/}
                         </div>
 
                         <div>
                             <ListSubheader className={ classes.subHeader }>Suggestion for groups</ListSubheader>
+
                             <ListItem button onClick={ this.handleBusiness }>
                                 <ListItemIcon>
                                     <Icon>work</Icon>

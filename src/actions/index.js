@@ -12,7 +12,7 @@ export const sendMessage = (message, author, receiver) => ({
     receiver,
 });
 
-export const sendResponseWithTimeout = (message, author, receiver, scenario) => {
+export const sendResponseWithTimeout = (message, author, receiver, scenario) => { // TODO: add 'Typing..' card
     return dispatch => {
         dispatch(sendMessage(message, author, receiver));
 

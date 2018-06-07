@@ -49,7 +49,7 @@ const reducers = (state = {
             'message5': {
                 id: 'message5',
                 author: 'Amy Bundel',
-                message: 'Ekej',
+                message: 'Okej',
                 receiver: 'Aidan Bundel',
             },
         },
