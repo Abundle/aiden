@@ -39,7 +39,8 @@ const styles = theme => ({
         paddingRight: theme.spacing.unit * 2,
     },
     list: {
-        height: 'calc(100% - 64px)',
+        height: 'calc(100% - 56px)',
+        // height: 'calc(100% - 64px)',
         paddingRight: 2,
         paddingBottom: theme.spacing.unit * 10,
         overflowY: 'scroll',

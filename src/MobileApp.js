@@ -50,7 +50,6 @@ class MobileApp extends Component {
 
         return (
             <div className='mobile-app'>
-            {/*<div className={ classes.root }>*/}
                 { value === 0 && <Activity /> }
                 { value === 1 && <Calendar /> }
                 { value === 2 && <ChatList assistant /> }

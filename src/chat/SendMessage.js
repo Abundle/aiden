@@ -9,7 +9,9 @@ const styles = theme => ({
     root: {
         position: 'fixed',
         right: 6,
+        left: 6,
         bottom: 0,
+        width: '100%',
         padding: 10,
         backgroundColor: '#ECE5DD',
     },
@@ -19,7 +21,7 @@ const styles = theme => ({
         alignItems: 'center',
     },
     inputBox: {
-        width: '15vw',
+        width: '100%',
         minWidth: 215,
         padding: 10,
         // borderRadius: 10,
@@ -95,6 +97,7 @@ class SendMessage extends Component {
                     <Button
                         variant='fab'
                         type='submit'
+                        style={ this.props.whatsApp && { backgroundColor: '#075E54' }}
                         color='primary'
                         aria-label='add'
                         disabled={ assistant }

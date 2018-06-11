@@ -30,7 +30,7 @@ const styles = theme => ({
         marginTop: theme.spacing.unit,
         padding: 10,
         textAlign: 'right',
-        color: theme.palette.secondary.light,
+        // color: theme.palette.secondary.light,
         backgroundColor: theme.palette.primary.main,
     },
     time: {
@@ -72,7 +72,9 @@ const Message = (props) => {
 
     return (
         <div>
-            <Paper className={ props.author === props.sender ? classes.sender : classes.root }>
+            <Paper className={ props.author === props.sender ?
+                ['mobile-message', classes.sender].join(' ') : ['mobile-message', classes.root].join(' ') }
+            >
                 {/*<b>{ props.author }:</b><br />*/}
                 <Typography
                     variant='body2'
@@ -96,7 +98,7 @@ const Message = (props) => {
             </Paper>
 
             { assistant && props.author === props.sender && props.data &&
-                <Paper className={ classes.dataRetrieved }>
+                <Paper className={ ['mobile-message', classes.dataRetrieved].join(' ') }>
                     <Typography variant='caption' component='div' gutterBottom>
                         Retrieved from:
                     </Typography>

@@ -49,7 +49,7 @@ class ChatList extends Component {
         const { open }  = this.state;
 
         return (
-            <div className={ classes.root }>
+            <div className={ ['mobile-chatlist', classes.root].join(' ') }>
                 <AppBar elevation={ 0 } position='static' color='secondary'>
                     <Toolbar classes={{ root: classes.titleToolbar }}>
                         <Typography variant='headline' color='default' className={ classes.titleToolbar }>

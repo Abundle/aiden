@@ -70,7 +70,7 @@ const styles = {
     root: {
         display: 'flex',
         justifyContent: 'center',
-        marginTop: 10,
+        //marginTop: 10,
     },
     demo: {
         width: 225,

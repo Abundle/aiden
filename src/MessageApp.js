@@ -13,7 +13,7 @@ import moment from 'moment';
 
 // Local import
 import { SendMessageContainer } from './containers/SendMessageContainer';
-import Message from './chat/Message';
+import WhatsAppMessage from './chat/WhatsAppMessage';
 
 let naturalSort = require('natsort');
 let nodeElement;
@@ -209,20 +209,20 @@ class MessageApp extends Component {
                                         return (
                                             userSender.name === messages.byId[id].receiver ||
                                             userSender.name === messages.byId[id].author    ?
-                                                (<Message
+                                                (<WhatsAppMessage
                                                     key={ id }
                                                     author={ messages.byId[id].author }
                                                     sender={ userSender.name }
                                                     data={ messages.byId[id].data }
                                                 >
                                                     { messages.byId[id].message }
-                                                </Message>) : (null)
+                                                </WhatsAppMessage>) : (null)
                                         )
                                     }) }
                                 </ul>
                             </div>
 
-                            <SendMessageContainer />
+                            <SendMessageContainer whatsApp />
                         </Paper>
                     </Slide>
                 </div>
