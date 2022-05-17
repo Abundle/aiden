@@ -47,7 +47,7 @@ function OpenSourceLicences(props) {
             >
                 <AppBar elevation={ 0 } position='static' color='secondary'>
                     <Toolbar className={ classes.toolBar }>
-                        <IconButton onClick={ props.onClose } aria-label='Close'> {/*onClick={ () => props.onClose() }*/}
+                        <IconButton onClick={ props.onClose } aria-label='Close'>
                             <Icon>chevron_left</Icon>
                         </IconButton>
                         <Typography variant='title'>

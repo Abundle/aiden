@@ -49,7 +49,7 @@ const WhatsAppMessage = (props) => {
 
                 <Typography
                     variant='caption'
-                    className={ classes.time } // TODO: add 'realistic' time differences
+                    className={ classes.time }
                     color='default'
                 >
                     { time }

@@ -8,7 +8,6 @@ import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 // Custom import
-// import { addUser } from './actions';
 import './index.css';
 import App from './App';
 import rootReducer from './reducers';
@@ -16,7 +15,6 @@ import rootReducer from './reducers';
 const store = createStore(
     rootReducer,
     applyMiddleware(thunk),
-    // applyMiddleware(sagaMiddleware),
 );
 
 ReactDOM.render(

@@ -2,7 +2,7 @@
 
 let nextMessageId = 6;
 let delay = 1500;
-const userAssistant = 'Aidan Bundel';  // TODO: get from Redux store if possible?
+const userAssistant = 'Aidan Bundel'; 
 
 export const sendMessage = (message, author, receiver) => ({
     type: 'SEND_MESSAGE',
@@ -12,7 +12,7 @@ export const sendMessage = (message, author, receiver) => ({
     receiver,
 });
 
-export const sendResponseWithTimeout = (message, author, receiver, scenario) => { // TODO: add 'Typing..' card
+export const sendResponseWithTimeout = (message, author, receiver, scenario) => {
     return dispatch => {
         dispatch(sendMessage(message, author, receiver));
 
@@ -30,7 +30,6 @@ export const sendResponse = (scenario, author, receiver) => ({
     scenario,
     author,
     receiver,
-    // relation,
 });
 
 export const selectMessage = scenario => ({

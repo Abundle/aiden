@@ -18,7 +18,6 @@ const styles = theme => ({
         maxWidth: 200,
         marginLeft: theme.spacing.unit,
         marginTop: theme.spacing.unit,
-        // margin: '15px 0',
         padding: 10,
     },
     sender: {
@@ -30,7 +29,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit,
         padding: 10,
         textAlign: 'right',
-        // color: theme.palette.secondary.light,
         backgroundColor: theme.palette.primary.main,
     },
     time: {
@@ -62,20 +60,18 @@ const styles = theme => ({
         padding: 10,
         textAlign: 'right',
         backgroundColor: '#ffe6e6',
-        // backgroundColor: theme.palette.secondary,
     },
 });
 
 const Message = (props) => {
     const { classes } = props;
-    const assistant = props.author === 'Aidan Bundel' ? 'assistant' : null; // TODO: connect with settings
+    const assistant = props.author === 'Aidan Bundel' ? 'assistant' : null; 
 
     return (
         <div>
             <Paper className={ props.author === props.sender ?
                 ['mobile-message', classes.sender].join(' ') : ['mobile-message', classes.root].join(' ') }
             >
-                {/*<b>{ props.author }:</b><br />*/}
                 <Typography
                     variant='body2'
                     color={ props.author === props.sender ? 'secondary' : 'default' }
@@ -89,7 +85,7 @@ const Message = (props) => {
 
                     <Typography
                         variant='caption'
-                        className={ classes.time } // TODO: add 'realistic' time differences
+                        className={ classes.time }
                         color={ props.author === props.sender ? 'secondary' : 'default' }
                     >
                         { time }

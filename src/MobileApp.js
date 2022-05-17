@@ -12,15 +12,8 @@ import ChatList from './chat/ChatList';
 import Settings from './settings/Settings';
 
 const styles = {
-    /*root: {
-        position: 'absolute',
-        // Minus top margin in App.js
-        height: 'calc(100% - 10px)',
-        width: '100%',
-    },*/
     appBar: {
         flexGrow: 1,
-        // zIndex: 3,
     },
     nav: {
         position: 'absolute',

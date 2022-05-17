@@ -15,13 +15,12 @@ const styles = theme => ({
     root: {
         position: 'relative',
         width: '100%',
-        // TODO: make bottom navigation disappear when chat is clicked
         // Minus status bar, app bar and bottom navigation
-        height: 'calc(100% - (20px + 56px))', //'calc(100% - 20px)',
+        height: 'calc(100% - (20px + 56px))', 
         backgroundColor: theme.palette.secondary.light,
         overflow: 'hidden',
     },
-    titleToolbar: { // TODO: move to App.js overrides
+    titleToolbar: {
         flex: 1,
         paddingRight: theme.spacing.unit * 2,
     },
@@ -31,7 +30,6 @@ class ChatList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // value: 2,
             open: false,
         };
     }
@@ -53,7 +51,7 @@ class ChatList extends Component {
                 <AppBar elevation={ 0 } position='static' color='secondary'>
                     <Toolbar classes={{ root: classes.titleToolbar }}>
                         <Typography variant='headline' color='default' className={ classes.titleToolbar }>
-                            Chats {/*TODO: scroll behaviour title https://material-components-web.appspot.com/toolbar/index.html*/}
+                            Chats
                         </Typography>
                         <IconButton color='primary' aria-label='Menu'>
                             <Icon>more_vert</Icon>

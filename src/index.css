@@ -33,13 +33,11 @@ input {
 ::-moz-selection {
     color: white;
     background-color:  #ff6666;
-    /*background: #ff0000;*/
 }
 
 ::selection {
     color: white;
     background-color:  #ff6666;
-    /*background: #ff0000;*/
 }
 
 .mobile-app {

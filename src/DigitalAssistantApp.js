@@ -20,7 +20,6 @@ const styles = {
         position: 'relative',
         height: '100%',
         width: '100%',
-        // backgroundColor: 'lightblue',
     },
     statusBar: {
         height: 20,
@@ -37,11 +36,9 @@ const styles = {
     statusIcon: {
         fontSize: 17,
         marginLeft: 3,
-        // verticalAlign: 'super',
     },
     appBar: {
         flexGrow: 1,
-        // zIndex: 3,
     },
     nav: {
         position: 'absolute',
@@ -67,7 +64,7 @@ class DigitalAssistantApp extends Component {
 
     render() {
         const { classes } = this.props;
-        const { value } = this.state; //href='#chats'
+        const { value } = this.state;
 
         return (
             <div className={ classes.root }>

@@ -17,20 +17,11 @@ import Phone from './Phone';
 
 const theme = createMuiTheme({
     palette: {
-        primary: red, // TODO: Check theme correct usage
+        primary: red,
         secondary: {
             main: '#fff',
             light: '#fff',
         },
-        /*primary: {
-            main: '#ff0000',
-        },*/
-        /*secondary: {
-            main: '#fff',
-        },
-        error: {
-            main: '#cc0000',
-        },*/
     },
     overrides: {
         MuiAppBar: {
@@ -49,7 +40,7 @@ const theme = createMuiTheme({
             },
             label: {
                 '&$selected': {
-                    fontSize: 12, //theme.typography.pxToRem(12)
+                    fontSize: 12,
                 },
             },
         },
@@ -70,13 +61,11 @@ const styles = {
     root: {
         display: 'flex',
         justifyContent: 'center',
-        //marginTop: 10,
     },
     demo: {
         width: 225,
         height: '100%',
         paddingTop: 16,
-        // backgroundColor: 'lightblue',
     },
     logo: {
         left: 0,

@@ -58,7 +58,6 @@ const styles = theme => ({
         height: '100%',
         top: 0,
         left: 0,
-        // backgroundColor: theme.palette.background.paper,
     },
     toolBar: {
         padding: 0,
@@ -88,20 +87,12 @@ const styles = theme => ({
         width: '15vw',
         minWidth: 215,
         padding: 10,
-        // borderRadius: 10,
     },
     button: {
         minWidth: 55,
         minHeight: 55,
         marginLeft: theme.spacing.unit,
     },
-    /*avatar: {
-        marginLeft: 'auto',
-        marginRight: theme.spacing.unit * 2,
-    },
-    title: {
-        marginLeft: 'auto',
-    },*/
     dateTime: {
         margin: theme.spacing.unit,
     }
@@ -119,17 +110,12 @@ class MessageApp extends Component {
         if (node) {
             nodeElement = node;
             this.pushMessage(node);
-
-            /*node.addEventListener('scroll', () => {
-                console.log(node.scrollHeight);
-            });*/
         }
     };
 
     pushMessage = (node) => {
-        // console.log(event)
         if (node) {
-            setTimeout(() => { // TODO: find different way to do this?
+            setTimeout(() => { 
                 node.scrollTo(0, node.scrollHeight);
             }, 50);
         }
@@ -156,7 +142,6 @@ class MessageApp extends Component {
         }
 
         messagesArray.sort(naturalSort());
-        // console.log(users.byId['user0']);
 
         return (
             <div className={ classes.root }>

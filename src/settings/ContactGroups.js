@@ -130,11 +130,6 @@ class ContactGroups extends Component {
                                 <ListItemText secondary='Note that the assistant will
                                 always allow urgent matters to come through'/>
                             </ListItem>
-                            {/*<ListItem>
-                                <Button variant='outlined'>
-                                    Learn More
-                                </Button>
-                            </ListItem>*/}
 
                             { Object.keys(contactGroups).map((id) => (
                                 <ListItem
@@ -287,13 +282,6 @@ class ContactGroups extends Component {
                                 </List>
                             </Collapse>
                         </div>
-
-                        {/*<ListItem button>
-                            <ListItemIcon>
-                                <Icon>add</Icon>
-                            </ListItemIcon>
-                            <ListItemText primary='Add a custom group' />
-                        </ListItem>*/}
                     </List>
                 </Paper>
             </Slide>

@@ -10,7 +10,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
-// import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -30,10 +29,6 @@ import Dialog from '@material-ui/core/Dialog';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
-// Class ConfirmationDialog
-// import Menu from '@material-ui/core/Menu';
-// import MenuItem from '@material-ui/core/MenuItem';
 
 // Local import
 import ContactGroups  from './ContactGroups';
@@ -238,16 +233,6 @@ class ConnectedAccount extends Component {
                                 }
                                 label='Allow assistant to act on this platform'
                             />
-                            {/*<FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color='primary'
-                                        checked={ this.state.antoine }
-                                        onChange={ this.handleChange('antoine') }
-                                    />
-                                }
-                                label='Antoine Llorca'
-                            />*/}
                         </FormGroup>
                     </FormControl>
                 </DialogContent>
@@ -265,67 +250,6 @@ class ConnectedAccount extends Component {
     }
 }
 
-/*class MessagePreferences extends Component {
-    state = {
-        anchorEl: null,
-        selectedIndex: 0,
-    };
-
-    button = undefined;
-
-    handleClickListItem = event => {
-        this.setState({ anchorEl: event.currentTarget });
-    };
-
-    handleMenuItemClick = (event, index) => {
-        this.setState({ selectedIndex: index, anchorEl: null });
-    };
-
-    handleClose = () => {
-        this.setState({ anchorEl: null });
-    };
-
-    render() {
-        const { anchorEl } = this.state;
-
-        return (
-            <div>
-                <ListItem
-                    button
-                    aria-haspopup='true'
-                    aria-controls='lock-menu'
-                    aria-label='Messaging preferences'
-                    onClick={ this.handleClickListItem }
-                >
-                    <ListItemIcon>
-                        <Icon>chat_bubble_outline</Icon>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary='Messaging preferences'
-                        secondary={ options[this.state.selectedIndex] }
-                    />
-                </ListItem>
-                <Menu
-                    id='lock-menu'
-                    anchorEl={ anchorEl }
-                    open={ Boolean(anchorEl) }
-                    onClose={ this.handleClose }
-                >
-                    { options.map((option, index) => (
-                        <MenuItem
-                            key={ option }
-                            selected={ index === this.state.selectedIndex }
-                            onClick={ event => this.handleMenuItemClick(event, index) }
-                        >
-                            { option }
-                        </MenuItem>
-                    )) }
-                </Menu>
-            </div>
-        );
-    }
-}*/
-
 class Settings extends Component {
     constructor(props) {
         super(props);
@@ -337,7 +261,6 @@ class Settings extends Component {
             openDialogLicences: false,
             openDialogAccount: false,
             birthdate: new Date('March 6, 1996'),
-            // date: new Date(),
             gender: 'From Facebook: Male',
             platform: 'WhatsApp',
 
@@ -411,16 +334,9 @@ class Settings extends Component {
                             <ListItemIcon>
                                 <Icon>person_outline</Icon>
                             </ListItemIcon>
-                            {/*<Avatar>
-                                <Icon>person</Icon>
-                            </Avatar>*/}
                             <ListItemText primary='You' secondary='Aidan Bundel'/>
                         </ListItem>
                         <ListItem>
-                            {/*<ListItemIcon>
-                                <Icon>cake</Icon>
-                            </ListItemIcon>*/}
-
                             <ListItemText inset primary={
                                 <DatePicker
                                     fullWidth
@@ -471,9 +387,6 @@ class Settings extends Component {
                         >
                             <DialogTitle id='form-dialog-title'>Email address</DialogTitle>
                             <DialogContent>
-                                {/*<DialogContentText>
-                                    In case we need to contact you about your account.
-                                </DialogContentText>*/}
                                 <TextField
                                     autoFocus
                                     margin='dense'
@@ -557,8 +470,6 @@ class Settings extends Component {
                             />
                         </ListItem>
 
-                        {/*<MessagePreferences />*/}
-
                         <ListItem
                             button
                             divider
@@ -569,15 +480,6 @@ class Settings extends Component {
                             </ListItemIcon>
                             <ListItemText primary='App permissions'/>
                         </ListItem>
-                        {/*<ListItem
-                            divider
-                            button
-                        >
-                            <ListItemIcon>
-                                <Icon>message</Icon>
-                            </ListItemIcon>
-                            <ListItemText primary='Messaging preferences' secondary='Assistant always enabled'/>
-                        </ListItem>*/}
                     </div>
 
                     <div>

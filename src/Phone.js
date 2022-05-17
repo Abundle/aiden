@@ -13,7 +13,6 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         margin: '15px 75px',
-        // margin: '50px 100px',
         height: '45vw', // original image: 640x1280px
         minHeight: 682,
         width: '22vw',
@@ -21,13 +20,12 @@ const styles = {
     },
     image: {
         height: '100%',
-        // width: '100%',
     },
     screen: {
         position: 'absolute',
-        height: '34.75vw', //665
+        height: '34.75vw',
         minHeight: 534.45,
-        width: '19.55vw', //374
+        width: '19.55vw',
         minWidth: 300.45,
     },
     mobile: {
@@ -40,7 +38,7 @@ const styles = {
 
 class Phone extends Component {
     render() {
-        const { classes, assistant } = this.props; /*TODO: fix disappearance on resize*/
+        const { classes, assistant } = this.props;
         const ui = assistant ? (
             <DigitalAssistantApp />
         ) : (

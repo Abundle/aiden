@@ -21,7 +21,6 @@ import moment from 'moment';
 // Local import
 import events from './events';
 import './react-big-calendar.css';
-// import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 moment.locale('ko', {
     week: {
@@ -43,7 +42,6 @@ const styles = theme => ({
         // Minus status bar, app bar and bottom navigation
         height: 'calc(100% - (20px + 56px))',
         backgroundColor: theme.palette.secondary.main,
-        // backgroundColor: 'whitesmoke',
         overflow: 'hidden',
         flexGrow: 1,
     },
@@ -136,7 +134,6 @@ class Calendar extends Component {
         const { icon } = this.state;
 
         let calendarHeader = ({ label }) => {
-            // console.log(label.charAt(0));
             return (
                 <div>{ label.charAt(0) }</div>
             );
@@ -173,22 +170,12 @@ class Calendar extends Component {
                     }}
                     formats={{
                         dateFormat: 'D',
-                        // monthHeaderFormat: 'MM',
                     }}
                     components={{
                         month: { header: calendarHeader },
                     }}
-                    // scrollToTime={ new Date(2018, 1, 1, 6) }
-                    defaultDate={ new Date() }
+                    defaultDate={ new Date(2018, 5, 8) }
                     onSelectEvent={ (event) => this.handleDialog(event) }
-                    // onSelectEvent={ event => alert(event.title + ' ' + event.setByAssistant) }
-                    /*onSelectSlot={ slotInfo =>
-                        alert(
-                            `selected slot: \n\nstart ${ slotInfo.start.toLocaleString() } ` +
-                            `\nend: ${ slotInfo.end.toLocaleString() }` +
-                            `\naction: ${ slotInfo.action }`
-                        )
-                    }*/
                 />
 
                 <EventDialog
@@ -196,13 +183,6 @@ class Calendar extends Component {
                     onClose={ () => this.handleDialog(this.state.event) }
                     event={ this.state.event }
                 />
-
-                {/*<BigCalendar
-                    events={ events }
-                    startAccessor='start'
-                    endAccessor='end'
-                    views={{ month: true }}
-                />*/}
             </div>
         );
     };

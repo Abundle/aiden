@@ -24,7 +24,6 @@ const styles = theme => ({
         width: '100%',
         minWidth: 215,
         padding: 10,
-        // borderRadius: 10,
     },
     input: {
         width: '100%',
@@ -34,7 +33,7 @@ const styles = theme => ({
             outline: 'none',
         },
         '&::placeholder': {
-            opacity: 0.5, // TODO: load from theme
+            opacity: 0.5,
         }
     },
     button: {
@@ -63,7 +62,7 @@ class SendMessage extends Component {
         let scenario = this.props.messages.messageSelected.title;
 
         this.props.dispatch(input.value, sender, receiver, scenario);
-        input.value = ''; // TODO: does not seem to work
+        input.value = '';
     }
 
     render() {
@@ -90,7 +89,6 @@ class SendMessage extends Component {
                             }}
                             placeholder={ assistant ? 'Assistant is handling messages' : 'Select a message card' }
                             disabled={ assistant }
-                            // defaultValue=''
                             value={ (!assistant && value) || '' }
                         />
                     </Paper>

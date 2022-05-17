@@ -25,8 +25,6 @@ export default [
         allDay: true,
         start: new Date(2018, 5, 6),
         end: new Date(2018, 5, 6),
-        // start: new Date(new Date().setHours(new Date().getHours() - 3)),
-        // end: new Date(new Date().setHours(new Date().getHours() + 3)),
     },
     {
         id: 4,

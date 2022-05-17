@@ -4,7 +4,7 @@ import { sendResponseWithTimeout } from '../actions';
 
 const mapStateToProps = state => {
     return {
-        users: state.users, // TODO: check which state subtree is needed
+        users: state.users,
         messages: {
             messageSelected: state.messages.messageSelected,
         },

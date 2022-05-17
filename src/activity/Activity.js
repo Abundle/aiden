@@ -12,12 +12,11 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
-import Moment from 'react-moment'; // TODO: change to regular moment library?
+import Moment from 'react-moment'; 
 
 // Local import
 import avatar1 from '../assets/avatar1.jpg';
 import avatar2 from '../assets/avatar2.jpg';
-// import avatar3 from '../assets/avatar3.jpg';
 import avatar8 from '../assets/avatar8.jpg';
 import avatar9 from '../assets/avatar9.jpg';
 import facebook from '../assets/facebook.svg';
@@ -30,7 +29,7 @@ const styles = theme => ({
         width: '100%',
         // Minus status bar, app bar and bottom navigation
         height: 'calc(100% - (20px + 56px))',
-        backgroundColor: 'whitesmoke', //theme.palette.secondary.main,
+        backgroundColor: 'whitesmoke',
         overflow: 'hidden',
         flexGrow: 1,
     },
@@ -40,7 +39,6 @@ const styles = theme => ({
     },
     list: {
         height: 'calc(100% - 56px)',
-        // height: 'calc(100% - 64px)',
         paddingRight: 2,
         paddingBottom: theme.spacing.unit * 10,
         overflowY: 'scroll',
@@ -53,8 +51,6 @@ const styles = theme => ({
         minWidth: 250,
     },
     summaryCardHeader: {
-        // color: 'white',
-        // backgroundColor: theme.palette.secondary.main,
         backgroundColor: '#B71C1C',
     },
     summaryCardText: {
@@ -79,7 +75,7 @@ const styles = theme => ({
         color: '#3C5A98',
     },
     appIcon: {
-        width: 24, //24
+        width: 24,
         marginRight: 5,
         verticalAlign: '-25%',
     },
@@ -106,8 +102,6 @@ class Activity extends Component {
         const { anchorEl  } = this.state;
         const date = new Date();
         const today = <Moment format='MMM Do, YYYY'>{ date }</Moment>;
-
-        // TODO: add variant='outlined
 
         return (
             <div className={ classes.root }>
@@ -191,9 +185,6 @@ class Activity extends Component {
                                 <img className={ classes.appIcon } src={ whatsApp } alt='WhatsApp'/> WhatsApp
                             </Typography>
                         </CardContent>
-                        {/*<CardActions>
-                        <Button size='small' color='primary'>Learn More</Button>
-                    </CardActions>*/}
                     </Card>
                     <Card className={ classes.card }>
                         <CardHeader

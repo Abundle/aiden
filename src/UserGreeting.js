@@ -24,7 +24,7 @@ class UserGreeting extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            index: 1, // TODO: retrieve from Redux store?
+            index: 1, 
         }
     }
 
@@ -99,8 +99,6 @@ class UserGreeting extends Component {
             </div>
         );
 
-
-        // console.log(assistant);
         return (
             <div className={ classes.root }>
                 { userGreeting }
@@ -111,8 +109,6 @@ class UserGreeting extends Component {
 
 UserGreeting.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    // users: PropTypes.[].isRequired,
-    // assistant: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
 };
 
