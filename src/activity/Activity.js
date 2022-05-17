@@ -100,7 +100,7 @@ class Activity extends Component {
     render() {
         const { classes } = this.props;
         const { anchorEl  } = this.state;
-        const date = new Date();
+        const date = new Date(2018, 5, 8);
         const today = <Moment format='MMM Do, YYYY'>{ date }</Moment>;
 
         return (
